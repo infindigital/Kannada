@@ -4,31 +4,9 @@
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 <title>ಕನ್ನಡವೇ ನಮ್ಮ ಉಸಿರು — ಕನ್ನಡ ಸಂಸ್ಕೃತಿ</title>
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Google Fonts for Typography (incl. Kannada) -->
-<link href="https://fonts.googleapis.com" rel="preconnect" />
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;700&family=Noto+Sans+Kannada:wght@300;400;500;700&family=Noto+Serif+Kannada:wght@400;500;600;700&display=swap" rel="stylesheet" />
-<script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['"Noto Serif Kannada"', '"Instrument Serif"', 'serif'],
-            sans: ['"Noto Sans Kannada"', 'Inter', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              red: '#c62828',
-              gold: '#ffd700',
-              dark: '#0A0A0A',
-            }
-          }
-        }
-      }
-    }
-  </script>
+<!-- Self-hosted, CDN-free stylesheets (built with Tailwind + @fontsource) -->
+<link href="assets/fonts.css" rel="stylesheet" />
+<link href="assets/tailwind.css" rel="stylesheet" />
 <style data-purpose="custom-typography">
     /* Gold gradient text for the emphasis line */
     .text-gold-gradient {
