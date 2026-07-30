@@ -270,40 +270,70 @@
     .cf-dot.is-active { width: 26px; background: #ffd700; }
     @media (prefers-reduced-motion: reduce) { .cf-card { transition: none; } }
   </style>
+<style data-purpose="site-nav">
+    .glass-nav {
+      background: rgba(12, 10, 9, 0.72);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(255, 255, 255, 0.10);
+    }
+    .diamond-icon { clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%); }
+    /* offset in-page anchors so the fixed navbar doesn't cover section tops */
+    #about, #impact, #programs, #blog, #gallery, #steps, #fan-cam, #join { scroll-margin-top: 96px; }
+  </style>
 </head>
 <body class="min-h-full m-0 p-0 bg-brand-dark text-white font-sans overflow-x-hidden">
+<!-- BEGIN: SiteNav (floating glass navbar) -->
+<header class="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 pt-4" data-purpose="site-nav">
+<nav class="glass-nav max-w-6xl mx-auto rounded-2xl shadow-2xl flex items-center justify-between gap-4 px-4 md:px-6 py-3">
+<!-- Brand -->
+<a class="flex items-center gap-3 group shrink-0" href="#">
+<span class="w-9 h-9 bg-brand-red diamond-icon flex items-center justify-center transition-transform duration-300 group-hover:rotate-45">
+<span class="w-2.5 h-2.5 bg-brand-gold diamond-icon"></span>
+</span>
+<span class="flex flex-col leading-tight">
+<span class="font-serif text-white text-lg font-bold tracking-wide">ಕನ್ನಡ ವೇದಿಕೆ</span>
+<span class="text-[9px] uppercase tracking-[0.18em] text-gray-400">ನಾಡು · ನುಡಿ · ಸಂಸ್ಕೃತಿ</span>
+</span>
+</a>
+<!-- Center links -->
+<div class="hidden lg:flex items-center gap-7">
+<a class="text-[13px] font-semibold text-brand-gold transition-colors" href="#">ಮುಖಪುಟ</a>
+<a class="text-[13px] font-semibold text-gray-300 hover:text-brand-gold transition-colors" href="#about">ನಮ್ಮ ಬಗ್ಗೆ</a>
+<a class="text-[13px] font-semibold text-gray-300 hover:text-brand-gold transition-colors" href="#programs">ಕಾರ್ಯಕ್ರಮಗಳು</a>
+<a class="text-[13px] font-semibold text-gray-300 hover:text-brand-gold transition-colors" href="#blog">ಬ್ಲಾಗ್</a>
+<a class="text-[13px] font-semibold text-gray-300 hover:text-brand-gold transition-colors" href="#join">ಸಂಪರ್ಕಿಸಿ</a>
+</div>
+<!-- Search + CTA + mobile toggle -->
+<div class="flex items-center gap-3 shrink-0">
+<div class="relative hidden sm:block">
+<input class="bg-white/5 border border-white/10 rounded-lg py-2 pl-4 pr-10 text-sm text-white placeholder-gray-400 w-40 focus:w-56 focus:outline-none focus:ring-2 focus:ring-brand-red/40 focus:border-brand-red transition-all" type="text" placeholder="ಹುಡುಕಿ" aria-label="ಹುಡುಕಿ" />
+<svg class="absolute right-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400 pointer-events-none" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><circle cx="11" cy="11" r="7"></circle><path d="M21 21l-4.3-4.3" stroke-linecap="round"></path></svg>
+</div>
+<a class="bg-brand-red hover:shadow-lg hover:shadow-brand-red/30 text-white text-xs font-bold uppercase tracking-[0.12em] px-5 py-2.5 rounded-lg transition-all" href="#join">ಸೇರಿ</a>
+<button class="lg:hidden text-white p-1" type="button" aria-label="ಮೆನು" aria-expanded="false" id="nav-menu-btn">
+<svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"></path></svg>
+</button>
+</div>
+</nav>
+<!-- Mobile menu -->
+<div class="lg:hidden hidden glass-nav max-w-6xl mx-auto rounded-2xl mt-2 p-3 flex-col" id="nav-mobile">
+<a class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-brand-gold" href="#">ಮುಖಪುಟ</a>
+<a class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:bg-white/5" href="#about">ನಮ್ಮ ಬಗ್ಗೆ</a>
+<a class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:bg-white/5" href="#programs">ಕಾರ್ಯಕ್ರಮಗಳು</a>
+<a class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:bg-white/5" href="#blog">ಬ್ಲಾಗ್</a>
+<a class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:bg-white/5" href="#join">ಸಂಪರ್ಕಿಸಿ</a>
+</div>
+</header>
+<!-- END: SiteNav -->
 <!-- BEGIN: MainContainer -->
-<main class="relative h-screen w-full flex flex-col justify-between p-8 md:p-12">
+<main class="relative h-screen w-full flex flex-col justify-end p-8 md:p-12">
 <!-- BEGIN: Background Video (Karnataka flag flying) -->
 <video class="hero-video" autoplay muted loop playsinline data-purpose="hero-background-video">
 <source src="assets/karnataka-flag.mp4" type="video/mp4" />
 </video>
 <div class="hero-overlay" aria-hidden="true"></div>
 <!-- END: Background Video -->
-<!-- BEGIN: Header -->
-<header class="flex items-center justify-between z-10">
-<!-- Hamburger Menu -->
-<div class="cursor-pointer" data-purpose="navigation-menu">
-<svg fill="none" height="14" viewbox="0 0 24 14" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 1H24" stroke="white" stroke-width="1.5"></path>
-<path d="M0 7H16" stroke="white" stroke-width="1.5"></path>
-<path d="M0 13H24" stroke="white" stroke-width="1.5"></path>
-</svg>
-</div>
-<!-- Logo -->
-<div class="flex items-center gap-3" data-purpose="brand-logo">
-<div class="w-8 h-8 border-2 border-brand-gold flex items-center justify-center">
-<div class="w-3 h-3 bg-brand-red"></div>
-</div>
-<span class="text-xl font-bold tracking-[0.3em] uppercase">ಕನ್ನಡ</span>
-</div>
-<!-- Auth Actions -->
-<div class="flex items-center gap-8" data-purpose="auth-links">
-<a class="text-xs font-semibold tracking-widest hover:text-brand-gold transition-colors" href="#">ಲಾಗಿನ್</a>
-<a class="glass-button px-6 py-2 rounded-full text-xs font-semibold tracking-widest border border-white/20" href="#">ಸೇರಿಕೊಳ್ಳಿ</a>
-</div>
-</header>
-<!-- END: Header -->
 <!-- BEGIN: HeroContent -->
 <section class="flex-grow flex items-center relative z-10">
 <!-- Left Content -->
@@ -944,6 +974,20 @@
         if (msg) { msg.classList.remove('hidden'); msg.classList.add('flex'); }
         form.reset();
       });
+    })();
+  </script>
+<script data-purpose="nav-menu">
+    // Mobile nav toggle + close on link tap.
+    (function () {
+      var btn = document.getElementById('nav-menu-btn');
+      var menu = document.getElementById('nav-mobile');
+      if (!btn || !menu) return;
+      function open() { menu.classList.remove('hidden'); menu.classList.add('flex'); btn.setAttribute('aria-expanded', 'true'); }
+      function close() { menu.classList.add('hidden'); menu.classList.remove('flex'); btn.setAttribute('aria-expanded', 'false'); }
+      btn.addEventListener('click', function () {
+        if (menu.classList.contains('hidden')) { open(); } else { close(); }
+      });
+      menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
     })();
   </script>
 </body>
