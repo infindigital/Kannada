@@ -72,6 +72,44 @@
       margin-right: 12px;
     }
   </style>
+<style data-purpose="about-section">
+    /* President's-message prestige band (light "silk cream" surface) */
+    .about-band {
+      background-color: #fcf9f8;
+      color: #1c1b1b;
+    }
+    /* Warm golden-hour glow evoking the heritage backdrop, fully self-contained */
+    .about-glow {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+      background:
+        radial-gradient(60% 60% at 85% 15%, rgba(255, 215, 0, 0.18) 0%, rgba(255, 215, 0, 0) 60%),
+        radial-gradient(50% 50% at 10% 90%, rgba(198, 40, 40, 0.10) 0%, rgba(198, 40, 40, 0) 60%);
+    }
+    .message-card {
+      background: #ffffff;
+      box-shadow: 0 20px 50px rgba(28, 27, 27, 0.10);
+      border: 1px solid rgba(28, 27, 27, 0.06);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+    .message-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 28px 62px rgba(28, 27, 27, 0.16);
+    }
+    /* Portrait placeholder frame — drop a real photo in via the <img> inside it */
+    .portrait-frame {
+      background: linear-gradient(160deg, #fff6dd 0%, #f6e2c0 45%, #efd0a6 100%);
+      border: 1px solid rgba(198, 40, 40, 0.15);
+      box-shadow: 0 24px 50px rgba(28, 27, 27, 0.18);
+      overflow: hidden;
+    }
+    @media (prefers-reduced-motion: reduce) {
+      .message-card { transition: none; }
+      .message-card:hover { transform: none; }
+    }
+  </style>
 </head>
 <body class="min-h-full m-0 p-0 bg-brand-dark text-white font-sans overflow-x-hidden">
 <!-- BEGIN: MainContainer -->
@@ -158,72 +196,89 @@
 <!-- END: FooterUI -->
 </main>
 <!-- END: MainContainer -->
-<!-- BEGIN: AboutSection -->
-<section id="about" class="relative bg-brand-dark border-t border-white/10 py-24 px-8 md:px-12" data-purpose="about-us">
-<div class="max-w-6xl mx-auto">
-<!-- Section label -->
-<div class="accent-line text-[10px] uppercase tracking-[0.2em] text-brand-gold mb-10 font-semibold">
-        ನಮ್ಮ ಬಗ್ಗೆ
-      </div>
-<!-- Intro: heading + copy -->
-<div class="grid md:grid-cols-2 gap-10 md:gap-16 items-start mb-20">
-<h2 class="font-serif text-3xl md:text-5xl leading-tight text-balance">
-          ನಾವು <span class="text-gold-gradient">ಕನ್ನಡಿಗರು</span>,<br/>ನಮ್ಮ ನಾಡಿನ ಧ್ವನಿ
-        </h2>
-<div class="space-y-6 text-sm md:text-base text-gray-300 leading-relaxed">
+<!-- BEGIN: AboutSection (President's Message) -->
+<section id="about" class="about-band relative overflow-hidden border-t-4 border-brand-gold py-20 md:py-28 px-6 md:px-12" data-purpose="president-message">
+<div class="about-glow" aria-hidden="true"></div>
+<div class="relative z-10 max-w-6xl mx-auto">
+<div class="flex flex-col lg:flex-row items-center lg:items-stretch gap-12 lg:gap-0">
+<!-- The Message Card -->
+<div class="message-card w-full lg:w-[68%] p-8 md:p-12 lg:p-14 rounded-3xl relative z-20">
+<!-- Category badge -->
+<div class="inline-block bg-brand-red text-white px-4 py-1 rounded text-[11px] font-bold uppercase tracking-[0.15em] mb-6">
+              ಅಧ್ಯಕ್ಷರ ಸಂದೇಶ
+            </div>
+<!-- Heading + decorative bar -->
+<div class="mb-8">
+<div class="w-16 h-1 bg-brand-gold mb-4"></div>
+<h2 class="font-serif text-3xl md:text-4xl font-bold text-brand-red text-balance">ನಮ್ಮ ಗುರಿ ಕರ್ನಾಟಕದ ಏಳಿಗೆ</h2>
+</div>
+<!-- Highlighted blockquote -->
+<blockquote class="border-l-4 border-brand-gold pl-6 mb-8">
+<p class="font-serif text-lg md:text-xl italic leading-relaxed text-[#3a2f2e]">
+                "ಕನ್ನಡವೇ ನಮ್ಮ ಉಸಿರು, ಕರ್ನಾಟಕವೇ ನಮ್ಮ ಪ್ರಾಣ. ನಾಡು–ನುಡಿಯ ರಕ್ಷಣೆ ಮತ್ತು ಕನ್ನಡಿಗರ ಸರ್ವಾಂಗೀಣ ಅಭಿವೃದ್ಧಿಯೇ ನಮ್ಮ ಸಂಘಟನೆಯ ಪರಮ ಗುರಿ."
+              </p>
+</blockquote>
+<!-- Body -->
+<div class="space-y-5 text-base md:text-lg leading-relaxed text-[#5c3f3d] max-w-2xl">
 <p>
-            ನಾವು ಕನ್ನಡ ನಾಡು–ನುಡಿ, ನೆಲ–ಜಲ ಮತ್ತು ಸಂಸ್ಕೃತಿಯ ಉಳಿವಿಗಾಗಿ ಶ್ರಮಿಸುವ ಜನಪರ ಸಂಘಟನೆ. ಕನ್ನಡಿಗರ ಅಸ್ಮಿತೆಯನ್ನು ಎತ್ತಿಹಿಡಿಯುವುದೇ ನಮ್ಮ ಗುರಿ.
-          </p>
+                ಕರ್ನಾಟಕದ ಭವ್ಯ ಪರಂಪರೆ ಮತ್ತು ಕನ್ನಡ ಭಾಷೆಯ ಉಳಿವಿಗಾಗಿ ನಮ್ಮ ವೇದಿಕೆಯು ಸತತವಾಗಿ ಶ್ರಮಿಸುತ್ತಿದೆ. ಪ್ರತಿಯೊಬ್ಬ ಕನ್ನಡಿಗನೂ ತನ್ನ ಹಕ್ಕುಗಳ ಬಗ್ಗೆ ಜಾಗೃತನಾಗಬೇಕು ಮತ್ತು ನಾಡಿನ ಅಭಿವೃದ್ಧಿಯಲ್ಲಿ ಪಾಲ್ಗೊಳ್ಳಬೇಕು ಎಂಬುದು ನಮ್ಮ ಆಶಯ.
+              </p>
 <p>
-            ಶಾಲೆ–ಕಾಲೇಜು, ಗ್ರಾಮ–ನಗರ ಎಲ್ಲೆಡೆ ಕನ್ನಡದ ಕಂಪು ಪಸರಿಸಲು, ನಮ್ಮ ಸ್ವಯಂಸೇವಕರೊಂದಿಗೆ ನಿರಂತರ ಕಾರ್ಯನಿರತರಾಗಿದ್ದೇವೆ. ಈ ಚಳವಳಿಯ ಭಾಗವಾಗಿ ನೀವೂ ಕೈಜೋಡಿಸಿ.
-          </p>
+                ಶಿಕ್ಷಣ, ಉದ್ಯೋಗ ಮತ್ತು ಸಾಮಾಜಿಕ ನ್ಯಾಯದ ವಿಚಾರಗಳಲ್ಲಿ ಕನ್ನಡಿಗರಿಗೆ ಮೊದಲ ಆದ್ಯತೆ ಸಿಗುವಂತೆ ಮಾಡುವುದು ನಮ್ಮ ಜವಾಬ್ದಾರಿ. ಮುಂದಿನ ಪೀಳಿಗೆಗೆ ಸಮೃದ್ಧ ಮತ್ತು ಸಂಸ್ಕೃತಿವಂತ ಕರ್ನಾಟಕವನ್ನು ಹಸ್ತಾಂತರಿಸುವುದು ನಮ್ಮ ಮುಂದಿರುವ ದೊಡ್ಡ ಗುರಿಯಾಗಿದೆ.
+              </p>
+<p class="font-bold text-brand-red text-lg">ಜೈ ಕರ್ನಾಟಕ ಮಾತೆ!</p>
+</div>
+<!-- CTA -->
+<div class="mt-10">
+<button class="bg-brand-red text-white px-8 py-3 rounded-lg text-xs font-bold uppercase tracking-[0.15em] inline-flex items-center gap-3 hover:shadow-xl hover:shadow-brand-red/25 hover:-translate-y-0.5 transition-all group">
+                ನಮ್ಮೊಂದಿಗೆ ಕೈಜೋಡಿಸಿ
+                <svg class="w-4 h-4 group-hover:translate-x-1 transition-transform" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
+</button>
 </div>
 </div>
-<!-- Pillars -->
-<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
-<!-- ನುಡಿ -->
-<div class="border border-white/10 rounded-2xl p-6 bg-white/[0.02] hover:border-brand-gold/40 transition-colors">
-<div class="w-9 h-9 border-2 border-brand-gold rounded-full flex items-center justify-center mb-5">
-<div class="w-3 h-3 bg-brand-red rounded-full"></div>
+<!-- Leader portrait (placeholder frame — replace the inner <img> with a real photo) -->
+<div class="w-full lg:w-[38%] lg:-ml-16 flex justify-center lg:justify-end items-center relative z-10">
+<div class="portrait-frame w-64 sm:w-72 lg:w-80 aspect-[4/5] rounded-3xl relative">
+<!-- To use a real photo: set the src below to your image (e.g. assets/president.jpg) and remove the SVG placeholder. -->
+<!-- <img src="assets/president.jpg" alt="ಅಧ್ಯಕ್ಷರ ಭಾವಚಿತ್ರ" class="absolute inset-0 w-full h-full object-cover" /> -->
+<svg class="absolute inset-0 w-full h-full" viewbox="0 0 320 400" preserveaspectratio="xMidYMax meet" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+<!-- shoulders -->
+<path d="M40 400 C40 300 100 270 160 270 C220 270 280 300 280 400 Z" fill="#8a1420"></path>
+<!-- red & gold stole -->
+<path d="M132 276 L150 400 L176 400 L162 276 Z" fill="#c62828"></path>
+<path d="M176 276 L192 400 L214 400 L200 276 Z" fill="#ffd700"></path>
+<!-- neck -->
+<rect x="142" y="232" width="36" height="52" rx="14" fill="#a8656a"></rect>
+<!-- head -->
+<circle cx="160" cy="176" r="58" fill="#b06b70"></circle>
+<!-- hair -->
+<path d="M104 168 C104 118 150 104 160 104 C170 104 216 118 216 168 C216 150 196 136 160 136 C124 136 104 150 104 168 Z" fill="#2a1a1c"></path>
+</svg>
+<!-- Nameplate -->
+<div class="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-brand-red to-brand-red/0 px-5 pt-10 pb-4 text-center">
+<span class="block text-white font-serif text-lg font-semibold">ಅಧ್ಯಕ್ಷರು</span>
+<span class="block text-white/90 text-[11px] tracking-[0.15em] uppercase mt-0.5">ಕನ್ನಡ ವೇದಿಕೆ</span>
 </div>
-<h3 class="font-serif text-xl mb-3">ನುಡಿ</h3>
-<p class="text-sm text-gray-400 leading-relaxed">
-            ಕನ್ನಡ ಭಾಷೆಯ ಶ್ರೀಮಂತಿಕೆಯನ್ನು ಉಳಿಸಿ, ಶಿಕ್ಷಣ ಮತ್ತು ಆಡಳಿತದಲ್ಲಿ ಕನ್ನಡಕ್ಕೆ ಆದ್ಯತೆ.
-          </p>
 </div>
-<!-- ನೆಲ -->
-<div class="border border-white/10 rounded-2xl p-6 bg-white/[0.02] hover:border-brand-gold/40 transition-colors">
-<div class="w-9 h-9 border-2 border-brand-gold rounded-full flex items-center justify-center mb-5">
-<div class="w-3 h-3 bg-brand-red rounded-full"></div>
-</div>
-<h3 class="font-serif text-xl mb-3">ನೆಲ</h3>
-<p class="text-sm text-gray-400 leading-relaxed">
-            ಕರ್ನಾಟಕದ ನೆಲ, ಗಡಿ ಮತ್ತು ಸಂಪನ್ಮೂಲಗಳ ಹಿತರಕ್ಷಣೆಗಾಗಿ ದೃಢ ನಿಲುವು.
-          </p>
-</div>
-<!-- ಜಲ -->
-<div class="border border-white/10 rounded-2xl p-6 bg-white/[0.02] hover:border-brand-gold/40 transition-colors">
-<div class="w-9 h-9 border-2 border-brand-gold rounded-full flex items-center justify-center mb-5">
-<div class="w-3 h-3 bg-brand-red rounded-full"></div>
-</div>
-<h3 class="font-serif text-xl mb-3">ಜಲ</h3>
-<p class="text-sm text-gray-400 leading-relaxed">
-            ನಮ್ಮ ನದಿಗಳ ನೀರಿನ ನ್ಯಾಯಯುತ ಹಕ್ಕುಗಳಿಗಾಗಿ ಸತತ ಹೋರಾಟ.
-          </p>
-</div>
-<!-- ಸಂಸ್ಕೃತಿ -->
-<div class="border border-white/10 rounded-2xl p-6 bg-white/[0.02] hover:border-brand-gold/40 transition-colors">
-<div class="w-9 h-9 border-2 border-brand-gold rounded-full flex items-center justify-center mb-5">
-<div class="w-3 h-3 bg-brand-red rounded-full"></div>
-</div>
-<h3 class="font-serif text-xl mb-3">ಸಂಸ್ಕೃತಿ</h3>
-<p class="text-sm text-gray-400 leading-relaxed">
-            ಕಲೆ, ಸಾಹಿತ್ಯ, ಸಂಗೀತ ಮತ್ತು ಪರಂಪರೆಯ ಪೋಷಣೆ ಹಾಗೂ ಪ್ರಚಾರ.
-          </p>
 </div>
 </div>
 </div>
 </section>
 <!-- END: AboutSection -->
+<!-- BEGIN: Footer -->
+<footer class="bg-brand-dark border-t-4 border-brand-gold px-6 md:px-12 py-10">
+<div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
+<div class="text-center md:text-left">
+<span class="font-serif text-xl font-bold text-brand-gold">ಕನ್ನಡ ವೇದಿಕೆ</span>
+<p class="text-xs text-gray-400 mt-2">© 2026 ಕನ್ನಡ ವೇದಿಕೆ. ಸರ್ವ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.</p>
+</div>
+<div class="flex flex-wrap justify-center gap-6 text-xs font-semibold tracking-widest text-gray-300">
+<a class="hover:text-brand-gold transition-colors" href="#">ನಮ್ಮ ಬಗ್ಗೆ</a>
+<a class="hover:text-brand-gold transition-colors" href="#">ಸಂದೇಶಗಳು</a>
+<a class="hover:text-brand-gold transition-colors" href="#">ಸಂಪರ್ಕಿಸಿ</a>
+</div>
+</div>
+</footer>
+<!-- END: Footer -->
 </body>
 </html>
