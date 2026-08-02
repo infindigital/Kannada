@@ -144,17 +144,16 @@
       });
       menu.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', close); });
     })();
-  
 
-
-  // CMS hydration: if the admin has saved content (localStorage, same origin),
-  // re-render the [data-cms] lists from it. No data -> static content stays.
+  // Headless CMS data layer. Source priority per section:
+  //   1) WordPress REST API  (if window.KV_WP_BASE is set)
+  //   2) local editor content (admin.html -> localStorage, same origin)
+  //   3) the static markup already in the page (left untouched)
   (function () {
-    var raw; try { raw = localStorage.getItem('kv_content_v1'); } catch (e) { return; }
-    if (!raw) return;
-    var data; try { data = JSON.parse(raw); } catch (e) { return; }
-    if (!data) return;
+    var WP = (window.KV_WP_BASE || '').replace(/\/+$/, '');
+    var STORE = 'kv_content_v1';
     var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); };
+    var strip = function (h) { var d = document.createElement('div'); d.innerHTML = h || ''; return (d.textContent || '').trim(); };
     var ARROW = '<svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round"></path></svg>';
     var PIN = '<svg class="w-4 h-4 text-brand-red" fill="none" stroke="currentColor" stroke-width="1.8" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 21s-7-5.2-7-11a7 7 0 1114 0c0 5.8-7 11-7 11z" stroke-linecap="round" stroke-linejoin="round"></path><circle cx="12" cy="10" r="2.5"></circle></svg>';
     function programCard(p) {
@@ -173,7 +172,7 @@
       var k = i % 3;
       return '<div class="h-full"><article class="glass-card rounded-2xl overflow-hidden h-full flex flex-col hover:-translate-y-1.5 transition-transform duration-300">'
         + '<div class="relative h-44" style="background: ' + BG[k] + ';"><span class="absolute top-4 left-4 bg-black/40 backdrop-blur text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full border border-white/20">' + esc(b.category) + '</span>' + ICON[k] + '</div>'
-        + '<div class="p-6 flex flex-col flex-1"><div class="flex items-center gap-3 text-[11px] text-gray-400 mb-3"><span>' + esc(b.date) + '</span><span class="w-1 h-1 rounded-full bg-gray-500"></span><span>' + esc(b.readtime) + '</span></div>'
+        + '<div class="p-6 flex flex-col flex-1"><div class="flex items-center gap-3 text-[11px] text-gray-400 mb-3"><span>' + esc(b.date) + '</span>' + (b.readtime ? '<span class="w-1 h-1 rounded-full bg-gray-500"></span><span>' + esc(b.readtime) + '</span>' : '') + '</div>'
         + '<h3 class="font-serif text-lg font-bold text-white mb-2 line-clamp-2">' + esc(b.title) + '</h3><p class="text-sm text-gray-400 leading-relaxed line-clamp-2 mb-5 flex-1">' + esc(b.excerpt) + '</p>'
         + '<a class="inline-flex items-center gap-1 text-xs font-bold text-brand-gold hover:gap-2 transition-all mt-auto" href="#">ಓದಿರಿ ' + ARROW + '</a></div></article></div>';
     }
@@ -200,14 +199,50 @@
         + '<div class="pb-10"><span class="font-serif text-2xl font-bold text-gold-gradient">' + esc(m.year) + '</span><h3 class="font-serif text-xl font-bold text-white mt-1 mb-2">' + esc(m.title) + '</h3><p class="text-gray-400 leading-relaxed max-w-2xl">' + esc(m.desc) + '</p></div></div>';
     }
     var R = { programs: programCard, blog: blogCard, media: mediaCard, leaders: leaderCard };
-    document.querySelectorAll('[data-cms]').forEach(function (el) {
-      var type = el.getAttribute('data-cms');
-      var list = (data[type] || []).slice();
-      var lim = parseInt(el.getAttribute('data-cms-limit') || '0', 10);
-      if (lim > 0) list = list.slice(0, lim);
-      if (!list.length) return;
+
+    // ---- WordPress mapping ----
+    var WP_EP = { programs: 'program', movements: 'movement', leaders: 'leader', media: 'media_report', blog: 'posts' };
+    function mapWp(type, it) {
+      var m = it.meta || {};
+      var t = strip(it.title && it.title.rendered);
+      if (type === 'blog') {
+        var cat = ''; try { cat = it._embedded['wp:term'][0][0].name; } catch (e) {}
+        return { category: cat, date: (it.date || '').slice(0, 10), readtime: m.readtime || '', title: t, excerpt: strip(it.excerpt && it.excerpt.rendered) };
+      }
+      if (type === 'programs') return { day: m.day, month: m.month, tag: m.tag, title: t, place: m.place, desc: m.desc };
+      if (type === 'movements') return { year: m.year, title: t, desc: m.desc };
+      if (type === 'leaders') return { role: m.role || t, name: m.name || '' };
+      if (type === 'media') return { outlet: m.outlet, date: m.date, headline: t };
+      return {};
+    }
+    function fromWp(type) {
+      if (!WP || !WP_EP[type] || typeof fetch !== 'function') return Promise.resolve(null);
+      var url = WP + '/wp-json/wp/v2/' + WP_EP[type] + '?per_page=100' + (type === 'blog' ? '&_embed' : '');
+      return fetch(url).then(function (r) { if (!r.ok) throw 0; return r.json(); })
+        .then(function (arr) { return (arr || []).map(function (it) { return mapWp(type, it); }); })
+        .catch(function () { return null; });
+    }
+    function fromLocal(type) {
+      try { var d = JSON.parse(localStorage.getItem(STORE)); if (d && d[type]) return d[type]; } catch (e) {}
+      return null;
+    }
+    function renderInto(el, type, list) {
+      if (!list || !list.length) return;
+      var lim = parseInt(el.getAttribute('data-cms-limit') || '0', 10); if (lim > 0) list = list.slice(0, lim);
       if (type === 'movements') { el.innerHTML = list.map(function (m, i) { return moveItem(m, i, i === list.length - 1); }).join(''); return; }
-      var fn = R[type]; if (!fn) return;
-      el.innerHTML = list.map(function (it, i) { return fn(it, i); }).join('');
-    });
+      var fn = R[type]; if (!fn) return; el.innerHTML = list.map(function (it, i) { return fn(it, i); }).join('');
+    }
+    // Exposed so the single-file preview router can re-render on route change.
+    window.__hydrate = function (root) {
+      root = root || document;
+      Array.prototype.forEach.call(root.querySelectorAll('[data-cms]'), function (el) {
+        var type = el.getAttribute('data-cms');
+        fromWp(type).then(function (list) {
+          if (list && list.length) { renderInto(el, type, list); return; }
+          var loc = fromLocal(type);
+          if (loc && loc.length) renderInto(el, type, loc);
+        });
+      });
+    };
+    window.__hydrate(document);
   })();
