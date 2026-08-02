@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html class="h-full" lang="kn">
+<head>
+<meta charset="utf-8" />
+<meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>ವಿಷಯ ನಿರ್ವಹಣೆ — ಕನ್ನಡ ವೇದಿಕೆ</title>
+<link href="assets/fonts.css" rel="stylesheet" />
+<link href="assets/tailwind.css" rel="stylesheet" />
+<link href="assets/site.css" rel="stylesheet" />
+<style>
+  .adm-input { width:100%; border-radius:0.5rem; background:rgba(255,255,255,0.05); border:1px solid rgba(255,255,255,0.12); padding:0.6rem 0.85rem; color:#fff; font-size:0.9rem; transition:border-color .2s, box-shadow .2s; }
+  .adm-input::placeholder { color:#8b8b8b; }
+  .adm-input:focus { outline:none; border-color:#c62828; box-shadow:0 0 0 3px rgba(198,40,40,0.25); }
+  .adm-label { display:block; font-size:0.72rem; text-transform:uppercase; letter-spacing:0.08em; color:#9aa0a6; margin-bottom:0.3rem; font-weight:600; }
+  .adm-tab.active { background:rgba(255,215,0,0.12); color:#ffd700; border-color:rgba(255,215,0,0.35); }
+  .adm-panel { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.08); }
+  .toast { position:fixed; bottom:1.25rem; left:50%; transform:translateX(-50%) translateY(120%); background:#16a34a; color:#fff; padding:0.7rem 1.25rem; border-radius:9999px; font-size:0.85rem; font-weight:600; box-shadow:0 12px 30px rgba(0,0,0,0.4); transition:transform .35s ease; z-index:80; }
+  .toast.show { transform:translateX(-50%) translateY(0); }
+</style>
+</head>
+<body class="min-h-full m-0 p-0 bg-brand-dark text-white font-sans">
+<!-- Top bar -->
+<header class="sticky top-0 z-40 glass-nav border-b border-white/10 px-4 md:px-8 py-3">
+<div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+<div class="flex items-center gap-3">
+<span class="w-9 h-9 bg-brand-red diamond-icon flex items-center justify-center shrink-0"><span class="w-2.5 h-2.5 bg-brand-gold diamond-icon"></span></span>
+<div class="leading-tight">
+<div class="font-serif text-base md:text-lg font-bold">ವಿಷಯ ನಿರ್ವಹಣೆ</div>
+<div class="text-[10px] uppercase tracking-[0.15em] text-gray-400">Content Management · ಕನ್ನಡ ವೇದಿಕೆ</div>
+</div>
+</div>
+<div class="flex items-center gap-2">
+<a class="hidden sm:inline-flex text-xs font-semibold text-gray-300 hover:text-brand-gold px-3 py-2" href="index.html">← ಸೈಟ್‌ಗೆ ಹಿಂತಿರುಗಿ</a>
+<button class="text-xs font-bold bg-white/5 border border-white/15 hover:border-brand-gold/50 px-4 py-2 rounded-lg transition-colors" id="btn-import" type="button">ಆಮದು</button>
+<button class="text-xs font-bold bg-brand-gold text-[#5d4200] px-4 py-2 rounded-lg hover:shadow-lg transition-all" id="btn-export" type="button">ರಫ್ತು (JSON)</button>
+<input class="hidden" id="file-import" type="file" accept="application/json" />
+</div>
+</div>
+</header>
+
+<div class="max-w-7xl mx-auto px-4 md:px-8 py-8 grid lg:grid-cols-[220px_1fr] gap-8">
+<!-- Sidebar -->
+<aside class="lg:sticky lg:top-24 self-start">
+<nav class="flex lg:flex-col gap-2 overflow-x-auto" id="tabs">
+<button class="adm-tab active whitespace-nowrap text-sm font-semibold text-gray-300 border border-white/10 rounded-lg px-4 py-2.5 text-left transition-colors" data-tab="dashboard" type="button">ಡ್ಯಾಶ್‌ಬೋರ್ಡ್</button>
+<button class="adm-tab whitespace-nowrap text-sm font-semibold text-gray-300 border border-white/10 rounded-lg px-4 py-2.5 text-left transition-colors" data-tab="programs" type="button">ಕಾರ್ಯಕ್ರಮಗಳು</button>
+<button class="adm-tab whitespace-nowrap text-sm font-semibold text-gray-300 border border-white/10 rounded-lg px-4 py-2.5 text-left transition-colors" data-tab="blog" type="button">ಬ್ಲಾಗ್</button>
+<button class="adm-tab whitespace-nowrap text-sm font-semibold text-gray-300 border border-white/10 rounded-lg px-4 py-2.5 text-left transition-colors" data-tab="media" type="button">ಮಾಧ್ಯಮ ವರದಿ</button>
+<button class="adm-tab whitespace-nowrap text-sm font-semibold text-gray-300 border border-white/10 rounded-lg px-4 py-2.5 text-left transition-colors" data-tab="leaders" type="button">ನಾಯಕರು</button>
+<button class="adm-tab whitespace-nowrap text-sm font-semibold text-gray-300 border border-white/10 rounded-lg px-4 py-2.5 text-left transition-colors" data-tab="movements" type="button">ಹೋರಾಟಗಳು</button>
+<button class="adm-tab whitespace-nowrap text-sm font-semibold text-gray-300 border border-white/10 rounded-lg px-4 py-2.5 text-left transition-colors" data-tab="settings" type="button">ಸೆಟ್ಟಿಂಗ್‌ಗಳು</button>
+<button class="whitespace-nowrap text-sm font-semibold text-brand-red/90 hover:text-brand-red border border-brand-red/20 rounded-lg px-4 py-2.5 text-left transition-colors mt-2" id="btn-reset" type="button">ಮರುಹೊಂದಿಸಿ</button>
+</nav>
+</aside>
+
+<!-- Main -->
+<main id="main"></main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+(function () {
+  "use strict";
+  var STORE = 'kv_content_v1';
+
+  // ---- schema (field configs drive the generic CRUD UI) ----
+  var SCHEMA = {
+    programs: { label:'ಕಾರ್ಯಕ್ರಮಗಳು', title:'title', sub:'place',
+      fields:[
+        {k:'day',t:'ದಿನ',ph:'01',w:'w-24'},{k:'month',t:'ತಿಂಗಳು',ph:'ನವೆಂ',w:'w-32'},
+        {k:'tag',t:'ವರ್ಗ',ph:'ಹಬ್ಬ'},{k:'title',t:'ಶೀರ್ಷಿಕೆ',ph:'ಕಾರ್ಯಕ್ರಮದ ಹೆಸರು',full:true},
+        {k:'place',t:'ಸ್ಥಳ',ph:'ಬೆಂಗಳೂರು'},{k:'desc',t:'ವಿವರ',ph:'ಸಂಕ್ಷಿಪ್ತ ವಿವರ',ta:true,full:true}
+      ]},
+    blog: { label:'ಬ್ಲಾಗ್', title:'title', sub:'category',
+      fields:[
+        {k:'category',t:'ವರ್ಗ',ph:'ಭಾಷೆ'},{k:'date',t:'ದಿನಾಂಕ',ph:'15 ಜುಲೈ 2026'},
+        {k:'readtime',t:'ಓದುವ ಸಮಯ',ph:'5 ನಿಮಿಷ'},{k:'title',t:'ಶೀರ್ಷಿಕೆ',ph:'ಲೇಖನದ ಶೀರ್ಷಿಕೆ',full:true},
+        {k:'excerpt',t:'ಸಾರಾಂಶ',ph:'ಸಂಕ್ಷಿಪ್ತ ಸಾರಾಂಶ',ta:true,full:true}
+      ]},
+    media: { label:'ಮಾಧ್ಯಮ ವರದಿ', title:'headline', sub:'outlet',
+      fields:[
+        {k:'outlet',t:'ಮಾಧ್ಯಮ',ph:'ದಿನಪತ್ರಿಕೆ'},{k:'date',t:'ದಿನಾಂಕ',ph:'12 ಜುಲೈ 2026'},
+        {k:'headline',t:'ಶೀರ್ಷಿಕೆ',ph:'ವರದಿಯ ಶೀರ್ಷಿಕೆ',ta:true,full:true}
+      ]},
+    leaders: { label:'ನಾಯಕರು', title:'role', sub:'name',
+      fields:[
+        {k:'role',t:'ಪದವಿ',ph:'ರಾಜ್ಯಾಧ್ಯಕ್ಷರು'},{k:'name',t:'ಹೆಸರು',ph:'ಪೂರ್ಣ ಹೆಸರು'}
+      ]},
+    movements: { label:'ಹೋರಾಟಗಳು', title:'title', sub:'year',
+      fields:[
+        {k:'year',t:'ವರ್ಷ',ph:'2020',w:'w-32'},{k:'title',t:'ಶೀರ್ಷಿಕೆ',ph:'ಹೋರಾಟದ ಹೆಸರು',full:true},
+        {k:'desc',t:'ವಿವರ',ph:'ಸಂಕ್ಷಿಪ್ತ ವಿವರ',ta:true,full:true}
+      ]}
+  };
+
+  var DEFAULTS = {
+    settings: { siteName:'ಕನ್ನಡ ವೇದಿಕೆ', tagline:'ನಾಡು · ನುಡಿ · ಸಂಸ್ಕೃತಿ',
+      heroHeading:'ಕನ್ನಡವೇ ನಮ್ಮ ಉಸಿರು', heroSub:'ಕರ್ನಾಟಕದ ಭವ್ಯ ಸಂಸ್ಕೃತಿ, ನೆಲ, ಜಲ ಮತ್ತು ಭಾಷೆಯ ಉಳಿವಿಗಾಗಿ ನಿರಂತರ ಹೋರಾಟ.',
+      phone:'+91 90000 00000', email:'samparka@kannada-vedike.org' },
+    programs: [
+      {day:'01',month:'ನವೆಂ',tag:'ಹಬ್ಬ',title:'ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ',place:'ಬೆಂಗಳೂರು',desc:'ನಾಡಹಬ್ಬದ ಸಂಭ್ರಮ — ಧ್ವಜಾರೋಹಣ, ಸಾಂಸ್ಕೃತಿಕ ಕಾರ್ಯಕ್ರಮ ಮತ್ತು ಮೆರವಣಿಗೆ.'},
+      {day:'15',month:'ಸೆಪ್ಟೆಂ',tag:'ಶಿಕ್ಷಣ',title:'ಕನ್ನಡ ಕಲಿಕಾ ಕಾರ್ಯಾಗಾರ',place:'ಮೈಸೂರು',desc:'ಮಕ್ಕಳಿಗೆ ಕನ್ನಡ ಓದು–ಬರಹ ಮತ್ತು ಸಾಹಿತ್ಯದ ಉಚಿತ ತರಬೇತಿ.'},
+      {day:'22',month:'ಅಕ್ಟೋ',tag:'ಪರಿಸರ',title:'ನೆಲ–ಜಲ ಜಾಗೃತಿ ಅಭಿಯಾನ',place:'ಹುಬ್ಬಳ್ಳಿ',desc:'ನದಿ ಉಳಿಸಿ ಅಭಿಯಾನ ಮತ್ತು ಸ್ಥಳೀಯ ಸಂಪನ್ಮೂಲಗಳ ಸಂರಕ್ಷಣೆ.'}
+    ],
+    blog: [
+      {category:'ಭಾಷೆ',date:'15 ಜುಲೈ 2026',readtime:'5 ನಿಮಿಷ',title:'ಕನ್ನಡ ಭಾಷೆಯ ಡಿಜಿಟಲ್ ಭವಿಷ್ಯ',excerpt:'ತಂತ್ರಜ್ಞಾನ ಯುಗದಲ್ಲಿ ಕನ್ನಡವನ್ನು ಬೆಳೆಸಲು ಕೈಗೊಳ್ಳಬೇಕಾದ ಹೆಜ್ಜೆಗಳು.'},
+      {category:'ಇತಿಹಾಸ',date:'02 ಜುಲೈ 2026',readtime:'7 ನಿಮಿಷ',title:'ಕರ್ನಾಟಕದ ಸಾಂಸ್ಕೃತಿಕ ಪರಂಪರೆ',excerpt:'ನಮ್ಮ ನಾಡಿನ ಶ್ರೀಮಂತ ಕಲೆ ಮತ್ತು ವಾಸ್ತುಶಿಲ್ಪದ ಕಥೆ.'},
+      {category:'ಹೋರಾಟ',date:'21 ಜೂನ್ 2026',readtime:'4 ನಿಮಿಷ',title:'ನಾಡು–ನುಡಿ ಹೋರಾಟದ ಹೆಜ್ಜೆಗುರುತು',excerpt:'ಗಡಿ, ನೀರು ಮತ್ತು ಭಾಷೆಯ ಹಕ್ಕುಗಳಿಗಾಗಿ ನಡೆದ ಹೋರಾಟಗಳ ದಾಖಲೆ.'}
+    ],
+    media: [
+      {outlet:'ದಿನಪತ್ರಿಕೆ',date:'12 ಜುಲೈ 2026',headline:'ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ ಸಿದ್ಧತೆ: ವೇದಿಕೆಯಿಂದ ರಾಜ್ಯಾದ್ಯಂತ ಕಾರ್ಯಕ್ರಮ'},
+      {outlet:'ಸುದ್ದಿ ವಾಹಿನಿ',date:'28 ಜೂನ್ 2026',headline:'ನೆಲ–ಜಲ ಸಂರಕ್ಷಣೆ ಜಾಗೃತಿ ಅಭಿಯಾನಕ್ಕೆ ಭಾರೀ ಬೆಂಬಲ'},
+      {outlet:'ಆನ್‌ಲೈನ್ ಪೋರ್ಟಲ್',date:'15 ಜೂನ್ 2026',headline:'ಸ್ಥಳೀಯರಿಗೆ ಉದ್ಯೋಗ ಮೀಸಲಾತಿ: ವೇದಿಕೆಯ ಒತ್ತಾಯ'}
+    ],
+    leaders: [
+      {role:'ರಾಜ್ಯಾಧ್ಯಕ್ಷರು',name:''},{role:'ಉಪಾಧ್ಯಕ್ಷರು',name:''},
+      {role:'ಪ್ರಧಾನ ಕಾರ್ಯದರ್ಶಿ',name:''},{role:'ಖಜಾಂಚಿ',name:''},
+      {role:'ಸಂಘಟನಾ ಕಾರ್ಯದರ್ಶಿ',name:''},{role:'ಪ್ರಚಾರ ಕಾರ್ಯದರ್ಶಿ',name:''}
+    ],
+    movements: [
+      {year:'2015',title:'ಗಡಿ ಹೋರಾಟ',desc:'ಗಡಿ ಪ್ರದೇಶಗಳ ಕನ್ನಡಿಗರ ಹಕ್ಕುಗಳಿಗಾಗಿ ಸಂಘಟಿತ ಹೋರಾಟ.'},
+      {year:'2017',title:'ಭಾಷಾ ಹೋರಾಟ',desc:'ಆಡಳಿತ ಮತ್ತು ಶಿಕ್ಷಣದಲ್ಲಿ ಕನ್ನಡಕ್ಕೆ ಆದ್ಯತೆಗಾಗಿ ಆಂದೋಲನ.'},
+      {year:'2019',title:'ನೀರಿನ ಹಕ್ಕು',desc:'ನದಿ ನೀರಿನ ನ್ಯಾಯಯುತ ಹಂಚಿಕೆಗಾಗಿ ಹೋರಾಟ.'},
+      {year:'2021',title:'ಉದ್ಯೋಗ ಮೀಸಲಾತಿ',desc:'ಸ್ಥಳೀಯ ಕನ್ನಡಿಗರಿಗೆ ಉದ್ಯೋಗ ಮೀಸಲಾತಿಗಾಗಿ ಒತ್ತಾಯ.'},
+      {year:'2023',title:'ಸಾಂಸ್ಕೃತಿಕ ಜಾಗೃತಿ',desc:'ಕನ್ನಡ ಕಲೆ, ಸಾಹಿತ್ಯ ಮತ್ತು ಪರಂಪರೆಯ ಪುನರುಜ್ಜೀವನ.'}
+    ]
+  };
+
+  // ---- storage ----
+  function clone(o){ return JSON.parse(JSON.stringify(o)); }
+  var data;
+  function load(){
+    try { data = JSON.parse(localStorage.getItem(STORE)); } catch(e){ data=null; }
+    if(!data){ data = clone(DEFAULTS); save(); }
+    // ensure all keys exist
+    Object.keys(DEFAULTS).forEach(function(k){ if(!(k in data)) data[k]=clone(DEFAULTS[k]); });
+  }
+  function save(){ try{ localStorage.setItem(STORE, JSON.stringify(data)); }catch(e){} }
+
+  // ---- ui helpers ----
+  var main = document.getElementById('main');
+  var esc = function(s){ return String(s==null?'':s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); };
+  function toast(msg){ var t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); clearTimeout(t._h); t._h=setTimeout(function(){t.classList.remove('show');},1900); }
+
+  var state = { tab:'dashboard', editing:{} }; // editing[type] = index or -1
+
+  function setTab(tab){
+    state.tab = tab;
+    document.querySelectorAll('.adm-tab').forEach(function(b){ b.classList.toggle('active', b.getAttribute('data-tab')===tab); });
+    render();
+  }
+
+  function render(){
+    if(state.tab==='dashboard') return renderDashboard();
+    if(state.tab==='settings') return renderSettings();
+    renderType(state.tab);
+  }
+
+  function renderDashboard(){
+    var cards = Object.keys(SCHEMA).map(function(type){
+      var n = (data[type]||[]).length;
+      return '<button class="adm-panel rounded-2xl p-6 text-left hover:border-brand-gold/40 transition-colors" data-goto="'+type+'">'
+        +'<div class="text-3xl font-serif font-bold text-brand-gold tabular-nums">'+n+'</div>'
+        +'<div class="text-sm text-gray-300 mt-1">'+SCHEMA[type].label+'</div>'
+        +'<div class="text-[11px] text-gray-500 mt-3">ನಿರ್ವಹಿಸಲು ಕ್ಲಿಕ್ ಮಾಡಿ →</div></button>';
+    }).join('');
+    main.innerHTML =
+      '<div class="mb-8"><h1 class="font-serif text-2xl md:text-3xl font-bold">ಡ್ಯಾಶ್‌ಬೋರ್ಡ್</h1>'
+      +'<p class="text-gray-400 text-sm mt-1">ಸೈಟ್‌ನ ವಿಷಯವನ್ನು ಇಲ್ಲಿ ನಿರ್ವಹಿಸಿ. ಬದಲಾವಣೆಗಳು ಈ ಬ್ರೌಸರ್‌ನಲ್ಲಿ ಉಳಿಯುತ್ತವೆ — ರಫ್ತು ಮಾಡಿ <code class="text-brand-gold">content.json</code> ಆಗಿ ಉಳಿಸಿ.</p></div>'
+      +'<div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">'+cards+'</div>';
+    main.querySelectorAll('[data-goto]').forEach(function(b){ b.addEventListener('click', function(){ setTab(b.getAttribute('data-goto')); }); });
+  }
+
+  function fieldInput(f, val){
+    var v = esc(val==null?'':val);
+    var cls = 'adm-input '+(f.w||'');
+    if(f.ta) return '<textarea class="'+cls+'" rows="3" data-k="'+f.k+'" placeholder="'+esc(f.ph||'')+'">'+v+'</textarea>';
+    return '<input class="'+cls+'" data-k="'+f.k+'" value="'+v+'" placeholder="'+esc(f.ph||'')+'" />';
+  }
+
+  function renderForm(type, item, index){
+    var sc = SCHEMA[type];
+    var rows = sc.fields.map(function(f){
+      return '<div class="'+(f.full?'sm:col-span-2':'')+'">'
+        +'<label class="adm-label">'+f.t+'</label>'+fieldInput(f, item?item[f.k]:'')+'</div>';
+    }).join('');
+    var title = index>=0 ? 'ತಿದ್ದುಪಡಿ' : 'ಹೊಸದನ್ನು ಸೇರಿಸಿ';
+    return '<form class="adm-panel rounded-2xl p-6 mb-8" id="crud-form">'
+      +'<div class="flex items-center justify-between mb-5"><h3 class="font-serif text-lg font-bold text-white">'+title+'</h3>'
+      +(index>=0?'<button type="button" class="text-xs text-gray-400 hover:text-white" id="cancel-edit">ರದ್ದುಮಾಡಿ</button>':'')+'</div>'
+      +'<div class="grid sm:grid-cols-2 gap-4">'+rows+'</div>'
+      +'<div class="mt-6 flex gap-3"><button type="submit" class="bg-brand-red text-white text-sm font-bold px-6 py-2.5 rounded-lg hover:shadow-lg transition-all">'+(index>=0?'ಉಳಿಸಿ':'ಸೇರಿಸಿ')+'</button></div>'
+      +'</form>';
+  }
+
+  function renderType(type){
+    var sc = SCHEMA[type];
+    var list = data[type]||[];
+    var editing = state.editing[type];
+    var editItem = (editing!=null && editing>=0) ? list[editing] : null;
+
+    var rows = list.map(function(it, i){
+      var t = esc(it[sc.title]) || '<span class="text-gray-500">— ಶೀರ್ಷಿಕೆ ಇಲ್ಲ —</span>';
+      var s = esc(it[sc.sub]||'');
+      return '<div class="adm-panel rounded-xl px-4 py-3 flex items-center justify-between gap-4">'
+        +'<div class="min-w-0"><div class="font-semibold text-sm truncate">'+t+'</div>'+(s?'<div class="text-xs text-gray-400 mt-0.5 truncate">'+s+'</div>':'')+'</div>'
+        +'<div class="flex items-center gap-2 shrink-0">'
+        +'<button class="text-xs font-semibold text-brand-gold hover:underline" data-edit="'+i+'">ತಿದ್ದು</button>'
+        +'<button class="text-xs font-semibold text-brand-red hover:underline" data-del="'+i+'">ಅಳಿಸು</button>'
+        +'<button class="text-xs text-gray-500 hover:text-white" data-up="'+i+'" title="ಮೇಲಕ್ಕೆ">↑</button>'
+        +'<button class="text-xs text-gray-500 hover:text-white" data-down="'+i+'" title="ಕೆಳಕ್ಕೆ">↓</button>'
+        +'</div></div>';
+    }).join('');
+    if(!list.length) rows = '<div class="text-sm text-gray-500 py-6 text-center adm-panel rounded-xl">ಯಾವುದೇ ನಮೂದುಗಳಿಲ್ಲ. ಕೆಳಗೆ ಸೇರಿಸಿ.</div>';
+
+    main.innerHTML =
+      '<div class="flex items-center justify-between mb-6"><div><h1 class="font-serif text-2xl md:text-3xl font-bold">'+sc.label+'</h1>'
+      +'<p class="text-gray-400 text-sm mt-1">'+list.length+' ನಮೂದು(ಗಳು)</p></div></div>'
+      + renderForm(type, editItem, editing==null?-1:editing)
+      + '<div class="space-y-2">'+rows+'</div>';
+
+    // form submit
+    var form = document.getElementById('crud-form');
+    form.addEventListener('submit', function(e){
+      e.preventDefault();
+      var obj = {};
+      form.querySelectorAll('[data-k]').forEach(function(el){ obj[el.getAttribute('data-k')] = el.value.trim(); });
+      if(editing!=null && editing>=0){ list[editing] = obj; toast('ನವೀಕರಿಸಲಾಗಿದೆ'); }
+      else { list.unshift(obj); toast('ಸೇರಿಸಲಾಗಿದೆ'); }
+      state.editing[type] = null; data[type]=list; save(); renderType(type);
+    });
+    var ce = document.getElementById('cancel-edit'); if(ce) ce.addEventListener('click', function(){ state.editing[type]=null; renderType(type); });
+
+    main.querySelectorAll('[data-edit]').forEach(function(b){ b.addEventListener('click', function(){ state.editing[type]=+b.getAttribute('data-edit'); renderType(type); window.scrollTo(0,0); }); });
+    main.querySelectorAll('[data-del]').forEach(function(b){ b.addEventListener('click', function(){ var i=+b.getAttribute('data-del'); if(confirm('ಈ ನಮೂದನ್ನು ಅಳಿಸಬೇಕೇ?')){ list.splice(i,1); state.editing[type]=null; save(); renderType(type); toast('ಅಳಿಸಲಾಗಿದೆ'); } }); });
+    main.querySelectorAll('[data-up]').forEach(function(b){ b.addEventListener('click', function(){ var i=+b.getAttribute('data-up'); if(i>0){ var x=list[i]; list[i]=list[i-1]; list[i-1]=x; save(); renderType(type); } }); });
+    main.querySelectorAll('[data-down]').forEach(function(b){ b.addEventListener('click', function(){ var i=+b.getAttribute('data-down'); if(i<list.length-1){ var x=list[i]; list[i]=list[i+1]; list[i+1]=x; save(); renderType(type); } }); });
+  }
+
+  function renderSettings(){
+    var s = data.settings;
+    var f = [
+      ['siteName','ಸಂಸ್ಥೆಯ ಹೆಸರು'],['tagline','ಟ್ಯಾಗ್‌ಲೈನ್'],
+      ['heroHeading','ಮುಖಪುಟ ಶೀರ್ಷಿಕೆ'],['heroSub','ಮುಖಪುಟ ಉಪಶೀರ್ಷಿಕೆ'],
+      ['phone','ದೂರವಾಣಿ'],['email','ಇಮೇಲ್']
+    ];
+    var rows = f.map(function(x){
+      var ta = (x[0]==='heroSub');
+      var val = esc(s[x[0]]||'');
+      var inp = ta ? '<textarea class="adm-input" rows="2" data-s="'+x[0]+'">'+val+'</textarea>' : '<input class="adm-input" data-s="'+x[0]+'" value="'+val+'" />';
+      return '<div><label class="adm-label">'+x[1]+'</label>'+inp+'</div>';
+    }).join('');
+    main.innerHTML = '<div class="mb-6"><h1 class="font-serif text-2xl md:text-3xl font-bold">ಸೆಟ್ಟಿಂಗ್‌ಗಳు</h1><p class="text-gray-400 text-sm mt-1">ಸೈಟ್‌ನ ಮೂಲ ಮಾಹಿತಿ.</p></div>'
+      +'<form class="adm-panel rounded-2xl p-6 grid sm:grid-cols-2 gap-4" id="settings-form">'+rows
+      +'<div class="sm:col-span-2 mt-2"><button type="submit" class="bg-brand-red text-white text-sm font-bold px-6 py-2.5 rounded-lg hover:shadow-lg transition-all">ಉಳಿಸಿ</button></div></form>';
+    document.getElementById('settings-form').addEventListener('submit', function(e){
+      e.preventDefault();
+      this.querySelectorAll('[data-s]').forEach(function(el){ data.settings[el.getAttribute('data-s')] = el.value.trim(); });
+      save(); toast('ಸೆಟ್ಟಿಂಗ್‌ಗಳು ಉಳಿಸಲಾಗಿದೆ');
+    });
+  }
+
+  // ---- export / import / reset ----
+  document.getElementById('btn-export').addEventListener('click', function(){
+    var blob = new Blob([JSON.stringify(data, null, 2)], {type:'application/json'});
+    var url = URL.createObjectURL(blob);
+    var a = document.createElement('a'); a.href=url; a.download='content.json'; document.body.appendChild(a); a.click(); a.remove();
+    URL.revokeObjectURL(url); toast('content.json ರಫ್ತು ಮಾಡಲಾಗಿದೆ');
+  });
+  document.getElementById('btn-import').addEventListener('click', function(){ document.getElementById('file-import').click(); });
+  document.getElementById('file-import').addEventListener('change', function(e){
+    var file = e.target.files[0]; if(!file) return;
+    var r = new FileReader();
+    r.onload = function(){
+      try { var obj = JSON.parse(r.result); data = obj; Object.keys(DEFAULTS).forEach(function(k){ if(!(k in data)) data[k]=clone(DEFAULTS[k]); }); save(); render(); toast('ಆಮದು ಯಶಸ್ವಿ'); }
+      catch(err){ alert('ಅಮಾನ್ಯ JSON ಫೈಲ್.'); }
+    };
+    r.readAsText(file); e.target.value='';
+  });
+  document.getElementById('btn-reset').addEventListener('click', function(){
+    if(confirm('ಎಲ್ಲಾ ವಿಷಯವನ್ನು ಡೀಫಾಲ್ಟ್‌ಗೆ ಮರುಹೊಂದಿಸಬೇಕೇ?')){ data = clone(DEFAULTS); save(); render(); toast('ಮರುಹೊಂದಿಸಲಾಗಿದೆ'); }
+  });
+
+  document.querySelectorAll('.adm-tab').forEach(function(b){ b.addEventListener('click', function(){ setTab(b.getAttribute('data-tab')); }); });
+
+  load();
+  render();
+})();
+</script>
+</body>
+</html>
