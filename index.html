@@ -1068,7 +1068,12 @@
     }
     function fromWp(type) {
       if (!WP || !WP_EP[type] || typeof fetch !== 'function') return Promise.resolve(null);
-      var url = WP + '/wp-json/wp/v2/' + WP_EP[type] + '?per_page=100' + (type === 'blog' ? '&_embed' : '');
+      var qs = '?per_page=100' + (type === 'blog' ? '&_embed' : '');
+      var host = WP.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+      var isWpCom = /(^|\.)wordpress\.com$/i.test(host);
+      var url = isWpCom
+        ? ('https://public-api.wordpress.com/wp/v2/sites/' + host + '/' + WP_EP[type] + qs)
+        : (WP + '/wp-json/wp/v2/' + WP_EP[type] + qs);
       return fetch(url).then(function (r) { if (!r.ok) throw 0; return r.json(); })
         .then(function (arr) { return (arr || []).map(function (it) { return mapWp(type, it); }); })
         .catch(function () { return null; });
