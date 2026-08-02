@@ -29,6 +29,8 @@
         });
         return;
       }
+      // Enable the hide-then-reveal animation only now that JS is running.
+      document.documentElement.classList.add('reveal-on');
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {

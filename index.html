@@ -190,13 +190,13 @@
       margin-bottom: 0.85rem;
       transition: width 0.8s ease 0.15s;
     }
-    .reveal.is-visible .stat-divider { width: 44px; }
+    .reveal-on .reveal.is-visible .stat-divider { width: 44px; }
     .stat-label { font-size: 0.9rem; letter-spacing: 0.02em; color: #cfc9c7; }
-    /* Scroll-reveal */
-    .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
-    .reveal.is-visible { opacity: 1; transform: translateY(0); }
+    /* Scroll-reveal — visible by default; JS adds .reveal-on to animate. */
+    .reveal-on .reveal { opacity: 0; transform: translateY(28px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal-on .reveal.is-visible { opacity: 1; transform: translateY(0); }
     @media (prefers-reduced-motion: reduce) {
-      .reveal { opacity: 1; transform: none; transition: none; }
+      .reveal-on .reveal { opacity: 1; transform: none; transition: none; }
       .glass-card, .stat-card, .stat-chip { transition: none; }
       .glass-card:hover, .stat-card:hover { transform: none; }
       .stat-divider { width: 44px; transition: none; }
@@ -873,6 +873,7 @@
         });
         return;
       }
+      document.documentElement.classList.add('reveal-on');
       var io = new IntersectionObserver(function (entries) {
         entries.forEach(function (entry) {
           if (entry.isIntersecting) {
