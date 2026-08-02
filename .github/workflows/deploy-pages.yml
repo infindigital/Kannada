@@ -28,8 +28,6 @@ jobs:
 
       - name: Configure Pages
         uses: actions/configure-pages@v5
-        with:
-          enablement: true
 
       # Publish the static site. The WordPress plugin source and dev files
       # are excluded from the published output.
