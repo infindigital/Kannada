@@ -18,4 +18,4 @@
  *
  * Leave it as "" to use the built-in editor / static content only.
  */
-window.KV_WP_BASE = "";
+window.KV_WP_BASE = "https://whitesmoke-mink-476969.hostingersite.com";
