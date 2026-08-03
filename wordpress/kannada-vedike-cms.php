@@ -92,7 +92,13 @@ $kv_fields = array(
     'post'         => array('readtime' => 'Read time (e.g. 5 ನಿಮಿಷ)'),
 );
 
-add_action('add_meta_boxes', function () use ($kv_fields) {
+// Using ACF? Then ACF provides the field UI — skip these built-in boxes to
+// avoid duplicate inputs. (ACF exposes fields under `acf` in REST; the
+// front-end reads either `acf` or `meta`.)
+$kv_use_builtin_boxes = !class_exists('ACF') && !function_exists('acf');
+
+add_action('add_meta_boxes', function () use ($kv_fields, $kv_use_builtin_boxes) {
+    if (!$kv_use_builtin_boxes) { return; }
     foreach ($kv_fields as $ptype => $fields) {
         add_meta_box('kv_meta_' . $ptype, 'Details', function ($post) use ($fields) {
             wp_nonce_field('kv_meta_save', 'kv_meta_nonce');

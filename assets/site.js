@@ -203,16 +203,17 @@
     // ---- WordPress mapping ----
     var WP_EP = { programs: 'program', movements: 'movement', leaders: 'leader', media: 'media_report', blog: 'posts' };
     function mapWp(type, it) {
-      var m = it.meta || {};
+      var m = it.meta || {}, a = it.acf || {};
+      var f = function (k) { var v = a[k]; if (v == null || v === '') v = m[k]; return v; }; // ACF field or post meta
       var t = strip(it.title && it.title.rendered);
       if (type === 'blog') {
         var cat = ''; try { cat = it._embedded['wp:term'][0][0].name; } catch (e) {}
-        return { category: cat, date: (it.date || '').slice(0, 10), readtime: m.readtime || '', title: t, excerpt: strip(it.excerpt && it.excerpt.rendered) };
+        return { category: cat || f('category') || '', date: (it.date || '').slice(0, 10), readtime: f('readtime') || '', title: t, excerpt: strip(it.excerpt && it.excerpt.rendered) };
       }
-      if (type === 'programs') return { day: m.day, month: m.month, tag: m.tag, title: t, place: m.place, desc: m.desc };
-      if (type === 'movements') return { year: m.year, title: t, desc: m.desc };
-      if (type === 'leaders') return { role: m.role || t, name: m.name || '' };
-      if (type === 'media') return { outlet: m.outlet, date: m.date, headline: t };
+      if (type === 'programs') return { day: f('day'), month: f('month'), tag: f('tag'), title: t, place: f('place'), desc: f('desc') };
+      if (type === 'movements') return { year: f('year'), title: t, desc: f('desc') };
+      if (type === 'leaders') return { role: f('role') || t, name: f('name') || '' };
+      if (type === 'media') return { outlet: f('outlet'), date: f('date'), headline: t };
       return {};
     }
     function fromWp(type) {

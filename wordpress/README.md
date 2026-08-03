@@ -43,8 +43,28 @@ The plugin creates these REST endpoints:
 | Media Report | title → **headline**; `outlet`, `date` |
 | Blog | **title**, **excerpt**, **date**, first **category**; `readtime` (custom field) |
 
-> Prefer **ACF**? Create fields with the same keys and turn on *Show in REST* —
-> then delete the meta-box section of the plugin.
+### Using ACF (Advanced Custom Fields) — recommended
+
+The front-end reads each field from **either `acf` or `meta`** in the REST
+response, so ACF works out of the box. Steps:
+
+1. Install & activate **ACF** (free) and this plugin. (When ACF is active, this
+   plugin automatically hides its own built-in field boxes to avoid duplicates.)
+2. For each type, create an **ACF Field Group** with fields whose **Field Name**
+   matches the keys below, set the group's **Location** to that post type, and in
+   the group settings turn **Show in REST API = Yes**:
+   - **Program** → `day`, `month`, `tag`, `place`, `desc`
+   - **Movement** → `year`, `desc`
+   - **Leader** → `role`, `name`
+   - **Media Report** → `outlet`, `date`
+   - **Post (Blog)** → `readtime` (optional)
+3. ACF then returns them under an `acf` object, e.g. `program.acf.day` — which the
+   front-end already maps to the cards.
+
+> You can register the custom post types with **ACF** instead of this plugin.
+> If you do, set each type's **REST API base URL** (ACF → Post Type → Advanced)
+> to exactly `program`, `movement`, `leader`, `media_report`, and don't also
+> activate this plugin's post-type registration (to avoid double-registering).
 
 ## 2. Point the front-end at WordPress
 
