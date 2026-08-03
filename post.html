@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html class="h-full" lang="kn"><head>
+<meta charset="utf-8" /><meta content="width=device-width, initial-scale=1.0" name="viewport" />
+<title>ಬ್ಲಾಗ್ — ಕನ್ನಡ ವೇದಿಕೆ</title>
+<link href="assets/fonts.css" rel="stylesheet" /><link href="assets/tailwind.css" rel="stylesheet" /><link href="assets/site.css" rel="stylesheet" />
+<script src="assets/config.js"></script>
+</head>
+<body class="min-h-full m-0 p-0 bg-brand-dark text-white font-sans overflow-x-hidden">
+<header class="fixed top-0 left-0 right-0 z-50 px-4 md:px-8 pt-4" data-purpose="site-nav">
+<nav class="glass-nav max-w-6xl mx-auto rounded-2xl shadow-2xl flex items-center justify-between gap-4 px-4 md:px-6 py-3">
+<a class="flex items-center gap-3 group shrink-0" href="index.html">
+<span class="w-9 h-9 bg-brand-red diamond-icon flex items-center justify-center transition-transform duration-300 group-hover:rotate-45"><span class="w-2.5 h-2.5 bg-brand-gold diamond-icon"></span></span>
+<span class="flex flex-col leading-tight"><span class="font-serif text-white text-lg font-bold tracking-wide">ಕನ್ನಡ ವೇದಿಕೆ</span><span class="text-[9px] uppercase tracking-[0.18em] text-gray-400">ನಾಡು · ನುಡಿ · ಸಂಸ್ಕೃತಿ</span></span>
+</a>
+<div class="hidden lg:flex items-center gap-6">
+<a class="text-[13px] font-semibold text-gray-300 hover:text-brand-gold transition-colors" href="about.html">ನಮ್ಮ ಬಗ್ಗೆ</a>
+<a class="text-[13px] font-semibold text-gray-300 hover:text-brand-gold transition-colors" href="leaders.html">ನಾಯಕರು</a>
+<a class="text-[13px] font-semibold text-gray-300 hover:text-brand-gold transition-colors" href="media.html">ಮಾಧ್ಯಮ ವರದಿ</a>
+<a class="text-[13px] font-semibold text-gray-300 hover:text-brand-gold transition-colors" href="programs.html">ಕಾರ್ಯಕ್ರಮಗಳು</a>
+<a class="text-[13px] font-semibold text-gray-300 hover:text-brand-gold transition-colors" href="movements.html">ಹೋರಾಟಗಳು</a>
+</div>
+<div class="flex items-center gap-3 shrink-0">
+<a class="hidden md:inline-flex items-center text-gray-300 hover:text-brand-gold text-base p-1" href="admin.html" title="ವಿಷಯ ಸೇರಿಸಿ / ನಿರ್ವಹಣೆ" aria-label="ವಿಷಯ ನಿರ್ವಹಣೆ">⚙</a>
+<a class="bg-brand-red hover:shadow-lg hover:shadow-brand-red/30 text-white text-xs font-bold uppercase tracking-[0.12em] px-5 py-2.5 rounded-lg transition-all" href="index.html#join">ಸೇರಿ</a>
+<button class="lg:hidden text-white p-1" type="button" aria-label="ಮೆನು" aria-expanded="false" id="nav-menu-btn"><svg class="w-6 h-6" fill="none" stroke="currentColor" stroke-width="2" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M3 6h18M3 12h18M3 18h18" stroke-linecap="round"></path></svg></button>
+</div>
+</nav>
+<div class="lg:hidden hidden glass-nav max-w-6xl mx-auto rounded-2xl mt-2 p-3 flex-col" id="nav-mobile">
+<a class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:bg-white/5" href="about.html">ನಮ್ಮ ಬಗ್ಗೆ</a>
+<a class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:bg-white/5" href="leaders.html">ನಾಯಕರು</a>
+<a class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:bg-white/5" href="media.html">ಮಾಧ್ಯಮ ವರದಿ</a>
+<a class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:bg-white/5" href="programs.html">ಕಾರ್ಯಕ್ರಮಗಳು</a>
+<a class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-gray-200 hover:bg-white/5" href="movements.html">ಹೋರಾಟಗಳು</a>
+<a class="block px-4 py-2.5 rounded-lg text-sm font-semibold text-brand-gold hover:bg-white/5 border-t border-white/10 mt-1 pt-3" href="admin.html">⚙ ವಿಷಯ ನಿರ್ವಹಣೆ</a>
+</div>
+</header>
+<main class="pt-28 md:pt-36 pb-16 md:pb-24 px-6 md:px-12">
+<article class="max-w-3xl mx-auto" id="post-root">
+<div class="flex items-center gap-2 text-xs text-gray-400 mb-6"><a class="hover:text-brand-gold" href="index.html">ಮುಖಪುಟ</a><span>/</span><a class="hover:text-brand-gold" href="index.html#blog">ಬ್ಲಾಗ್</a><span>/</span><span class="text-brand-gold" id="crumb-title">ಲೇಖನ</span></div>
+<!-- Loading / content states injected by JS -->
+<div id="post-loading" class="py-24 text-center text-gray-400">
+<svg class="w-8 h-8 mx-auto mb-4 animate-spin text-brand-gold" fill="none" viewBox="0 0 24 24"><circle class="opacity-20" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="3"></circle><path class="opacity-90" fill="currentColor" d="M12 2a10 10 0 019.5 6.9l-2.8.9A7 7 0 0012 5V2z"></path></svg>
+ಲೇಖನ ಲೋಡ್ ಆಗುತ್ತಿದೆ…
+</div>
+<div id="post-body" class="hidden">
+<div id="post-tags" class="mb-4"></div>
+<h1 id="post-title" class="font-serif text-3xl md:text-5xl font-bold text-white leading-tight text-balance mb-5"></h1>
+<div id="post-meta" class="flex flex-wrap items-center gap-x-4 gap-y-2 text-sm text-gray-400 border-b border-white/10 pb-6 mb-8"></div>
+<img id="post-image" alt="" class="hidden w-full rounded-2xl mb-8 border border-white/10" />
+<div id="post-content" class="post-content"></div>
+<div class="mt-12 pt-8 border-t border-white/10">
+<a class="inline-flex items-center gap-2 text-sm font-bold text-brand-gold hover:gap-3 transition-all" href="index.html#blog"><svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.4" viewBox="0 0 24 24"><path d="M10 19l-7-7m0 0l7-7m-7 7h18" stroke-linecap="round" stroke-linejoin="round"></path></svg> ಎಲ್ಲಾ ಲೇಖನಗಳು</a>
+</div>
+</div>
+<div id="post-error" class="hidden py-24 text-center">
+<h1 class="font-serif text-2xl font-bold text-white mb-3">ಲೇಖನ ಸಿಗಲಿಲ್ಲ</h1>
+<p class="text-gray-400 mb-6">ಈ ಲೇಖನ ಲಭ್ಯವಿಲ್ಲ ಅಥವಾ ತೆಗೆದುಹಾಕಲಾಗಿದೆ.</p>
+<a class="inline-flex items-center gap-2 bg-brand-red text-white px-6 py-3 rounded-lg text-sm font-bold" href="index.html#blog">ಬ್ಲಾಗ್‌ಗೆ ಹಿಂತಿರುಗಿ</a>
+</div>
+</article>
+</main>
+<footer class="bg-brand-dark border-t-4 border-brand-gold px-6 md:px-12 py-12">
+<div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 items-center">
+<div class="flex items-center gap-3"><span class="w-9 h-9 bg-brand-red diamond-icon flex items-center justify-center shrink-0"><span class="w-2.5 h-2.5 bg-brand-gold diamond-icon"></span></span>
+<div><span class="font-serif text-lg font-bold text-brand-gold">ಕನ್ನಡ ವೇದಿಕೆ</span><p class="text-xs text-gray-400 mt-1">© 2026 ಕನ್ನಡ ವೇದಿಕೆ. ಸರ್ವ ಹಕ್ಕುಗಳನ್ನು ಕಾಯ್ದಿರಿಸಲಾಗಿದೆ.</p></div></div>
+<div class="flex flex-wrap md:justify-end gap-x-6 gap-y-2 text-xs font-semibold tracking-widest text-gray-300">
+<a class="hover:text-brand-gold" href="about.html">ನಮ್ಮ ಬಗ್ಗೆ</a><a class="hover:text-brand-gold" href="leaders.html">ನಾಯಕರು</a><a class="hover:text-brand-gold" href="media.html">ಮಾಧ್ಯಮ ವರದಿ</a><a class="hover:text-brand-gold" href="programs.html">ಕಾರ್ಯಕ್ರಮಗಳು</a><a class="hover:text-brand-gold" href="movements.html">ಹೋರಾಟಗಳು</a><a class="hover:text-brand-gold" href="admin.html">ವಿಷಯ ನಿರ್ವಹಣೆ</a></div></div></footer>
+
+<script>
+  // Single blog post loader — reads ?id= and fetches the post from WordPress
+  // (with _embed for featured image + category), then renders it. Falls back
+  // to the built-in editor content (admin.html -> localStorage) when there is
+  // no WordPress configured or the fetch fails.
+  (function () {
+    var WP = (window.KV_WP_BASE || '').replace(/\/+$/, '');
+    var params = new URLSearchParams(location.search);
+    var id = params.get('id');
+    var slug = params.get('slug');
+
+    var $ = function (s) { return document.getElementById(s); };
+    var strip = function (h) { var d = document.createElement('div'); d.innerHTML = h || ''; return (d.textContent || '').trim(); };
+    var esc = function (s) { return String(s == null ? '' : s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;'); };
+
+    function showError() { $('post-loading').classList.add('hidden'); $('post-body').classList.add('hidden'); $('post-error').classList.remove('hidden'); }
+
+    function render(data) {
+      // data: { title, date, category, image, html, readtime }
+      $('post-loading').classList.add('hidden');
+      $('post-body').classList.remove('hidden');
+
+      document.title = (data.title ? data.title + ' — ' : '') + 'ಕನ್ನಡ ವೇದಿಕೆ';
+      $('crumb-title').textContent = data.title || 'ಲೇಖನ';
+      $('post-title').textContent = data.title || '';
+
+      if (data.category) {
+        $('post-tags').innerHTML = '<span class="inline-block bg-brand-red text-white px-3 py-1 rounded-full text-[11px] font-bold uppercase tracking-[0.12em]">' + esc(data.category) + '</span>';
+      }
+
+      var meta = [];
+      if (data.date) meta.push('<span>' + esc(data.date) + '</span>');
+      if (data.readtime) meta.push('<span class="w-1 h-1 rounded-full bg-gray-500"></span><span>' + esc(data.readtime) + '</span>');
+      $('post-meta').innerHTML = meta.join('');
+
+      if (data.image) { var im = $('post-image'); im.src = data.image; im.alt = data.title || ''; im.classList.remove('hidden'); }
+
+      $('post-content').innerHTML = data.html || '<p class="text-gray-400">' + esc(data.excerpt || '') + '</p>';
+    }
+
+    function fmtDate(iso) {
+      if (!iso) return '';
+      return String(iso).slice(0, 10);
+    }
+
+    function fromWordPress() {
+      if (!WP || !id || typeof fetch !== 'function') return Promise.resolve(false);
+      var host = WP.replace(/^https?:\/\//, '').replace(/\/.*$/, '');
+      var isWpCom = /(^|\.)wordpress\.com$/i.test(host);
+      var url = isWpCom
+        ? ('https://public-api.wordpress.com/wp/v2/sites/' + host + '/posts/' + encodeURIComponent(id) + '?_embed')
+        : (WP + '/wp-json/wp/v2/posts/' + encodeURIComponent(id) + '?_embed');
+      return fetch(url).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (it) {
+        var cat = ''; try { cat = it._embedded['wp:term'][0][0].name; } catch (e) {}
+        var img = ''; try { img = it._embedded['wp:featuredmedia'][0].source_url; } catch (e) {}
+        var rt = ''; try { rt = (it.acf && it.acf.readtime) || (it.meta && it.meta.readtime) || ''; } catch (e) {}
+        render({
+          title: strip(it.title && it.title.rendered),
+          date: fmtDate(it.date),
+          category: cat,
+          image: img,
+          readtime: rt,
+          html: (it.content && it.content.rendered) || ''
+        });
+        return true;
+      }).catch(function () { return false; });
+    }
+
+    function fromLocal() {
+      // Built-in editor stores blog items without full HTML bodies; render what we have.
+      try {
+        var d = JSON.parse(localStorage.getItem('kv_content_v1'));
+        var list = d && d.blog;
+        if (!list || !list.length) return false;
+        var idx = id != null ? parseInt(id, 10) : NaN;
+        var it = (!isNaN(idx) && list[idx]) ? list[idx] : list[0];
+        if (!it) return false;
+        render({
+          title: it.title || '',
+          date: it.date || '',
+          category: it.category || '',
+          image: it.image || '',
+          readtime: it.readtime || '',
+          html: it.body || it.content || ('<p>' + esc(it.excerpt || '') + '</p>')
+        });
+        return true;
+      } catch (e) { return false; }
+    }
+
+    if (!id && !slug) { showError(); return; }
+    fromWordPress().then(function (ok) {
+      if (ok) return;
+      if (fromLocal()) return;
+      showError();
+    });
+  })();
+</script>
+<script src="assets/site.js"></script>
+</body></html>

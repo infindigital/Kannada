@@ -34,7 +34,7 @@ jobs:
       - name: Stage site files
         run: |
           mkdir -p _site
-          cp -r index.html about.html leaders.html media.html programs.html movements.html admin.html assets README.md _site/ 2>/dev/null || true
+          cp -r index.html about.html leaders.html media.html programs.html movements.html post.html admin.html assets README.md _site/ 2>/dev/null || true
           touch _site/.nojekyll
 
       - name: Upload artifact

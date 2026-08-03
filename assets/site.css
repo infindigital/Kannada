@@ -268,3 +268,20 @@
     /* offset in-page anchors so the fixed navbar doesn't cover section tops */
     #about, #impact, #programs, #blog, #gallery, #steps, #fan-cam, #join { scroll-margin-top: 96px; }
   
+
+/* Single blog post ("ಲೇಖನ") content styling */
+.post-content { color: #d1d5db; line-height: 1.85; font-size: 1.02rem; }
+.post-content > *:first-child { margin-top: 0; }
+.post-content p { margin: 0 0 1.15rem; }
+.post-content h1, .post-content h2, .post-content h3, .post-content h4 { font-family: 'Noto Serif Kannada', serif; color: #fff; font-weight: 700; line-height: 1.3; margin: 1.8rem 0 0.7rem; }
+.post-content h2 { font-size: 1.6rem; } .post-content h3 { font-size: 1.3rem; }
+.post-content a { color: #ffd700; text-decoration: underline; text-underline-offset: 2px; }
+.post-content img { max-width: 100%; height: auto; border-radius: 0.75rem; margin: 1.25rem 0; display: block; }
+.post-content figure { margin: 1.25rem 0; }
+.post-content figcaption { font-size: 0.82rem; color: #9ca3af; text-align: center; margin-top: 0.4rem; }
+.post-content ul, .post-content ol { margin: 0 0 1.15rem 1.4rem; }
+.post-content li { margin: 0.35rem 0; }
+.post-content blockquote { border-left: 4px solid #ffd700; padding: 0.2rem 0 0.2rem 1rem; margin: 1.2rem 0; color: #e5e7eb; font-style: italic; }
+.post-content pre { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 0.6rem; padding: 1rem; overflow-x: auto; }
+.post-content code { background: rgba(255,255,255,0.08); padding: 0.1rem 0.35rem; border-radius: 0.3rem; font-size: 0.9em; }
+.post-content iframe { max-width: 100%; border-radius: 0.75rem; }

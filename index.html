@@ -1021,11 +1021,15 @@
     ];
     function blogCard(b, i) {
       var k = i % 3;
+      var href = b.id ? ('post.html?id=' + encodeURIComponent(b.id)) : '#';
+      var media = b.image
+        ? '<a href="' + href + '" class="block relative h-44 overflow-hidden"><img src="' + esc(b.image) + '" alt="' + esc(b.title) + '" loading="lazy" class="w-full h-full object-cover transition-transform duration-500 hover:scale-105"><span class="absolute top-4 left-4 bg-black/50 backdrop-blur text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full border border-white/20">' + esc(b.category) + '</span></a>'
+        : '<a href="' + href + '" class="block relative h-44" style="background: ' + BG[k] + ';"><span class="absolute top-4 left-4 bg-black/40 backdrop-blur text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full border border-white/20">' + esc(b.category) + '</span>' + ICON[k] + '</a>';
       return '<div class="h-full"><article class="glass-card rounded-2xl overflow-hidden h-full flex flex-col hover:-translate-y-1.5 transition-transform duration-300">'
-        + '<div class="relative h-44" style="background: ' + BG[k] + ';"><span class="absolute top-4 left-4 bg-black/40 backdrop-blur text-white text-[11px] font-semibold tracking-wide px-3 py-1 rounded-full border border-white/20">' + esc(b.category) + '</span>' + ICON[k] + '</div>'
+        + media
         + '<div class="p-6 flex flex-col flex-1"><div class="flex items-center gap-3 text-[11px] text-gray-400 mb-3"><span>' + esc(b.date) + '</span>' + (b.readtime ? '<span class="w-1 h-1 rounded-full bg-gray-500"></span><span>' + esc(b.readtime) + '</span>' : '') + '</div>'
-        + '<h3 class="font-serif text-lg font-bold text-white mb-2 line-clamp-2">' + esc(b.title) + '</h3><p class="text-sm text-gray-400 leading-relaxed line-clamp-2 mb-5 flex-1">' + esc(b.excerpt) + '</p>'
-        + '<a class="inline-flex items-center gap-1 text-xs font-bold text-brand-gold hover:gap-2 transition-all mt-auto" href="#">ಓದಿರಿ ' + ARROW + '</a></div></article></div>';
+        + '<h3 class="font-serif text-lg font-bold text-white mb-2 line-clamp-2"><a href="' + href + '" class="hover:text-brand-gold transition-colors">' + esc(b.title) + '</a></h3><p class="text-sm text-gray-400 leading-relaxed line-clamp-2 mb-5 flex-1">' + esc(b.excerpt) + '</p>'
+        + '<a class="inline-flex items-center gap-1 text-xs font-bold text-brand-gold hover:gap-2 transition-all mt-auto" href="' + href + '">ಓದಿರಿ ' + ARROW + '</a></div></article></div>';
     }
     function mediaCard(m) {
       return '<div class="h-full"><article class="glass-card rounded-2xl p-6 h-full flex flex-col hover:-translate-y-1.5 transition-transform duration-300">'
@@ -1059,7 +1063,8 @@
       var t = strip(it.title && it.title.rendered);
       if (type === 'blog') {
         var cat = ''; try { cat = it._embedded['wp:term'][0][0].name; } catch (e) {}
-        return { category: cat || f('category') || '', date: (it.date || '').slice(0, 10), readtime: f('readtime') || '', title: t, excerpt: strip(it.excerpt && it.excerpt.rendered) };
+        var img = ''; try { img = it._embedded['wp:featuredmedia'][0].source_url; } catch (e) {}
+        return { id: it.id, category: cat || f('category') || '', date: (it.date || '').slice(0, 10), readtime: f('readtime') || '', title: t, excerpt: strip(it.excerpt && it.excerpt.rendered), image: img || '' };
       }
       if (type === 'programs') return { day: f('day'), month: f('month'), tag: f('tag'), title: t, place: f('place'), desc: f('desc') };
       if (type === 'movements') return { year: f('year'), title: t, desc: f('desc') };
