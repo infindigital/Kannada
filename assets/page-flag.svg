@@ -1,0 +1,31 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img" aria-label="Karnataka flag waving">
+  <defs>
+    <linearGradient id="fld" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0"    stop-color="#1A0800" stop-opacity="0.42"/>
+      <stop offset="0.16" stop-color="#1A0800" stop-opacity="0"/>
+      <stop offset="0.34" stop-color="#1A0800" stop-opacity="0.30"/>
+      <stop offset="0.52" stop-color="#1A0800" stop-opacity="0"/>
+      <stop offset="0.70" stop-color="#1A0800" stop-opacity="0.34"/>
+      <stop offset="0.86" stop-color="#1A0800" stop-opacity="0"/>
+      <stop offset="1"    stop-color="#1A0800" stop-opacity="0.38"/>
+    </linearGradient>
+    <linearGradient id="vig3" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#1A0800" stop-opacity="0.5"/>
+      <stop offset="0.4" stop-color="#1A0800" stop-opacity="0"/>
+      <stop offset="1"   stop-color="#1A0800" stop-opacity="0.5"/>
+    </linearGradient>
+    <clipPath id="wave">
+      <path d="M0 78c150-52 300 44 450 22s300-96 450-58 250 74 300 60v560c-50 20-150-30-300-58s-300 36-450 58-300-74-450-22z"/>
+    </clipPath>
+  </defs>
+
+  <rect width="1200" height="750" fill="#1A0800"/>
+
+  <g clip-path="url(#wave)">
+    <rect width="1200" height="750" fill="#F5A623"/>
+    <path d="M0 400c150-44 300 34 450 16s300-78 450-46 250 60 300 48v332H0z" fill="#C8102E"/>
+    <rect width="1200" height="750" fill="url(#fld)"/>
+  </g>
+
+  <rect width="1200" height="750" fill="url(#vig3)"/>
+</svg>

@@ -1,187 +1,1519 @@
 <!DOCTYPE html>
-<html class="h-full" lang="kn">
+<html lang="kn">
 <head>
 <meta charset="utf-8" />
-<meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>Craft — ಸಿನಿಮ್ಯಾಟಿಕ್ ಕೋರ್ಸ್</title>
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Google Fonts for Typography (incl. Kannada) -->
-<link href="https://fonts.googleapis.com" rel="preconnect" />
-<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;700&family=Noto+Sans+Kannada:wght@300;400;700&family=Noto+Serif+Kannada:wght@400;500;600&display=swap" rel="stylesheet" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Craft — ಸಿನಿಮ್ಯಾಟಿಕ್ ಕಥನ ಕೋರ್ಸ್</title>
+<meta name="description" content="ಸಿನಿಮಾದ ಭಾಷೆಯನ್ನು ಕನ್ನಡದಲ್ಲಿ ಕಲಿಯಿರಿ — ಪೂರ್ವ-ನಿರ್ಮಾಣದಿಂದ ಅಂತಿಮ ಕಟ್‌ವರೆಗೆ. 24 ಪಾಠಗಳು, 3 ಯೋಜನೆಗಳು." />
+<meta name="theme-color" content="#FDF6EC" />
+<meta property="og:title" content="Craft — ಸಿನಿಮ್ಯಾಟಿಕ್ ಕಥನ ಕೋರ್ಸ್" />
+<meta property="og:description" content="ಸಿನಿಮಾದ ಭಾಷೆಯನ್ನು ಕನ್ನಡದಲ್ಲಿ ಕಲಿಯಿರಿ." />
+<meta property="og:type" content="website" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='16' fill='%23F5A623'/%3E%3Crect y='16' width='32' height='16' fill='%23C8102E'/%3E%3C/svg%3E" />
+
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@400;500;600&family=Noto+Sans+Kannada:wght@400;500;600&family=Noto+Serif+Kannada:wght@500;600&display=swap" rel="stylesheet" />
+
+<style>
+/* ============================================================
+   TOKENS
+   ============================================================ */
+:root {
+  /* brand — Karnataka flag */
+  --red:        #C8102E;
+  --red-dark:   #A50D24;
+  --yellow:     #F5A623;
+  --yellow-dark:#D4870D;
+
+  /* surfaces (light theme) */
+  --surface:        #FFFFFF;
+  --surface-sunken: #FDF6EC;
+  --surface-raised: #FFFDF9;
+  --surface-inverse:#1A0800;
+  --surface-deep:   #110400;
+
+  /* text */
+  --ink:        #1A0800;
+  --ink-muted:  #5A3E2B;
+  --ink-subtle: #7A5A3A;   /* AA-safe on cream and white */
+  --border:     #EDE0CC;
+  --border-soft:#F5EBDA;
+
+  /* radii */
+  --r-sm: 2px;
+  --r-md: 6px;
+  --r-lg: 14px;
+
+  /* elevation */
+  --shadow-1: 0 1px 2px rgba(26,8,0,.05), 0 2px 8px rgba(26,8,0,.05);
+  --shadow-2: 0 2px 4px rgba(26,8,0,.05), 0 12px 32px rgba(26,8,0,.09);
+  --shadow-3: 0 8px 16px rgba(26,8,0,.07), 0 28px 60px rgba(200,16,46,.13);
+
+  /* motion */
+  --ease:     cubic-bezier(.22,.61,.36,1);
+  --ease-book:cubic-bezier(.76,0,.24,1);
+  --fast: 150ms;
+  --base: 260ms;
+
+  /* rhythm */
+  --gutter: clamp(1.25rem, 4vw, 2.5rem);
+  --section-y: clamp(4rem, 9vw, 7.5rem);
+  --maxw: 1200px;
+
+  /* type — Latin family first so it wins for Latin,
+     Kannada font picks up Kannada codepoints via fallback */
+  --font-display: 'Instrument Serif', 'Noto Serif Kannada', Georgia, serif;
+  --font-body:    'Inter', 'Noto Sans Kannada', system-ui, sans-serif;
+}
+
+/* ============================================================
+   BASE
+   ============================================================ */
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+@media (prefers-reduced-motion: no-preference) {
+  html { scroll-behavior: smooth; }
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  color: var(--ink);
+  background: var(--surface-sunken);
+  -webkit-font-smoothing: antialiased;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  line-height: 1.12;
+  margin: 0;
+  text-wrap: balance;
+}
+p { margin: 0; }
+img { max-width: 100%; display: block; }
+a { color: inherit; }
+
+:focus-visible {
+  outline: 2px solid var(--red);
+  outline-offset: 3px;
+  border-radius: var(--r-sm);
+}
+
+.wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
+
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0 0 0 0); white-space: nowrap; border: 0;
+}
+
+.skip-link {
+  position: absolute; left: var(--gutter); top: -100px;
+  z-index: 200; background: var(--red); color: #fff;
+  padding: .75rem 1.25rem; border-radius: var(--r-sm);
+  font-size: .875rem; font-weight: 600; text-decoration: none;
+  transition: top var(--fast) var(--ease);
+}
+.skip-link:focus { top: .75rem; }
+
+/* shared bits ------------------------------------------------ */
+.eyebrow {
+  font-size: .6875rem;
+  font-weight: 600;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--red);
+  display: flex;
+  align-items: center;
+  gap: .75rem;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px; height: 2px;
+  background: linear-gradient(to right, var(--red), var(--yellow));
+  flex: none;
+}
+.eyebrow.is-centered { justify-content: center; }
+
+.tag {
+  display: inline-block;
+  font-size: .65rem;
+  font-weight: 600;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+  padding: .25rem .6rem;
+  border-radius: var(--r-sm);
+  background: var(--red);
+  color: #fff;
+}
+.tag--yellow { background: var(--yellow); color: var(--ink); }
+
+.section-head { margin-bottom: clamp(2rem, 5vw, 3.5rem); }
+.section-head h2 {
+  font-size: clamp(1.9rem, 4vw, 2.9rem);
+  margin-top: .6rem;
+}
+.section-head p.lede {
+  color: var(--ink-muted);
+  max-width: 46ch;
+  margin-top: .9rem;
+}
+.section-head.is-centered { text-align: center; }
+.section-head.is-centered p.lede { margin-inline: auto; }
+
+/* flag rule used as the divider throughout */
+.flag-rule {
+  height: 4px;
+  background: linear-gradient(to right, var(--red) 50%, var(--yellow) 50%);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .75rem;
+  padding: .875rem 1.75rem;
+  border-radius: var(--r-sm);
+  border: 2px solid transparent;
+  font-family: var(--font-body);
+  font-size: .875rem;
+  font-weight: 600;
+  letter-spacing: .04em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background var(--base) var(--ease),
+              color var(--base) var(--ease),
+              border-color var(--base) var(--ease),
+              transform var(--base) var(--ease),
+              box-shadow var(--base) var(--ease);
+}
+.btn svg { flex: none; }
+.btn--primary { background: var(--red); color: #fff; box-shadow: var(--shadow-1); }
+.btn--primary:hover,
+.btn--primary:focus-visible { background: var(--red-dark); transform: translateY(-2px); box-shadow: var(--shadow-2); }
+.btn--ghost { border-color: rgba(200,16,46,.35); color: var(--red); }
+.btn--ghost:hover,
+.btn--ghost:focus-visible { background: rgba(200,16,46,.07); border-color: var(--red); transform: translateY(-2px); }
+.btn--onDark { background: var(--yellow); color: var(--ink); }
+.btn--onDark:hover,
+.btn--onDark:focus-visible { background: var(--yellow-dark); transform: translateY(-2px); }
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(253,246,236,.88);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-soft);
+}
+.site-header > .flag-rule { height: 3px; }
+
+.header-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  min-height: 68px;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: .7rem;
+  text-decoration: none;
+}
+.brand-mark {
+  width: 30px; height: 30px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--yellow) 50%, var(--red) 50%);
+  flex: none;
+}
+.brand-name {
+  font-family: var(--font-display);
+  font-size: 1.35rem;
+  letter-spacing: .02em;
+}
+.brand-name span { color: var(--red); }
+
+.nav-desktop { display: none; align-items: center; gap: 2rem; }
+@media (min-width: 900px) { .nav-desktop { display: flex; } }
+
+.nav-link {
+  position: relative;
+  font-size: .875rem;
+  font-weight: 500;
+  color: var(--ink-muted);
+  text-decoration: none;
+  padding-block: .25rem;
+  transition: color var(--base) var(--ease);
+}
+.nav-link::after {
+  content: "";
+  position: absolute; left: 0; bottom: 0;
+  width: 0; height: 2px;
+  background: var(--yellow);
+  transition: width var(--base) var(--ease);
+}
+.nav-link:hover,
+.nav-link:focus-visible { color: var(--ink); }
+.nav-link:hover::after,
+.nav-link:focus-visible::after { width: 100%; }
+
+.nav-cta { padding: .55rem 1.25rem; font-size: .8rem; }
+
+.nav-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px; height: 44px;
+  background: none;
+  border: 1px solid var(--border);
+  border-radius: var(--r-sm);
+  color: var(--ink);
+  cursor: pointer;
+}
+@media (min-width: 900px) { .nav-toggle { display: none; } }
+.nav-toggle[aria-expanded="true"] .icon-open,
+.nav-toggle[aria-expanded="false"] .icon-close { display: none; }
+
+.nav-mobile {
+  display: none;
+  flex-direction: column;
+  gap: .25rem;
+  padding-bottom: 1rem;
+}
+.nav-mobile.is-open { display: flex; }
+@media (min-width: 900px) { .nav-mobile.is-open { display: none; } }
+.nav-mobile a {
+  padding: .7rem .25rem;
+  font-size: .95rem;
+  color: var(--ink-muted);
+  text-decoration: none;
+  border-bottom: 1px solid var(--border-soft);
+}
+
+/* ============================================================
+   HERO — light editorial layout + book slider
+   ============================================================ */
+.hero {
+  padding-block: clamp(2.5rem, 6vw, 5rem) clamp(3rem, 7vw, 5.5rem);
+  background:
+    radial-gradient(60% 55% at 85% 8%, rgba(245,166,35,.16) 0%, transparent 60%),
+    radial-gradient(48% 45% at 5% 90%, rgba(200,16,46,.09) 0%, transparent 60%),
+    var(--surface-sunken);
+}
+.hero-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: center;
+}
+@media (min-width: 980px) {
+  .hero-grid { grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); }
+}
+
+.hero-title {
+  font-size: clamp(2.9rem, 9vw, 6.25rem);
+  /* Kannada carries vowel signs above and below the base line —
+     .9-ish leading collides, so the display size buys its own headroom */
+  line-height: 1.1;
+  margin-block: 1.5rem 1.5rem;
+}
+.hero-title .line { display: block; }
+.hero-title .line--outline {
+  color: transparent;
+  -webkit-text-stroke: 1.5px var(--red);
+  padding-left: .12em;
+}
+.hero-lede {
+  color: var(--ink-muted);
+  max-width: 44ch;
+  margin-bottom: 2rem;
+}
+.hero-actions { display: flex; flex-wrap: wrap; gap: .875rem; }
+
+.hero-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem 2.5rem;
+  margin-top: 2.5rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--border);
+}
+.hero-meta div { min-width: 5rem; }
+.hero-meta dt {
+  font-size: .6875rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+}
+.hero-meta dd {
+  margin: .25rem 0 0;
+  font-family: var(--font-display);
+  font-size: 1.6rem;
+  color: var(--ink);
+}
+
+/* --- the book slider ---------------------------------------- */
+.book {
+  position: relative;
+  border-radius: var(--r-lg);
+  background: var(--surface);
+  box-shadow: var(--shadow-3);
+  padding: 12px;
+}
+/* the "spine" — a warm gutter down the binding edge */
+.book::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 6%; bottom: 6%;
+  width: 10px;
+  border-radius: var(--r-lg) 0 0 var(--r-lg);
+  background: linear-gradient(to right, rgba(26,8,0,.16), rgba(26,8,0,0));
+  pointer-events: none;
+  z-index: 3;
+}
+
+.book-viewport {
+  position: relative;
+  overflow: hidden;
+  border-radius: calc(var(--r-lg) - 6px);
+  aspect-ratio: 4 / 3;
+  background: var(--surface-inverse);
+}
+@media (min-width: 640px) { .book-viewport { aspect-ratio: 16 / 10; } }
+
+.book-track {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  transition: transform 900ms var(--ease-book);
+  will-change: transform;
+}
+
+.page {
+  position: relative;
+  flex: 0 0 100%;
+  height: 100%;
+  overflow: hidden;
+}
+/* page-turn shading: each page darkens toward its binding edge */
+.page::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to right, rgba(26,8,0,.34) 0%, rgba(26,8,0,0) 18%),
+    linear-gradient(to top, rgba(26,8,0,.55) 0%, rgba(26,8,0,.05) 45%);
+  pointer-events: none;
+}
+.page-media {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  /* parallax: the media counter-slides so pages feel layered, like leaves */
+  transform: translateX(var(--parallax, 0)) scale(1.06);
+  transition: transform 900ms var(--ease-book);
+  will-change: transform;
+}
+
+.page-caption {
+  position: absolute;
+  left: clamp(1rem, 3vw, 2rem);
+  right: clamp(1rem, 3vw, 2rem);
+  bottom: clamp(1rem, 3vw, 1.75rem);
+  z-index: 2;
+  color: #fff;
+  /* localized scrim so the caption holds contrast on any frame */
+  text-shadow: 0 1px 12px rgba(26,8,0,.85), 0 1px 3px rgba(26,8,0,.9);
+}
+.page-caption h2 {
+  font-size: clamp(1.15rem, 2.6vw, 1.7rem);
+  color: #fff;
+  margin-top: .5rem;
+}
+.page-caption p {
+  font-size: .8125rem;
+  color: rgba(255,255,255,.92);
+  margin-top: .35rem;
+  max-width: 34ch;
+}
+
+/* --- slider controls ---------------------------------------- */
+.book-controls {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: 1rem .5rem .25rem;
+}
+.book-count {
+  font-family: var(--font-display);
+  font-size: 1.5rem;
+  letter-spacing: .02em;
+  color: var(--ink);
+  flex: none;
+  font-variant-numeric: tabular-nums;
+}
+.book-count .total { color: var(--ink-subtle); }
+
+.book-bars {
+  display: flex;
+  gap: .5rem;
+  flex: 1 1 auto;
+  margin: 0; padding: 0;
+  list-style: none;
+}
+.book-bars li { flex: 1 1 0; display: flex; }
+.book-bar {
+  flex: 1 1 auto;
+  width: 100%;
+  background: none;
+  border: 0;
+  padding: .6rem 0;      /* keeps a finger-sized target around a 3px line */
+  cursor: pointer;
+}
+.book-bar span {
+  display: block;
+  height: 3px;
+  border-radius: 2px;
+  background: var(--border);
+  transition: background var(--base) var(--ease);
+}
+.book-bar[aria-current="true"] span { background: linear-gradient(to right, var(--red), var(--yellow)); }
+.book-bar:hover span { background: var(--ink-subtle); }
+
+.book-buttons { display: flex; gap: .5rem; flex: none; }
+.icon-btn {
+  width: 42px; height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--ink);
+  cursor: pointer;
+  transition: background var(--base) var(--ease),
+              border-color var(--base) var(--ease),
+              color var(--base) var(--ease);
+}
+.icon-btn:hover,
+.icon-btn:focus-visible { background: var(--red); border-color: var(--red); color: #fff; }
+.icon-btn[data-state="playing"] .icon-play,
+.icon-btn[data-state="paused"] .icon-pause { display: none; }
+
+/* ============================================================
+   STATS STRIP
+   ============================================================ */
+.stats {
+  background: var(--surface);
+  border-block: 1px solid var(--border-soft);
+}
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: clamp(1.5rem, 4vw, 2.5rem);
+  padding-block: clamp(2rem, 4vw, 3rem);
+}
+@media (min-width: 760px) { .stats-grid { grid-template-columns: repeat(4, 1fr); } }
+.stat-num {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 4vw, 2.75rem);
+  line-height: 1;
+  color: var(--red);
+}
+.stat-label {
+  font-size: .8125rem;
+  color: var(--ink-subtle);
+  margin-top: .4rem;
+}
+
+/* ============================================================
+   MODULES
+   ============================================================ */
+.modules { padding-block: var(--section-y); background: var(--surface-sunken); }
+
+.card {
+  position: relative;
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-1);
+  transition: transform var(--base) var(--ease), box-shadow var(--base) var(--ease);
+}
+.card:hover,
+.card:focus-within { transform: translateY(-4px); box-shadow: var(--shadow-3); }
+
+/* one focus stop, whole-card hit area */
+.card-link { text-decoration: none; }
+.card-link::after { content: ""; position: absolute; inset: 0; }
+
+.card-figure { position: relative; aspect-ratio: 16 / 10; background: var(--border-soft); }
+.card-figure img { width: 100%; height: 100%; object-fit: cover; }
+.card-figure .tag { position: absolute; top: .875rem; left: .875rem; }
+
+/* image-free card header: big outlined lesson number + icon */
+.card-emblem {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 132px;
+  color: var(--red);
+  background:
+    linear-gradient(135deg, rgba(245,166,35,.16) 0%, rgba(200,16,46,.09) 100%),
+    var(--surface-sunken);
+  border-bottom: 1px solid var(--border-soft);
+  overflow: hidden;
+}
+.emblem-num {
+  position: absolute;
+  right: .5rem; bottom: -.32em;
+  font-family: var(--font-display);
+  font-size: 5.5rem;
+  line-height: 1;
+  color: transparent;
+  -webkit-text-stroke: 1.5px rgba(200,16,46,.28);
+  user-select: none;
+}
+.card:hover .card-emblem,
+.card:focus-within .card-emblem { color: var(--red-dark); }
+
+.card-body { padding: 1.5rem 1.5rem 1.75rem; }
+.card-body h3 { font-size: 1.3rem; margin-bottom: .6rem; }
+.card-excerpt {
+  font-size: .9rem;
+  color: var(--ink-subtle);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.card-foot {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: 1.25rem;
+  padding-top: 1rem;
+  border-top: 1px solid var(--border-soft);
+  font-size: .78rem;
+  color: var(--ink-subtle);
+}
+.card-foot .go { color: var(--red); font-weight: 600; }
+
+/* featured module — two-up, collapses cleanly */
+.card--featured { display: grid; grid-template-columns: 1fr; }
+@media (min-width: 860px) {
+  .card--featured { grid-template-columns: 1.05fr 1fr; }
+  .card--featured .card-figure { aspect-ratio: auto; height: 100%; min-height: 400px; }
+  .card--featured .card-body { padding: clamp(2rem, 4vw, 3rem); align-self: center; }
+}
+.card--featured .card-body h2 { font-size: clamp(1.6rem, 3vw, 2.15rem); margin-block: .75rem .9rem; }
+.card--featured .card-excerpt { -webkit-line-clamp: 5; line-clamp: 5; font-size: .95rem; }
+
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
+  gap: clamp(1.25rem, 2.5vw, 1.75rem);
+}
+.stack-lg { margin-bottom: clamp(2.5rem, 6vw, 4rem); }
+
+/* ============================================================
+   THEMES / CATEGORIES
+   ============================================================ */
+.themes { padding-block: var(--section-y); background: var(--surface); }
+.theme-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 165px), 1fr));
+  gap: 1rem;
+}
+.theme-tile {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: .65rem;
+  padding: 1.75rem 1rem;
+  background: var(--surface-sunken);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-md);
+  color: var(--ink);
+  text-decoration: none;
+  text-align: center;
+  transition: background var(--base) var(--ease),
+              border-color var(--base) var(--ease),
+              color var(--base) var(--ease),
+              transform var(--base) var(--ease);
+}
+.theme-tile svg { color: var(--red); transition: color var(--base) var(--ease); }
+.theme-tile .n { font-weight: 600; font-size: .95rem; }
+.theme-tile .c { font-size: .75rem; color: var(--ink-subtle); transition: color var(--base) var(--ease); }
+.theme-tile:hover,
+.theme-tile:focus-visible {
+  background: var(--red);
+  border-color: var(--red);
+  color: #fff;
+  transform: translateY(-3px);
+}
+.theme-tile:hover svg,
+.theme-tile:focus-visible svg { color: var(--yellow); }
+.theme-tile:hover .c,
+.theme-tile:focus-visible .c { color: rgba(255,255,255,.8); }
+
+/* ============================================================
+   ABOUT — the one deep band, for rhythm
+   ============================================================ */
+.about {
+  position: relative;
+  overflow: hidden;
+  padding-block: var(--section-y);
+  background:
+    radial-gradient(circle at 18% 82%, rgba(245,166,35,.16) 0%, transparent 52%),
+    radial-gradient(circle at 82% 18%, rgba(200,16,46,.20) 0%, transparent 52%),
+    var(--surface-inverse);
+  color: rgba(255,255,255,.78);
+}
+.about .eyebrow { color: var(--yellow); }
+.about .eyebrow::before { background: linear-gradient(to right, var(--yellow), var(--red)); }
+.about-watermark {
+  position: absolute;
+  right: -.12em; top: 50%;
+  transform: translateY(-50%);
+  font-family: var(--font-display);
+  font-size: min(30rem, 46vw);
+  line-height: 1;
+  color: rgba(245,166,35,.06);
+  user-select: none;
+  pointer-events: none;
+}
+.about-grid {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: center;
+}
+@media (min-width: 900px) { .about-grid { grid-template-columns: 1fr 1fr; } }
+.about h2 {
+  font-size: clamp(1.9rem, 4vw, 3rem);
+  color: #fff;
+  margin-block: .75rem 1.25rem;
+}
+.about h2 em { color: var(--yellow); font-style: italic; }
+.about p + p { margin-top: 1rem; color: rgba(255,255,255,.66); font-size: .95rem; }
+
+.about-collage { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
+.about-collage .wide { grid-column: 1 / -1; }
+.about-collage figure {
+  position: relative;
+  margin: 0;
+  border-radius: var(--r-md);
+  overflow: hidden;
+}
+.about-collage img { width: 100%; height: 100%; object-fit: cover; }
+.about-collage .wide { aspect-ratio: 16 / 8; }
+.about-collage .small { aspect-ratio: 1 / 1; }
+.about-collage figcaption {
+  position: absolute; left: .75rem; bottom: .75rem;
+}
+.about-note {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: .5rem;
+  padding: 1.25rem;
+  text-align: center;
+  background: var(--red);
+  color: #fff;
+  border-radius: var(--r-md);
+  aspect-ratio: 1 / 1;
+  font-size: .9rem;
+  font-weight: 500;
+  line-height: 1.4;
+}
+
+/* ============================================================
+   ENROL BAND
+   ============================================================ */
+.enrol {
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(3.5rem, 7vw, 5.5rem);
+  background: linear-gradient(135deg, var(--red) 0%, #8B0000 62%, #5A0000 100%);
+  color: #fff;
+  text-align: center;
+}
+.enrol::after {
+  content: "";
+  position: absolute; inset: 0 0 0 auto;
+  width: 42%;
+  background: linear-gradient(to left, rgba(245,166,35,.14), transparent);
+  pointer-events: none;
+}
+.enrol-inner { position: relative; z-index: 1; max-width: 40rem; margin-inline: auto; }
+.enrol h2 { font-size: clamp(1.9rem, 4vw, 2.75rem); color: #fff; margin-bottom: .75rem; }
+.enrol p { color: rgba(255,255,255,.85); margin-bottom: 2rem; }
+
+.enrol-form { display: flex; flex-wrap: wrap; gap: .5rem; max-width: 30rem; margin-inline: auto; }
+.enrol-form input {
+  flex: 1 1 14rem;
+  min-width: 0;
+  padding: .875rem 1.125rem;
+  border: 1px solid transparent;
+  border-radius: var(--r-sm);
+  font: inherit;
+  font-size: .9rem;
+  color: var(--ink);
+  background: #fff;
+}
+.enrol-form input:focus-visible { outline-color: var(--yellow); }
+.enrol-status {
+  display: inline-block;
+  padding: 1rem 1.75rem;
+  border: 1px solid rgba(245,166,35,.55);
+  border-radius: var(--r-sm);
+  background: rgba(245,166,35,.16);
+  color: #FFD48A;
+  font-weight: 600;
+}
+.enrol-status:empty { display: none; }
+
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.site-footer {
+  background: var(--surface-deep);
+  color: rgba(255,255,255,.6);
+  padding-block: clamp(2.5rem, 5vw, 3.5rem) 1.75rem;
+  font-size: .875rem;
+}
+.footer-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 200px), 1fr));
+  gap: clamp(2rem, 4vw, 3rem);
+  margin-bottom: clamp(2rem, 4vw, 3rem);
+}
+.site-footer h3 {
+  font-family: var(--font-body);
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--yellow);
+  margin-bottom: .9rem;
+}
+.site-footer ul { list-style: none; margin: 0; padding: 0; display: grid; gap: .5rem; }
+.site-footer a { color: rgba(255,255,255,.6); text-decoration: none; transition: color var(--base) var(--ease); }
+.site-footer a:hover,
+.site-footer a:focus-visible { color: var(--yellow); }
+.footer-brand .brand-name { color: #fff; }
+.footer-brand p { margin-top: .75rem; line-height: 1.7; }
+.footer-bottom {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid rgba(245,166,35,.16);
+  font-size: .8rem;
+}
+.footer-flag { display: flex; gap: 4px; }
+.footer-flag i { width: 16px; height: 16px; border-radius: 1px; }
+
+/* ============================================================
+   MOTION / FORCED COLORS
+   ============================================================ */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+  .book-track, .page-media { transition: none; }
+}
+
+@media (forced-colors: active) {
+  .hero-title .line--outline {
+    color: CanvasText;
+    -webkit-text-stroke: 0;
+  }
+  .card, .theme-tile, .icon-btn { border: 1px solid CanvasText; }
+  .emblem-num { color: CanvasText; -webkit-text-stroke: 0; opacity: .35; }
+}
+</style>
+</head>
+
+<body>
+<a class="skip-link" href="#main">ಮುಖ್ಯ ವಿಷಯಕ್ಕೆ ಹೋಗಿ</a>
+
+<!-- ================= HEADER ================= -->
+<header class="site-header">
+  <div class="flag-rule"></div>
+  <div class="wrap">
+    <div class="header-inner">
+      <a class="brand" href="#">
+        <span class="brand-mark" aria-hidden="true"></span>
+        <span class="brand-name">Craft <span>ಕ್ರಾಫ್ಟ್</span></span>
+      </a>
+
+      <nav class="nav-desktop" aria-label="ಮುಖ್ಯ ಮೆನು">
+        <a class="nav-link" href="#modules">ಪಾಠಗಳು</a>
+        <a class="nav-link" href="#themes">ವಿಷಯಗಳು</a>
+        <a class="nav-link" href="#about">ಪರಿಚಯ</a>
+        <a class="nav-link" href="#enrol">ಶುಲ್ಕ</a>
+        <a class="btn btn--primary nav-cta" href="#enrol">ಪ್ರವೇಶ ಪಡೆಯಿರಿ</a>
+      </nav>
+
+      <button class="nav-toggle" type="button" id="navToggle"
+              aria-label="ಮೆನು" aria-expanded="false" aria-controls="navMobile">
+        <svg class="icon-open" width="22" height="14" viewBox="0 0 22 14" fill="none" aria-hidden="true">
+          <path d="M0 1h22M0 7h15M0 13h22" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+        <svg class="icon-close" width="18" height="18" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M1 1l16 16M17 1L1 17" stroke="currentColor" stroke-width="1.6"/>
+        </svg>
+      </button>
+    </div>
+
+    <nav class="nav-mobile" id="navMobile" aria-label="ಮೊಬೈಲ್ ಮೆನು">
+      <a href="#modules">ಪಾಠಗಳು</a>
+      <a href="#themes">ವಿಷಯಗಳು</a>
+      <a href="#about">ಪರಿಚಯ</a>
+      <a href="#enrol">ಶುಲ್ಕ</a>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- ================= HERO + BOOK SLIDER ================= -->
+  <section class="hero">
+    <div class="wrap hero-grid">
+
+      <div class="hero-copy">
+        <p class="eyebrow">ಕೋರ್ಸ್ 03 · ಚಲನಚಿತ್ರ &amp; ನಿರ್ದೇಶನ</p>
+
+        <h1 class="hero-title">
+          <span class="line">ಸಿನಿಮ್ಯಾಟಿಕ್</span>
+          <span class="line line--outline">ಕಥನ</span>
+        </h1>
+
+        <p class="hero-lede">
+          ಉದ್ದೇಶದಿಂದ ನಿರ್ದೇಶಿಸಿ. ನಿಖರತೆಯಿಂದ ಬಣ್ಣ ಸಂಯೋಜಿಸಿ. ಸಿನಿಮಾದ ಭಾಷೆಯನ್ನು
+          ಕಲಿಯಿರಿ — ಪೂರ್ವ-ನಿರ್ಮಾಣದಿಂದ ಪ್ರೇಕ್ಷಕರ ಹೃದಯವನ್ನು ಕಲಕುವ ಅಂತಿಮ
+          ಕಟ್‌ವರೆಗೆ.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="#enrol">
+            ಇಂದೇ ಸೇರಿ
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M14 5l7 7-7 7M21 12H3" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+          <a class="btn btn--ghost" href="#modules">ಪಾಠಗಳನ್ನು ನೋಡಿ</a>
+        </div>
+
+        <dl class="hero-meta">
+          <div>
+            <dt>ಅವಧಿ</dt>
+            <dd>12 ಗಂ</dd>
+          </div>
+          <div>
+            <dt>ಪಾಠಗಳು</dt>
+            <dd>24</dd>
+          </div>
+          <div>
+            <dt>ಭಾಷೆ</dt>
+            <dd>ಕನ್ನಡ</dd>
+          </div>
+        </dl>
+      </div>
+
+      <!-- the book: pages slide sideways, media parallaxes, spine shades -->
+      <div class="book" id="book">
+        <div class="book-viewport">
+          <div class="book-track" id="bookTrack">
+
+            <article class="page" aria-roledescription="ಪುಟ" aria-label="1 / 3">
+              <video class="page-media" id="heroVideo"
+                     autoplay muted loop playsinline
+                     poster="assets/page-flag.svg">
+                <source src="assets/karnataka-flag.mp4" type="video/mp4" />
+              </video>
+              <div class="page-caption">
+                <span class="tag tag--yellow">ಅಧ್ಯಾಯ 01</span>
+                <h2>ಬೆಳಕು, ಬಣ್ಣ, ಚಲನೆ</h2>
+                <p>ಚೌಕಟ್ಟಿನೊಳಗೆ ಚಲನೆಯನ್ನು ಓದುವುದು ಹೇಗೆ — ಮೊದಲ ಪಾಠ.</p>
+              </div>
+            </article>
+
+            <article class="page" aria-roledescription="ಪುಟ" aria-label="2 / 3">
+              <img class="page-media" alt="ಸೂರ್ಯಾಸ್ತದಲ್ಲಿ ಹಂಪಿಯ ಕಲ್ಲಿನ ಕಂಬಗಳ ಸಾಲು"
+                   loading="lazy" decoding="async" width="1200" height="750"
+                   src="assets/page-hampi.svg" />
+              <div class="page-caption">
+                <span class="tag tag--yellow">ಅಧ್ಯಾಯ 02</span>
+                <h2>ಹಂಪಿ — ಕಲ್ಲಿನ ಕಥೆಗಳು</h2>
+                <p>ಸ್ಥಳವೇ ಪಾತ್ರವಾದಾಗ: ಲೊಕೇಶನ್ ಸ್ಕೌಟಿಂಗ್ ಮತ್ತು ಸಂಯೋಜನೆ.</p>
+              </div>
+            </article>
+
+            <article class="page" aria-roledescription="ಪುಟ" aria-label="3 / 3">
+              <img class="page-media" alt="ರಾತ್ರಿಯಲ್ಲಿ ದೀಪಗಳಿಂದ ಬೆಳಗುವ ಅರಮನೆ"
+                   loading="lazy" decoding="async" width="1200" height="750"
+                   src="assets/page-mysore.svg" />
+              <div class="page-caption">
+                <span class="tag tag--yellow">ಅಧ್ಯಾಯ 03</span>
+                <h2>ಮೈಸೂರು — ಬೆಳಕಿನ ಅರಮನೆ</h2>
+                <p>ರಾತ್ರಿಯ ಚಿತ್ರೀಕರಣ, ಬಣ್ಣ ಸಂಯೋಜನೆ ಮತ್ತು ಅಂತಿಮ ಕಟ್.</p>
+              </div>
+            </article>
+
+          </div>
+        </div>
+
+        <div class="book-controls">
+          <p class="book-count" aria-hidden="true">
+            <span id="bookCurrent">01</span><span class="total"> / 03</span>
+          </p>
+
+          <ul class="book-bars" id="bookBars">
+            <li><button class="book-bar" type="button" data-index="0" aria-current="true">
+              <span></span><span class="sr-only">ಪುಟ 1</span>
+            </button></li>
+            <li><button class="book-bar" type="button" data-index="1" aria-current="false">
+              <span></span><span class="sr-only">ಪುಟ 2</span>
+            </button></li>
+            <li><button class="book-bar" type="button" data-index="2" aria-current="false">
+              <span></span><span class="sr-only">ಪುಟ 3</span>
+            </button></li>
+          </ul>
+
+          <div class="book-buttons">
+            <button class="icon-btn" type="button" id="bookPrev" aria-label="ಹಿಂದಿನ ಪುಟ">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+            <button class="icon-btn" type="button" id="bookToggle" data-state="playing"
+                    aria-label="ಸ್ಲೈಡ್‌ಶೋ ನಿಲ್ಲಿಸಿ">
+              <svg class="icon-pause" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                <rect x="6" y="4" width="4" height="16" fill="currentColor"/>
+                <rect x="14" y="4" width="4" height="16" fill="currentColor"/>
+              </svg>
+              <svg class="icon-play" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M7 4l13 8-13 8z" fill="currentColor"/>
+              </svg>
+            </button>
+            <button class="icon-btn" type="button" id="bookNext" aria-label="ಮುಂದಿನ ಪುಟ">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2"
+                      stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <p class="sr-only" role="status" aria-live="polite" id="bookStatus"></p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ================= STATS ================= -->
+  <section class="stats" aria-label="ಕೋರ್ಸ್ ಸಂಖ್ಯೆಗಳಲ್ಲಿ">
+    <div class="wrap stats-grid">
+      <div>
+        <p class="stat-num">24</p>
+        <p class="stat-label">ವಿಡಿಯೊ ಪಾಠಗಳು</p>
+      </div>
+      <div>
+        <p class="stat-num">12</p>
+        <p class="stat-label">ಗಂಟೆಗಳ ವಿಷಯ</p>
+      </div>
+      <div>
+        <p class="stat-num">03</p>
+        <p class="stat-label">ಪ್ರಾಯೋಗಿಕ ಯೋಜನೆಗಳು</p>
+      </div>
+      <div>
+        <p class="stat-num">1,800+</p>
+        <p class="stat-label">ವಿದ್ಯಾರ್ಥಿಗಳು</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= MODULES ================= -->
+  <section class="modules" id="modules">
+    <div class="wrap">
+
+      <div class="section-head">
+        <p class="eyebrow">ಪಠ್ಯಕ್ರಮ</p>
+        <h2>ಈ ಪಾಠದಿಂದ ಆರಂಭಿಸಿ</h2>
+        <p class="lede">
+          ಪ್ರತಿ ಪಾಠವೂ ಒಂದು ಸಣ್ಣ ಯೋಜನೆಯೊಂದಿಗೆ ಮುಗಿಯುತ್ತದೆ — ನೋಡಿ, ಮಾಡಿ, ತೋರಿಸಿ.
+        </p>
+      </div>
+
+      <article class="card card--featured stack-lg">
+        <div class="card-figure">
+          <img src="assets/module-frame.svg"
+               alt="ರೂಲ್-ಆಫ್-ಥರ್ಡ್ಸ್ ಗ್ರಿಡ್ ಮತ್ತು ಅಪರ್ಚರ್ ಇರುವ ವ್ಯೂಫೈಂಡರ್"
+               width="900" height="800" loading="lazy" decoding="async" />
+        </div>
+        <div class="card-body">
+          <span class="tag">ಪಾಠ 01</span>
+          <h2><a class="card-link" href="#modules">ಫ್ರೇಮ್‌ನ ವ್ಯಾಕರಣ</a></h2>
+          <p class="card-excerpt">
+            ಶಾಟ್ ಗಾತ್ರ, ಕೋನ, ಚಲನೆ ಮತ್ತು ಕಣ್ಣಿನ ಸಾಲು — ಪ್ರೇಕ್ಷಕನ ಗಮನವನ್ನು
+            ಎಲ್ಲಿಗೆ ಒಯ್ಯಬೇಕೆಂದು ನಿರ್ಧರಿಸುವ ನಾಲ್ಕು ಸಾಧನಗಳು. ಒಂದೇ ದೃಶ್ಯವನ್ನು
+            ಆರು ರೀತಿಯಲ್ಲಿ ಚಿತ್ರೀಕರಿಸಿ, ಪ್ರತಿಯೊಂದೂ ಅರ್ಥವನ್ನು ಹೇಗೆ ಬದಲಾಯಿಸುತ್ತದೆ
+            ಎಂಬುದನ್ನು ನೀವೇ ನೋಡುತ್ತೀರಿ.
+          </p>
+          <div class="card-foot">
+            <span>8 ಭಾಗಗಳು · 96 ನಿಮಿಷ</span>
+            <span class="go" aria-hidden="true">ಪ್ರಾರಂಭಿಸಿ →</span>
+          </div>
+        </div>
+      </article>
+
+      <div class="section-head">
+        <p class="eyebrow">ಮುಂದಿನ ಪಾಠಗಳು</p>
+      </div>
+
+      <div class="card-grid">
+
+        <article class="card">
+          <div class="card-emblem">
+            <span class="emblem-num" aria-hidden="true">02</span>
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"
+                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
+              <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h3><a class="card-link" href="#modules">ಬೆಳಕಿನ ಶಿಸ್ತು</a></h3>
+            <p class="card-excerpt">
+              ಒಂದೇ ಮೂಲದಿಂದ ಆರಂಭಿಸಿ. ನೆರಳು ಎಲ್ಲಿ ಬೀಳಬೇಕೆಂದು ನಿರ್ಧರಿಸಿದ ಮೇಲೆಯೇ
+              ಎರಡನೇ ದೀಪ ಹಚ್ಚಿ.
+            </p>
+            <div class="card-foot">
+              <span>6 ಭಾಗಗಳು · 74 ನಿ</span>
+              <span class="go" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-emblem">
+            <span class="emblem-num" aria-hidden="true">03</span>
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M12 3c5 0 9 3.6 9 8 0 2.5-2 4-4 4h-1.5a1.5 1.5 0 00-1 2.6c.6.6.3 1.9-.9 2.2A9.6 9.6 0 0112 21c-5 0-9-4-9-9s4-9 9-9z"
+                    stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+              <circle cx="8" cy="10" r="1.2" fill="currentColor"/>
+              <circle cx="12" cy="7.5" r="1.2" fill="currentColor"/>
+              <circle cx="16" cy="10" r="1.2" fill="currentColor"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h3><a class="card-link" href="#modules">ಬಣ್ಣದ ಭಾವ</a></h3>
+            <p class="card-excerpt">
+              ಬಣ್ಣ ಸಂಯೋಜನೆ ಅಲಂಕಾರವಲ್ಲ — ಅದು ನಿರೂಪಣೆ. ಬೆಚ್ಚಗಿನ ಮತ್ತು ತಣ್ಣನೆಯ
+              ಪ್ಯಾಲೆಟ್‌ಗಳಿಂದ ಕಥೆಯ ಸಮಯವನ್ನು ಗುರುತಿಸಿ.
+            </p>
+            <div class="card-foot">
+              <span>5 ಭಾಗಗಳು · 61 ನಿ</span>
+              <span class="go" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-emblem">
+            <span class="emblem-num" aria-hidden="true">04</span>
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+              <path d="M3 9h18M3 15h18M8 5v14M16 5v14" stroke="currentColor" stroke-width="1.6"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h3><a class="card-link" href="#modules">ಕಟ್‌ನ ಲಯ</a></h3>
+            <p class="card-excerpt">
+              ಯಾವಾಗ ಕತ್ತರಿಸಬೇಕು ಎಂಬುದಕ್ಕಿಂತ ಯಾಕೆ ಕತ್ತರಿಸಬೇಕು ಎಂಬುದು ಮುಖ್ಯ.
+              ಲಯ, ಉಸಿರು ಮತ್ತು ಮೌನದ ಬಳಕೆ.
+            </p>
+            <div class="card-foot">
+              <span>7 ಭಾಗಗಳು · 88 ನಿ</span>
+              <span class="go" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-emblem">
+            <span class="emblem-num" aria-hidden="true">05</span>
+            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M3 12v2M7 8v10M11 4v16M15 8v10M19 11v3" stroke="currentColor"
+                    stroke-width="1.8" stroke-linecap="round"/>
+            </svg>
+          </div>
+          <div class="card-body">
+            <h3><a class="card-link" href="#modules">ಕಾಣದ ಧ್ವನಿ</a></h3>
+            <p class="card-excerpt">
+              ಪ್ರೇಕ್ಷಕ ಗಮನಿಸದ ಧ್ವನಿಯೇ ಅತ್ಯುತ್ತಮ ಧ್ವನಿ. ಫೋಲಿ, ಪರಿಸರ ಮತ್ತು
+              ಸಂಗೀತದ ಸಮತೋಲನ.
+            </p>
+            <div class="card-foot">
+              <span>4 ಭಾಗಗಳು · 52 ನಿ</span>
+              <span class="go" aria-hidden="true">→</span>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= THEMES ================= -->
+  <section class="themes" id="themes">
+    <div class="wrap">
+      <div class="section-head is-centered">
+        <p class="eyebrow is-centered">ವಿಷಯಗಳು</p>
+        <h2>ನಿಮಗೆ ಯಾವುದು ಕರೆಯುತ್ತಿದೆ?</h2>
+      </div>
+
+      <div class="theme-grid">
+
+        <a class="theme-tile" href="#modules">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 8a2 2 0 012-2h2.5l1.2-2h6.6l1.2 2H20a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"
+                  stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <circle cx="12.5" cy="12.5" r="3.5" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+          <span class="n">ಛಾಯಾಗ್ರಹಣ</span>
+          <span class="c">18 ಪಾಠಗಳು</span>
+        </a>
+
+        <a class="theme-tile" href="#modules">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M12 3c5 0 9 3.6 9 8 0 2.5-2 4-4 4h-1.5a1.5 1.5 0 00-1 2.6c.6.6.3 1.9-.9 2.2A9.6 9.6 0 0112 21c-5 0-9-4-9-9s4-9 9-9z"
+                  stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+            <circle cx="8" cy="10" r="1.2" fill="currentColor"/>
+            <circle cx="12" cy="7.5" r="1.2" fill="currentColor"/>
+            <circle cx="16" cy="10" r="1.2" fill="currentColor"/>
+          </svg>
+          <span class="n">ಬಣ್ಣ</span>
+          <span class="c">12 ಪಾಠಗಳು</span>
+        </a>
+
+        <a class="theme-tile" href="#modules">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
+            <path d="M3 9h18M3 15h18M8 5v14M16 5v14" stroke="currentColor" stroke-width="1.6"/>
+          </svg>
+          <span class="n">ಸಂಕಲನ</span>
+          <span class="c">15 ಪಾಠಗಳು</span>
+        </a>
+
+        <a class="theme-tile" href="#modules">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M3 12v2M7 8v10M11 4v16M15 8v10M19 11v3" stroke="currentColor"
+                  stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+          <span class="n">ಧ್ವನಿ</span>
+          <span class="c">9 ಪಾಠಗಳು</span>
+        </a>
+
+        <a class="theme-tile" href="#modules">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 20l3-11M20 20l-3-11M6 9h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+            <path d="M4 5.5l14 2.2M4.6 9.2L18.6 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+          </svg>
+          <span class="n">ನಿರ್ದೇಶನ</span>
+          <span class="c">11 ಪಾಠಗಳು</span>
+        </a>
+
+        <a class="theme-tile" href="#modules">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M4 5.5A2.5 2.5 0 016.5 3H12v17H6.5A2.5 2.5 0 004 22V5.5zM20 5.5A2.5 2.5 0 0017.5 3H12v17h5.5A2.5 2.5 0 0120 22V5.5z"
+                  stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
+          </svg>
+          <span class="n">ಕಥೆ</span>
+          <span class="c">14 ಪಾಠಗಳು</span>
+        </a>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ABOUT ================= -->
+  <section class="about" id="about">
+    <div class="flag-rule" style="position:absolute;top:0;left:0;right:0;"></div>
+    <span class="about-watermark" aria-hidden="true">ಕ</span>
+
+    <div class="wrap about-grid">
+      <div>
+        <p class="eyebrow">ನಮ್ಮ ಕಥೆ</p>
+        <h2>ಕನ್ನಡದಲ್ಲಿಯೇ ಸಿನಿಮಾ ಕಲಿಯುವ <em>ಒಂದು ಸ್ಥಳ</em></h2>
+        <p>
+          Craft ಎಂಬುದು ಕರ್ನಾಟಕದ ಚಿತ್ರರಂಗದಲ್ಲಿ ಕೆಲಸ ಮಾಡುತ್ತಿರುವ ಛಾಯಾಗ್ರಾಹಕರು,
+          ಸಂಕಲನಕಾರರು ಮತ್ತು ನಿರ್ದೇಶಕರ ಸಣ್ಣ ತಂಡ ರೂಪಿಸಿದ ಕೋರ್ಸ್.
+        </p>
+        <p>
+          ಸಿನಿಮಾದ ಪರಿಭಾಷೆಯನ್ನು ಇಂಗ್ಲಿಷಿನಲ್ಲಿ ಹುಡುಕಬೇಕಾದ ಅಗತ್ಯವಿಲ್ಲ ಎಂಬುದೇ ನಮ್ಮ
+          ನಂಬಿಕೆ. ಪ್ರತಿ ಪಾಠವೂ ಕನ್ನಡದಲ್ಲಿ, ನಮ್ಮದೇ ನೆಲದ ಉದಾಹರಣೆಗಳೊಂದಿಗೆ —
+          ಹಂಪಿಯ ಕಲ್ಲಿನಿಂದ ಮೈಸೂರಿನ ಬೆಳಕಿನವರೆಗೆ.
+        </p>
+      </div>
+
+      <div class="about-collage">
+        <figure class="wide">
+          <img src="assets/about-set.svg"
+               alt="ಕ್ಯಾಮೆರಾ ಮತ್ತು ಬೆಳಕಿನೊಂದಿಗೆ ಚಿತ್ರೀಕರಣದಲ್ಲಿ ತೊಡಗಿರುವ ತಂಡ"
+               width="800" height="400" loading="lazy" decoding="async" />
+          <figcaption><span class="tag tag--yellow">ಸೆಟ್‌ನಲ್ಲಿ</span></figcaption>
+        </figure>
+        <figure class="small">
+          <img src="assets/about-screen.svg"
+               alt="ಚಿತ್ರಮಂದಿರದ ಪರದೆ ಮತ್ತು ಆಸನಗಳ ಸಾಲು"
+               width="400" height="400" loading="lazy" decoding="async" />
+        </figure>
+        <p class="about-note">ಒಂದು ಫ್ರೇಮ್, ಒಂದು ಕಥೆ, ಅನಂತ ಪ್ರಭಾವ</p>
+      </div>
+    </div>
+
+    <div class="flag-rule" style="position:absolute;bottom:0;left:0;right:0;"></div>
+  </section>
+
+  <!-- ================= ENROL ================= -->
+  <section class="enrol" id="enrol">
+    <div class="wrap enrol-inner">
+      <h2>ಮುಂದಿನ ತಂಡ ಶೀಘ್ರದಲ್ಲೇ ಆರಂಭ</h2>
+      <p>
+        ಇಮೇಲ್ ಬಿಟ್ಟುಹೋಗಿ — ಪ್ರವೇಶ ತೆರೆದಾಗ ಮೊದಲು ನಿಮಗೇ ತಿಳಿಸುತ್ತೇವೆ.
+      </p>
+
+      <form class="enrol-form" id="enrolForm" novalidate>
+        <label class="sr-only" for="enrolEmail">ಇಮೇಲ್ ವಿಳಾಸ</label>
+        <input id="enrolEmail" name="email" type="email" inputmode="email"
+               autocomplete="email" required placeholder="nimma@email.com" />
+        <button class="btn btn--onDark" type="submit">ತಿಳಿಸಿ</button>
+      </form>
+
+      <p class="enrol-status" role="status" aria-live="polite" id="enrolStatus"></p>
+    </div>
+  </section>
+
+</main>
+
+<!-- ================= FOOTER ================= -->
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <span class="brand-name">Craft <span style="color:var(--yellow)">ಕ್ರಾಫ್ಟ್</span></span>
+        <p>ಕನ್ನಡದಲ್ಲಿ ಸಿನಿಮಾ ನಿರ್ಮಾಣ ಕಲಿಸುವ ಸ್ವತಂತ್ರ ಕೋರ್ಸ್.</p>
+      </div>
+
+      <div>
+        <h3>ಪಾಠಗಳು</h3>
+        <ul>
+          <li><a href="#modules">ಛಾಯಾಗ್ರಹಣ</a></li>
+          <li><a href="#modules">ಬಣ್ಣ</a></li>
+          <li><a href="#modules">ಸಂಕಲನ</a></li>
+          <li><a href="#modules">ಧ್ವನಿ</a></li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>ಸಂಸ್ಥೆ</h3>
+        <ul>
+          <li><a href="#about">ಪರಿಚಯ</a></li>
+          <li><a href="#enrol">ಶುಲ್ಕ</a></li>
+          <li><a href="#">ಸಂಪರ್ಕ</a></li>
+          <li><a href="#">ಗೌಪ್ಯತೆ ನೀತಿ</a></li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="footer-bottom">
+      <p>© 2026 Craft. ಬೆಂಗಳೂರಿನಲ್ಲಿ ಪ್ರೀತಿಯಿಂದ ಮಾಡಲಾಗಿದೆ.</p>
+      <span class="footer-flag" aria-hidden="true">
+        <i style="background:var(--yellow)"></i>
+        <i style="background:var(--red)"></i>
+      </span>
+    </div>
+  </div>
+</footer>
+
 <script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['"Noto Serif Kannada"', '"Instrument Serif"', 'serif'],
-            sans: ['"Noto Sans Kannada"', 'Inter', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              orange: '#FF7A00',
-              dark: '#0A0A0A',
-            }
-          }
-        }
+(function () {
+  'use strict';
+
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  /* ---------- mobile nav ---------- */
+  var navToggle = document.getElementById('navToggle');
+  var navMobile = document.getElementById('navMobile');
+
+  function closeNav() {
+    navToggle.setAttribute('aria-expanded', 'false');
+    navMobile.classList.remove('is-open');
+  }
+
+  navToggle.addEventListener('click', function () {
+    var open = navToggle.getAttribute('aria-expanded') === 'true';
+    navToggle.setAttribute('aria-expanded', String(!open));
+    navMobile.classList.toggle('is-open', !open);
+  });
+
+  navMobile.addEventListener('click', function (e) {
+    if (e.target.tagName === 'A') closeNav();
+  });
+
+  document.addEventListener('keydown', function (e) {
+    if (e.key === 'Escape' && navToggle.getAttribute('aria-expanded') === 'true') {
+      closeNav();
+      navToggle.focus();
+    }
+  });
+
+  /* ---------- the book slider ---------- */
+  var book    = document.getElementById('book');
+  var track   = document.getElementById('bookTrack');
+  var pages   = Array.prototype.slice.call(track.querySelectorAll('.page'));
+  var bars    = Array.prototype.slice.call(document.querySelectorAll('.book-bar'));
+  var current = document.getElementById('bookCurrent');
+  var status  = document.getElementById('bookStatus');
+  var toggle  = document.getElementById('bookToggle');
+  var video   = document.getElementById('heroVideo');
+
+  var index = 0;
+  var timer = null;
+  var DELAY = 6500;
+  var playing = false;
+
+  function pad(n) { return (n < 10 ? '0' : '') + n; }
+
+  function render() {
+    track.style.transform = 'translateX(' + (-index * 100) + '%)';
+
+    /* parallax: media of each page counter-slides against the track,
+       so pages read as separate leaves rather than one flat strip */
+    pages.forEach(function (page, i) {
+      var media = page.querySelector('.page-media');
+      if (media) media.style.setProperty('--parallax', ((i - index) * -14) + '%');
+      page.setAttribute('aria-hidden', i === index ? 'false' : 'true');
+      /* keep hidden pages out of the tab order */
+      page.querySelectorAll('a, button').forEach(function (el) {
+        if (i === index) el.removeAttribute('tabindex');
+        else el.setAttribute('tabindex', '-1');
+      });
+    });
+
+    bars.forEach(function (bar, i) {
+      bar.setAttribute('aria-current', i === index ? 'true' : 'false');
+    });
+
+    current.textContent = pad(index + 1);
+    status.textContent = 'ಪುಟ ' + (index + 1) + ' / ' + pages.length;
+
+    /* only the visible page's video should be running */
+    if (video) {
+      if (index === 0 && playing && !reduceMotion.matches) {
+        var p = video.play();
+        if (p && p.catch) p.catch(function () {});
+      } else {
+        video.pause();
       }
     }
-  </script>
-<style data-purpose="custom-typography">
-    /* Custom outline text for the second word */
-    .text-outline {
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
-      font-weight: 400;
+  }
+
+  function goTo(next) {
+    index = (next + pages.length) % pages.length;
+    render();
+  }
+
+  function start() {
+    if (reduceMotion.matches) return;
+    stop();
+    playing = true;
+    toggle.dataset.state = 'playing';
+    toggle.setAttribute('aria-label', 'ಸ್ಲೈಡ್‌ಶೋ ನಿಲ್ಲಿಸಿ');
+    timer = setInterval(function () { goTo(index + 1); }, DELAY);
+    if (video && index === 0) { var p = video.play(); if (p && p.catch) p.catch(function () {}); }
+  }
+
+  function stop() {
+    playing = false;
+    toggle.dataset.state = 'paused';
+    toggle.setAttribute('aria-label', 'ಸ್ಲೈಡ್‌ಶೋ ಪ್ರಾರಂಭಿಸಿ');
+    if (timer) { clearInterval(timer); timer = null; }
+    if (video) video.pause();
+  }
+
+  toggle.addEventListener('click', function () { playing ? stop() : start(); });
+  document.getElementById('bookPrev').addEventListener('click', function () { stop(); goTo(index - 1); });
+  document.getElementById('bookNext').addEventListener('click', function () { stop(); goTo(index + 1); });
+
+  bars.forEach(function (bar) {
+    bar.addEventListener('click', function () {
+      stop();
+      goTo(parseInt(bar.dataset.index, 10));
+    });
+  });
+
+  /* arrow keys while the slider has focus */
+  book.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft')  { stop(); goTo(index - 1); }
+    if (e.key === 'ArrowRight') { stop(); goTo(index + 1); }
+  });
+
+  /* pause while hovered or focused — never yank a page out from under someone */
+  book.addEventListener('mouseenter', function () { if (playing) { clearInterval(timer); timer = null; } });
+  book.addEventListener('mouseleave', function () { if (playing && !timer) start(); });
+  book.addEventListener('focusin',   function () { if (playing) { clearInterval(timer); timer = null; } });
+
+  /* and while the tab is in the background */
+  document.addEventListener('visibilitychange', function () {
+    if (document.hidden) { if (timer) { clearInterval(timer); timer = null; } }
+    else if (playing) start();
+  });
+
+  render();
+  if (reduceMotion.matches) { stop(); } else { start(); }
+  reduceMotion.addEventListener('change', function (e) { e.matches ? stop() : start(); });
+
+  /* ---------- enrol form ---------- */
+  var form = document.getElementById('enrolForm');
+  var field = document.getElementById('enrolEmail');
+  var out = document.getElementById('enrolStatus');
+
+  form.addEventListener('submit', function (e) {
+    e.preventDefault();
+    if (!field.value || !field.checkValidity()) {
+      out.textContent = 'ಸರಿಯಾದ ಇಮೇಲ್ ವಿಳಾಸ ನಮೂದಿಸಿ.';
+      field.focus();
+      return;
     }
-    /* Large numbers styling */
-    .big-number-accent {
-      color: transparent;
-      -webkit-text-stroke: 1px #FF7A00;
-    }
-    .big-number-muted {
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-    }
-    .letter-spacing-widest {
-      letter-spacing: 0.2em;
-    }
-  </style>
-<style data-purpose="layout-and-effects">
-    /* Full-bleed background video of the Karnataka flag */
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-    /* Cinematic darkening overlay so the text stays legible over the video */
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background:
-        linear-gradient(90deg, rgba(10, 10, 10, 0.88) 0%, rgba(10, 10, 10, 0.55) 45%, rgba(10, 10, 10, 0.25) 100%),
-        linear-gradient(0deg, rgba(10, 10, 10, 0.75) 0%, rgba(10, 10, 10, 0.15) 40%, rgba(10, 10, 10, 0.35) 100%);
-    }
-    .glass-button {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-    }
-    .glass-button:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-    .glow-orange {
-      box-shadow: 0 0 20px rgba(255, 122, 0, 0.4);
-    }
-    /* Vertical line accent for the course label */
-    .accent-line::before {
-      content: "";
-      display: inline-block;
-      width: 30px;
-      height: 1px;
-      background-color: #FF7A00;
-      vertical-align: middle;
-      margin-right: 12px;
-    }
-  </style>
-</head>
-<body class="h-full m-0 p-0 bg-brand-dark text-white font-sans overflow-hidden">
-<!-- BEGIN: MainContainer -->
-<main class="relative h-full w-full flex flex-col justify-between p-8 md:p-12">
-<!-- BEGIN: Background Video (Karnataka flag flying) -->
-<video class="hero-video" autoplay muted loop playsinline data-purpose="hero-background-video">
-<source src="assets/karnataka-flag.mp4" type="video/mp4" />
-</video>
-<div class="hero-overlay" aria-hidden="true"></div>
-<!-- END: Background Video -->
-<!-- BEGIN: Header -->
-<header class="flex items-center justify-between z-10">
-<!-- Hamburger Menu -->
-<div class="cursor-pointer" data-purpose="navigation-menu">
-<svg fill="none" height="14" viewbox="0 0 24 14" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 1H24" stroke="white" stroke-width="1.5"></path>
-<path d="M0 7H16" stroke="white" stroke-width="1.5"></path>
-<path d="M0 13H24" stroke="white" stroke-width="1.5"></path>
-</svg>
-</div>
-<!-- Logo -->
-<div class="flex items-center gap-3" data-purpose="brand-logo">
-<div class="w-8 h-8 border-2 border-brand-orange flex items-center justify-center">
-<div class="w-3 h-3 bg-brand-orange"></div>
-</div>
-<span class="text-xl font-bold tracking-[0.3em] uppercase">Craft</span>
-</div>
-<!-- Auth Actions -->
-<div class="flex items-center gap-8" data-purpose="auth-links">
-<a class="text-xs font-semibold tracking-widest hover:text-brand-orange transition-colors" href="#">ಲಾಗಿನ್</a>
-<a class="glass-button px-6 py-2 rounded-full text-xs font-semibold tracking-widest border border-white/20" href="#">ಪ್ರವೇಶ ಪಡೆಯಿರಿ</a>
-</div>
-</header>
-<!-- END: Header -->
-<!-- BEGIN: HeroContent -->
-<section class="flex-grow flex items-center relative z-10">
-<!-- Left Content -->
-<div class="max-w-xl z-10">
-<div class="accent-line text-[10px] uppercase tracking-[0.2em] text-brand-orange mb-8 font-semibold">
-          ಕೋರ್ಸ್ 03 · ಚಲನಚಿತ್ರ &amp; ನಿರ್ದೇಶನ
-        </div>
-<h1 class="font-serif leading-none mb-10">
-<span class="block text-[88px] md:text-[150px]">ಸಿನಿಮ್ಯಾ-</span>
-<span class="block text-[88px] md:text-[150px] text-outline italic ml-4">ಟಿಕ್</span>
-</h1>
-<p class="text-sm md:text-base text-gray-300 leading-relaxed max-w-md mb-12 opacity-90">
-          ಉದ್ದೇಶದಿಂದ ನಿರ್ದೇಶಿಸಿ. ನಿಖರತೆಯಿಂದ ಬಣ್ಣ ಸಂಯೋಜಿಸಿ. ಸಿನಿಮಾದ ಭಾಷೆಯನ್ನು ಕಲಿಯಿರಿ — ಪೂರ್ವ-ನಿರ್ಮಾಣದಿಂದ ಪ್ರೇಕ್ಷಕರ ಹೃದಯವನ್ನು ಕಲಕುವ ಅಂತಿಮ ಕಟ್‌ವರೆಗೆ.
-        </p>
-<!-- CTA Button -->
-<button class="glass-button pl-8 pr-3 py-3 rounded-full flex items-center gap-6 group hover:scale-105 transform transition-all">
-<span class="text-xs font-bold tracking-[0.2em] uppercase">ಇಂದೇ ಸೇರಿ</span>
-<div class="w-10 h-10 bg-brand-orange rounded-full flex items-center justify-center glow-orange">
-<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
-</div>
-</button>
-</div>
-<!-- Right Overlay Elements -->
-<div class="absolute right-0 top-1/2 -translate-y-1/2 text-right hidden lg:block">
-<!-- Pagination Numbering -->
-<div class="flex items-baseline justify-end font-serif mb-12">
-<span class="text-[120px] big-number-accent leading-none">03</span>
-<span class="text-[60px] text-gray-600 mx-4 font-sans font-light">/</span>
-<span class="text-[120px] big-number-muted leading-none">03</span>
-</div>
-<!-- Sidebar Slogan -->
-<div class="space-y-4 pr-4">
-<p class="font-serif italic text-xl text-gray-300">ಒಂದು ಫ್ರೇಮ್,<br/>ಒಂದು ಕಥೆ,<br/>ಅನಂತ ಪ್ರಭಾವ</p>
-<a class="inline-block text-[10px] tracking-[0.2em] uppercase text-brand-orange font-bold pt-4 hover:underline" href="#">
-            ಇದನ್ನು ಸಿನಿಮ್ಯಾಟಿಕ್ ಮಾಡಿ
-          </a>
-</div>
-</div>
-</section>
-<!-- END: HeroContent -->
-<!-- BEGIN: FooterUI -->
-<footer class="flex items-end justify-between z-10">
-<!-- Timestamp -->
-<div class="text-2xl font-light" data-purpose="video-timestamp">
-        00:01
-      </div>
-<!-- Progress Indicators -->
-<div class="flex gap-3 pb-2" data-purpose="slider-controls">
-<div class="w-8 h-[2px] bg-white/20"></div>
-<div class="w-8 h-[2px] bg-white/20"></div>
-<div class="w-16 h-[2px] bg-brand-orange"></div>
-</div>
-<!-- Empty spacer for symmetry with timestamp -->
-<div class="w-24"></div>
-</footer>
-<!-- END: FooterUI -->
-</main>
-<!-- END: MainContainer -->
+    form.hidden = true;
+    out.textContent = '✓ ಧನ್ಯವಾದಗಳು! ಪ್ರವೇಶ ತೆರೆದಾಗ ನಿಮಗೆ ತಿಳಿಸುತ್ತೇವೆ.';
+  });
+})();
+</script>
 </body>
 </html>

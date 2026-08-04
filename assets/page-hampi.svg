@@ -1,0 +1,64 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 750" width="1200" height="750" role="img" aria-label="Hampi colonnade at sunset">
+  <defs>
+    <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1A0800"/>
+      <stop offset="0.45" stop-color="#6E0F1D"/>
+      <stop offset="0.78" stop-color="#C8102E"/>
+      <stop offset="1" stop-color="#F5A623"/>
+    </linearGradient>
+    <radialGradient id="sunglow" cx="0.62" cy="0.72" r="0.42">
+      <stop offset="0" stop-color="#F5A623" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#F5A623" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="vig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1A0800" stop-opacity="0.55"/>
+      <stop offset="0.4" stop-color="#1A0800" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="1200" height="750" fill="url(#sky)"/>
+  <rect width="1200" height="750" fill="url(#sunglow)"/>
+  <circle cx="744" cy="540" r="118" fill="#F5A623" opacity="0.92"/>
+
+  <!-- distant boulder hills -->
+  <g fill="#3A0A0E" opacity="0.75">
+    <ellipse cx="150" cy="560" rx="210" ry="86"/>
+    <ellipse cx="380" cy="585" rx="150" ry="60"/>
+    <ellipse cx="1010" cy="570" rx="230" ry="78"/>
+  </g>
+
+  <!-- stepped gopura -->
+  <g fill="#240705">
+    <polygon points="905,262 1035,262 1052,326 888,326"/>
+    <polygon points="888,326 1052,326 1068,392 872,392"/>
+    <polygon points="872,392 1068,392 1084,462 856,462"/>
+    <polygon points="856,462 1084,462 1098,610 842,610"/>
+    <rect x="944" y="214" width="52" height="48"/>
+    <circle cx="970" cy="204" r="18"/>
+  </g>
+
+  <!-- colonnade: lintel + pillars -->
+  <g fill="#1C0503">
+    <rect x="0" y="300" width="760" height="34"/>
+    <rect x="0" y="334" width="760" height="14" opacity="0.7"/>
+    <g>
+      <rect x="40"  y="348" width="52" height="262"/>
+      <rect x="176" y="348" width="52" height="262"/>
+      <rect x="312" y="348" width="52" height="262"/>
+      <rect x="448" y="348" width="52" height="262"/>
+      <rect x="584" y="348" width="52" height="262"/>
+    </g>
+    <!-- capitals + bases -->
+    <g>
+      <rect x="26"  y="340" width="80" height="20"/><rect x="26"  y="596" width="80" height="22"/>
+      <rect x="162" y="340" width="80" height="20"/><rect x="162" y="596" width="80" height="22"/>
+      <rect x="298" y="340" width="80" height="20"/><rect x="298" y="596" width="80" height="22"/>
+      <rect x="434" y="340" width="80" height="20"/><rect x="434" y="596" width="80" height="22"/>
+      <rect x="570" y="340" width="80" height="20"/><rect x="570" y="596" width="80" height="22"/>
+    </g>
+  </g>
+
+  <!-- ground -->
+  <rect x="0" y="608" width="1200" height="142" fill="#160402"/>
+  <rect width="1200" height="750" fill="url(#vig)"/>
+</svg>

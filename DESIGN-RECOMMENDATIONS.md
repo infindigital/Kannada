@@ -4,6 +4,12 @@ Scope: the repo's cinematic Kannada hero (`index.html`) and the uploaded
 Figma Make design (`Video_hero_section_design.zip` → `src/App.tsx`,
 `src/index.css`).
 
+> **Status.** `index.html` has since been rebuilt against this review — light
+> theme, flag palette, tokenised CSS, working book slider, and the P0/P1 fixes
+> that applied to it. Its line references below therefore describe the
+> pre-rebuild version and are kept for the record. The `App.tsx` findings are
+> unchanged and still apply to the uploaded design.
+
 Everything below is grouped by priority. **P0** items are functional
 defects — they break layout, accessibility, or make content invisible.
 **P1** items are accessibility and responsiveness gaps. **P2** is design
