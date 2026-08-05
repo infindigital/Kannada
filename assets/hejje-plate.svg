@@ -1,0 +1,67 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 660 900" width="660" height="900" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Flag banner over a lit skyline with pennants">
+  <defs>
+    <linearGradient id="body" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#FFF3D2"/>
+      <stop offset="0.34" stop-color="#F3B653"/>
+      <stop offset="0.62" stop-color="#C87322"/>
+      <stop offset="0.84" stop-color="#6B3210"/>
+      <stop offset="1"    stop-color="#331607"/>
+    </linearGradient>
+    <radialGradient id="halo" cx="0.5" cy="0.63" r="0.52">
+      <stop offset="0"   stop-color="#FFE6A6" stop-opacity="0.85"/>
+      <stop offset="0.6" stop-color="#FFC85F" stop-opacity="0.25"/>
+      <stop offset="1"   stop-color="#FFC85F" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="foot" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1C0A02" stop-opacity="0"/>
+      <stop offset="1" stop-color="#1C0A02" stop-opacity="0.9"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="660" height="900" fill="url(#body)"/>
+  <rect width="660" height="900" fill="url(#halo)"/>
+
+  <!-- skyline -->
+  <g fill="#5A2A0C" opacity="0.55">
+    <rect x="120" y="600" width="96" height="200"/>
+    <rect x="452" y="620" width="88" height="180"/>
+    <circle cx="196" cy="596" r="34"/>
+    <circle cx="470" cy="608" r="30"/>
+  </g>
+  <g fill="#4A2109" opacity="0.72">
+    <rect x="252" y="520" width="156" height="280"/>
+    <circle cx="330" cy="512" r="52"/>
+    <rect x="318" y="424" width="24" height="72"/>
+    <circle cx="330" cy="416" r="17"/>
+  </g>
+
+  <!-- ground mound -->
+  <path d="M0 760c120-34 210 14 330 12s210-42 330-12v140H0z" fill="#3A1908"/>
+  <path d="M0 800c140-26 220 16 330 14s200-36 330-14v100H0z" fill="#2A1206"/>
+
+  <!-- pennants -->
+  <g>
+    <g>
+      <rect x="150" y="700" width="4" height="86" fill="#2A1206"/>
+      <path d="M154 702l46 15-46 15z" fill="#C8102E"/>
+    </g>
+    <g>
+      <rect x="248" y="682" width="4" height="104" fill="#2A1206"/>
+      <path d="M252 684l52 17-52 17z" fill="#F5A623"/>
+    </g>
+    <g>
+      <rect x="372" y="690" width="4" height="98" fill="#2A1206"/>
+      <path d="M376 692l50 16-50 16z" fill="#C8102E"/>
+    </g>
+    <g>
+      <rect x="472" y="704" width="4" height="84" fill="#2A1206"/>
+      <path d="M476 706l48 15-48 15z" fill="#F5A623"/>
+    </g>
+  </g>
+
+  <rect y="700" width="660" height="200" fill="url(#foot)"/>
+
+  <!-- the flag banner across the head of the card -->
+  <rect width="660" height="92" fill="#F5A623"/>
+  <path d="M0 84c110-30 210 26 330 14s220-44 330-14v78c-110 30-210-26-330-14s-220 44-330 14z" fill="#C8102E"/>
+</svg>

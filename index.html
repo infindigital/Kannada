@@ -744,86 +744,177 @@ section[id] { scroll-margin-top: 5.5rem; }
 }
 
 /* ============================================================
-   ನಮ್ಮ ಹೆಜ್ಜೆಗಳು — milestone timeline
+   ನಮ್ಮ ಹೆಜ್ಜೆಗಳು — 3D coverflow of campaign plates
    ============================================================ */
-.steps { padding-block: var(--section-y); background: var(--surface-sunken); }
+.hejje {
+  padding-block: var(--section-y);
+  background:
+    radial-gradient(70% 50% at 50% 62%, rgba(245,166,35,.10) 0%, transparent 62%),
+    #140400;
+  color: rgba(255,255,255,.72);
+  overflow: hidden;
+}
+.hejje .eyebrow { color: var(--yellow); }
+.hejje .eyebrow::before { background: linear-gradient(to right, var(--yellow), var(--red)); }
+.hejje h2 { color: #fff; }
+.hejje h2 em { color: var(--yellow); font-style: normal; }
+.hejje .lede { color: rgba(255,255,255,.62); }
 
-.steps-list {
-  display: grid;
-  gap: 2.25rem;
-  margin: 0;
+.hejje-viewport {
+  position: relative;
+  margin-top: clamp(2rem, 5vw, 3.5rem);
+}
+
+.hejje-stage {
+  position: relative;
+  height: clamp(24rem, 46vw, 34rem);
+  margin: 0; padding: 0;
+  list-style: none;
+  /* perspective alone — adding transform-style: preserve-3d here flattens
+     hit testing, so the shoulder plates stop being clickable */
+  perspective: 1500px;
+  touch-action: pan-y;
+}
+
+.hejje-card {
+  position: absolute;
+  top: 0; left: 50%;
+  width: clamp(15rem, 30vw, 26rem);
+  height: 100%;
+  border-radius: 18px;
+  overflow: hidden;
+  background: #2A1206 url("assets/hejje-plate.svg") center / cover no-repeat;
+  border: 1px solid rgba(245,166,35,.32);
+  box-shadow: 0 24px 60px rgba(0,0,0,.55);
+  transform-origin: 50% 50%;
+  transition: transform 620ms var(--ease),
+              opacity 620ms var(--ease),
+              filter 620ms var(--ease);
+  will-change: transform, opacity;
+}
+.hejje-card:not(.is-current) { cursor: pointer; }
+.hejje-card.is-current { border-color: rgba(245,166,35,.75); }
+
+/* the plate is bright gold exactly where the white title sits, so the title
+   gets its own band of shade — starting below the flag banner, which stays
+   at full brightness */
+.hejje-card::after {
+  content: "";
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(to bottom,
+      rgba(20,6,0,0) 13%, rgba(20,6,0,.5) 24%,
+      rgba(20,6,0,.42) 36%, rgba(20,6,0,0) 52%),
+    linear-gradient(to top, rgba(20,6,0,.72) 0%, rgba(20,6,0,0) 30%);
+  pointer-events: none;
+}
+
+.hejje-inner {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  padding: clamp(1.5rem, 3vw, 2.25rem) clamp(1.1rem, 2.2vw, 1.75rem);
+}
+.hejje-title {
+  font-family: var(--font-display);
+  font-size: clamp(1.1rem, 1.7vw, 1.55rem);
+  line-height: 1.3;
+  color: #fff;
+  text-align: center;
+  text-shadow: 0 2px 14px rgba(20,6,0,.9), 0 1px 3px rgba(20,6,0,.9);
+  /* the banner is a fixed share of the plate, so the floor matters more
+     than the fluid value — at 390px 6vw alone would tuck under the wave */
+  margin-top: clamp(3.25rem, 6vw, 4.5rem);
+}
+.hejje-foot {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+.hejje-pill {
+  display: inline-block;
+  padding: .5rem 1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(255,255,255,.28);
+  background: rgba(20,6,0,.55);
+  backdrop-filter: blur(6px);
+  color: #fff;
+  font-size: .75rem;
+  font-weight: 600;
+}
+.hejje-num {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.4vw, 2rem);
+  line-height: 1;
+  color: var(--yellow);
+  font-variant-numeric: tabular-nums;
+  text-shadow: 0 2px 10px rgba(20,6,0,.9);
+}
+
+/* arrows sit outside the plates, vertically centred */
+.hejje-arrow {
+  position: absolute;
+  top: 50%;
+  z-index: 30;          /* above the front plate */
+  width: 56px; height: 56px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transform: translateY(-50%);
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.25);
+  background: rgba(255,255,255,.06);
+  backdrop-filter: blur(8px);
+  color: #fff;
+  cursor: pointer;
+  transition: background var(--base) var(--ease),
+              border-color var(--base) var(--ease),
+              color var(--base) var(--ease);
+}
+.hejje-arrow.prev { left: 0; }
+.hejje-arrow.next { right: 0; }
+.hejje-arrow:hover,
+.hejje-arrow:focus-visible {
+  background: var(--yellow);
+  border-color: var(--yellow);
+  color: var(--ink);
+}
+.hejje :focus-visible { outline-color: var(--yellow); }
+
+.hejje-dots {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .35rem;
+  margin: clamp(1.25rem, 3vw, 2rem) 0 0;
   padding: 0;
   list-style: none;
 }
+.hejje-dot {
+  background: none;
+  border: 0;
+  padding: .75rem .3rem;    /* keeps a finger-sized target around a 10px dot */
+  cursor: pointer;
+  line-height: 0;
+}
+.hejje-dot span {
+  display: block;
+  width: 10px; height: 10px;
+  border-radius: 999px;
+  background: rgba(255,255,255,.3);
+  transition: width var(--base) var(--ease), background var(--base) var(--ease);
+}
+.hejje-dot[aria-current="true"] span { width: 38px; background: var(--yellow); }
+.hejje-dot:hover span { background: rgba(255,255,255,.6); }
 
-.step {
-  position: relative;
-  padding-left: 2.75rem;
-}
-/* the rail: a segment per step, so it never outruns the last marker */
-.step::before {
-  content: "";
-  position: absolute;
-  left: 8px;
-  top: 1.5rem;
-  bottom: -2.25rem;          /* bridges the grid gap to the next marker */
-  width: 2px;
-  background: linear-gradient(to bottom, var(--red), rgba(200,16,46,.22));
-}
-.step:last-child::before { display: none; }
-/* the marker */
-.step::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  top: .3rem;
-  width: 18px; height: 18px;
-  border-radius: 50%;
-  background: var(--surface-sunken);
-  border: 3px solid var(--red);
-  box-shadow: 0 0 0 4px rgba(200,16,46,.1);
-}
-.step.is-now::after { background: var(--yellow); border-color: var(--red); }
-
-/* scoped past `.step p` below, which would otherwise win on specificity */
-.step .step-year {
-  font-family: var(--font-display);
-  font-size: 1.75rem;
-  line-height: 1;
-  color: var(--red);
-  font-variant-numeric: tabular-nums;
-  max-width: none;
-}
-.step h3 {
-  font-size: 1.2rem;
-  margin-block: .5rem .4rem;
-}
-.step p {
-  font-size: .9rem;
-  color: var(--ink-subtle);
-  max-width: 34ch;
-}
-
-/* desktop: the rail turns horizontal and the steps read left to right */
-@media (min-width: 880px) {
-  .steps-list {
-    grid-template-columns: repeat(4, 1fr);
-    gap: 2.5rem;
-  }
-  .step {
-    padding-left: 0;
-    padding-top: 2.75rem;
-  }
-  .step::before {
-    left: 1.5rem;
-    right: -2.5rem;
-    top: 8px;
-    bottom: auto;
-    width: auto;
-    height: 2px;
-    background: linear-gradient(to right, var(--red), rgba(200,16,46,.22));
-  }
-  .step::after { top: 0; }
+@media (max-width: 620px) {
+  .hejje-arrow { width: 46px; height: 46px; }
+  .hejje-arrow.prev { left: -.5rem; }
+  .hejje-arrow.next { right: -.5rem; }
 }
 
 /* ============================================================
@@ -955,7 +1046,7 @@ section[id] { scroll-margin-top: 5.5rem; }
         <a class="nav-link" href="#modules">ಪಾಠಗಳು</a>
         <a class="nav-link" href="#themes">ವಿಷಯಗಳು</a>
         <a class="nav-link" href="#about">ಪರಿಚಯ</a>
-        <a class="nav-link" href="#steps">ಹೆಜ್ಜೆಗಳು</a>
+        <a class="nav-link" href="#hejje">ಹೆಜ್ಜೆಗಳು</a>
         <a class="nav-link" href="#enrol">ಶುಲ್ಕ</a>
         <a class="btn btn--primary nav-cta" href="#enrol">ಪ್ರವೇಶ ಪಡೆಯಿರಿ</a>
       </nav>
@@ -975,7 +1066,7 @@ section[id] { scroll-margin-top: 5.5rem; }
       <a href="#modules">ಪಾಠಗಳು</a>
       <a href="#themes">ವಿಷಯಗಳು</a>
       <a href="#about">ಪರಿಚಯ</a>
-      <a href="#steps">ಹೆಜ್ಜೆಗಳು</a>
+      <a href="#hejje">ಹೆಜ್ಜೆಗಳು</a>
       <a href="#enrol">ಶುಲ್ಕ</a>
     </nav>
   </div>
@@ -1364,56 +1455,97 @@ section[id] { scroll-margin-top: 5.5rem; }
   </section>
 
   <!-- ================= ನಮ್ಮ ಹೆಜ್ಜೆಗಳು ================= -->
-  <section class="steps" id="steps">
+  <section class="hejje" id="hejje">
     <div class="wrap">
 
       <div class="section-head">
-        <p class="eyebrow">ಪಯಣ</p>
-        <h2>ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</h2>
-        <p class="lede">
-          ಒಂದು ಸಣ್ಣ ಕಾರ್ಯಾಗಾರದಿಂದ ಆರಂಭವಾಗಿ ಇಂದಿನವರೆಗೆ — ನಾವು ನಡೆದು ಬಂದ ದಾರಿ.
-        </p>
+        <p class="eyebrow">ಅಭಿಯಾನಗಳು</p>
+        <h2>ನಮ್ಮ <em>ಹೆಜ್ಜೆ</em>ಗಳು</h2>
+        <p class="lede">ಕನ್ನಡ ನಾಡಿಗಾಗಿ ನಮ್ಮ ಪ್ರಮುಖ ಹೋರಾಟಗಳು ಮತ್ತು ಅಭಿಯಾನಗಳು.</p>
       </div>
 
-      <ol class="steps-list">
+      <div class="hejje-viewport">
+        <ul class="hejje-stage" id="hejjeStage">
+          <li class="hejje-card" data-index="0" aria-label="01 / 05 — ಕನ್ನಡ ಭಾಷೆ ಮತ್ತು ಗೌರವ">
+            <div class="hejje-inner">
+              <p class="hejje-title">ಕನ್ನಡ ಭಾಷೆ ಮತ್ತು ಗೌರವ</p>
+              <div class="hejje-foot">
+                <span class="hejje-pill">ಭಾಷಾ ಹೋರಾಟ</span>
+                <span class="hejje-num" aria-hidden="true">01</span>
+              </div>
+            </div>
+          </li>
+          <li class="hejje-card" data-index="1" aria-label="02 / 05 — ಕನ್ನಡಿಗರಿಗೆ ಉದ್ಯೋಗ">
+            <div class="hejje-inner">
+              <p class="hejje-title">ಕನ್ನಡಿಗರಿಗೆ ಉದ್ಯೋಗ</p>
+              <div class="hejje-foot">
+                <span class="hejje-pill">ಉದ್ಯೋಗ</span>
+                <span class="hejje-num" aria-hidden="true">02</span>
+              </div>
+            </div>
+          </li>
+          <li class="hejje-card" data-index="2" aria-label="03 / 05 — ಸ್ಥಳೀಯ ಜನರ ಧ್ವನಿಗೆ ಶಕ್ತಿ">
+            <div class="hejje-inner">
+              <p class="hejje-title">ಸ್ಥಳೀಯ ಜನರ ಧ್ವನಿಗೆ ಶಕ್ತಿ</p>
+              <div class="hejje-foot">
+                <span class="hejje-pill">ಜನರ ಧ್ವನಿ</span>
+                <span class="hejje-num" aria-hidden="true">03</span>
+              </div>
+            </div>
+          </li>
+          <li class="hejje-card" data-index="3" aria-label="04 / 05 — ನೆಲ, ಜಲ, ಗಡಿ ರಕ್ಷಣೆ">
+            <div class="hejje-inner">
+              <p class="hejje-title">ನೆಲ, ಜಲ, ಗಡಿ ರಕ್ಷಣೆ</p>
+              <div class="hejje-foot">
+                <span class="hejje-pill">ರಕ್ಷಣೆ</span>
+                <span class="hejje-num" aria-hidden="true">04</span>
+              </div>
+            </div>
+          </li>
+          <li class="hejje-card" data-index="4" aria-label="05 / 05 — ಸಾಂಸ್ಕೃತಿಕ ಸಂಭ್ರಮ">
+            <div class="hejje-inner">
+              <p class="hejje-title">ಸಾಂಸ್ಕೃತಿಕ ಸಂಭ್ರಮ</p>
+              <div class="hejje-foot">
+                <span class="hejje-pill">ಸಂಸ್ಕೃತಿ</span>
+                <span class="hejje-num" aria-hidden="true">05</span>
+              </div>
+            </div>
+          </li>
+        </ul>
 
-        <li class="step">
-          <p class="step-year">2021</p>
-          <h3>ಮೊದಲ ಹೆಜ್ಜೆ</h3>
-          <p>
-            ಬೆಂಗಳೂರಿನ ಒಂದು ಸಣ್ಣ ಕೋಣೆಯಲ್ಲಿ 12 ವಿದ್ಯಾರ್ಥಿಗಳೊಂದಿಗೆ ಎರಡು ದಿನಗಳ
-            ಕಾರ್ಯಾಗಾರ. ಒಂದೇ ಕ್ಯಾಮೆರಾ, ಎರವಲು ಪಡೆದ ದೀಪಗಳು.
-          </p>
-        </li>
+        <button class="hejje-arrow prev" type="button" id="hejjePrev" aria-label="ಹಿಂದಿನದು">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <button class="hejje-arrow next" type="button" id="hejjeNext" aria-label="ಮುಂದಿನದು">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
 
-        <li class="step">
-          <p class="step-year">2023</p>
-          <h3>ಕನ್ನಡದಲ್ಲಿ ಪಠ್ಯಕ್ರಮ</h3>
-          <p>
-            ಸಿನಿಮಾದ ಪರಿಭಾಷೆಯನ್ನು ಕನ್ನಡಕ್ಕೆ ತಂದೆವು — ಶಾಟ್, ಬೆಳಕು, ಬಣ್ಣ, ಸಂಕಲನ.
-            ಮೊದಲ ಪೂರ್ಣ ಕೋರ್ಸ್ ಸಿದ್ಧವಾಯಿತು.
-          </p>
-        </li>
+      <ul class="hejje-dots" id="hejjeDots">
+        <li><button class="hejje-dot" type="button" data-index="0" aria-current="true">
+          <span></span><span class="sr-only">01</span>
+        </button></li>
+        <li><button class="hejje-dot" type="button" data-index="1" aria-current="false">
+          <span></span><span class="sr-only">02</span>
+        </button></li>
+        <li><button class="hejje-dot" type="button" data-index="2" aria-current="false">
+          <span></span><span class="sr-only">03</span>
+        </button></li>
+        <li><button class="hejje-dot" type="button" data-index="3" aria-current="false">
+          <span></span><span class="sr-only">04</span>
+        </button></li>
+        <li><button class="hejje-dot" type="button" data-index="4" aria-current="false">
+          <span></span><span class="sr-only">05</span>
+        </button></li>
+      </ul>
 
-        <li class="step">
-          <p class="step-year">2024</p>
-          <h3>ಹಂಪಿ ಶಿಬಿರ</h3>
-          <p>
-            ತರಗತಿಯಿಂದ ಹೊರಗೆ. ಹಂಪಿಯ ಕಲ್ಲಿನ ನಡುವೆ ಮೊದಲ ಲೊಕೇಶನ್ ಶಿಬಿರ — ಒಂದು
-            ವಾರ, ಮೂರು ಕಿರುಚಿತ್ರಗಳು.
-          </p>
-        </li>
-
-        <li class="step is-now">
-          <p class="step-year">2026</p>
-          <h3>12 ಜಿಲ್ಲೆಗಳಲ್ಲಿ</h3>
-          <p>
-            ಇಂದು ರಾಜ್ಯದ 12 ಜಿಲ್ಲೆಗಳ 1,800ಕ್ಕೂ ಹೆಚ್ಚು ವಿದ್ಯಾರ್ಥಿಗಳು ನಮ್ಮೊಂದಿಗೆ
-            ಕಲಿಯುತ್ತಿದ್ದಾರೆ.
-          </p>
-        </li>
-
-      </ol>
+      <p class="sr-only" role="status" aria-live="polite" id="hejjeStatus"></p>
     </div>
   </section>
 
@@ -1461,7 +1593,7 @@ section[id] { scroll-margin-top: 5.5rem; }
         <h3>ಸಂಸ್ಥೆ</h3>
         <ul>
           <li><a href="#about">ಪರಿಚಯ</a></li>
-          <li><a href="#steps">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a></li>
+          <li><a href="#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a></li>
           <li><a href="#enrol">ಶುಲ್ಕ</a></li>
           <li><a href="#">ಸಂಪರ್ಕ</a></li>
           <li><a href="#">ಗೌಪ್ಯತೆ ನೀತಿ</a></li>
@@ -1615,6 +1747,78 @@ section[id] { scroll-margin-top: 5.5rem; }
   render();
   if (reduceMotion.matches) { stop(); } else { start(); }
   reduceMotion.addEventListener('change', function (e) { e.matches ? stop() : start(); });
+
+  /* ---------- ನಮ್ಮ ಹೆಜ್ಜೆಗಳು coverflow ---------- */
+  var stage    = document.getElementById('hejjeStage');
+  var cards    = Array.prototype.slice.call(stage.querySelectorAll('.hejje-card'));
+  var dots     = Array.prototype.slice.call(document.querySelectorAll('.hejje-dot'));
+  var hStatus  = document.getElementById('hejjeStatus');
+  var hIndex   = 0;
+
+  function layout() {
+    cards.forEach(function (card, i) {
+      var o = i - hIndex;
+      var far = Math.abs(o);
+      /* the plates fan out sideways, tip away from the viewer, and dim
+         with distance — the ones past the third rank drop out entirely */
+      card.style.transform =
+        'translate(-50%, 0)' +
+        ' translateX(' + (o * 58) + '%)' +
+        ' translateZ(' + (-far * 180) + 'px)' +
+        ' rotateY(' + (-o * 24) + 'deg)' +
+        ' scale(' + (1 - far * 0.05) + ')';
+      card.style.zIndex = String(20 - far);
+      card.style.opacity = far === 0 ? '1' : far === 1 ? '.72' : far === 2 ? '.4' : '0';
+      card.style.filter = far === 0 ? 'none' : 'brightness(.62) blur(' + Math.min(far, 2) + 'px)';
+      card.style.visibility = far > 2 ? 'hidden' : 'visible';
+      card.classList.toggle('is-current', far === 0);
+      card.setAttribute('aria-hidden', far === 0 ? 'false' : 'true');
+    });
+
+    dots.forEach(function (dot, i) {
+      dot.setAttribute('aria-current', i === hIndex ? 'true' : 'false');
+    });
+
+    hStatus.textContent = (hIndex + 1) + ' / ' + cards.length + ' — ' +
+      cards[hIndex].querySelector('.hejje-title').textContent;
+  }
+
+  function hGo(next) {
+    hIndex = (next + cards.length) % cards.length;
+    layout();
+  }
+
+  document.getElementById('hejjePrev').addEventListener('click', function () { hGo(hIndex - 1); });
+  document.getElementById('hejjeNext').addEventListener('click', function () { hGo(hIndex + 1); });
+
+  dots.forEach(function (dot) {
+    dot.addEventListener('click', function () { hGo(parseInt(dot.dataset.index, 10)); });
+  });
+
+  /* click a shoulder plate to bring it to the front */
+  stage.addEventListener('click', function (e) {
+    var card = e.target.closest('.hejje-card');
+    if (card) hGo(parseInt(card.dataset.index, 10));
+  });
+
+  /* arrow keys anywhere in the section */
+  document.getElementById('hejje').addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft')  hGo(hIndex - 1);
+    if (e.key === 'ArrowRight') hGo(hIndex + 1);
+  });
+
+  /* swipe */
+  var swipeFrom = null;
+  stage.addEventListener('pointerdown', function (e) { swipeFrom = e.clientX; });
+  stage.addEventListener('pointerup', function (e) {
+    if (swipeFrom === null) return;
+    var dx = e.clientX - swipeFrom;
+    swipeFrom = null;
+    if (Math.abs(dx) > 40) hGo(hIndex + (dx < 0 ? 1 : -1));
+  });
+  stage.addEventListener('pointercancel', function () { swipeFrom = null; });
+
+  layout();
 
   /* ---------- enrol form ---------- */
   var form = document.getElementById('enrolForm');

@@ -40,12 +40,14 @@ in one place.
 ## Sections
 
 Hero + book slider · stats · course modules (featured + grid) · themes ·
-about (the one deep band) · ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (milestone timeline) ·
+about (the deep band) · ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) ·
 enrolment · footer.
 
-The timeline rail is drawn per step rather than as one line behind the list,
-so it always stops at the last marker; it runs vertically on narrow screens
-and turns horizontal at 880px.
+**ನಮ್ಮ ಹೆಜ್ಜೆಗಳು** is a 3D coverflow of five campaign plates: the front plate
+is upright and lit, the shoulders fan out, tip away on `rotateY` and dim with
+distance, and the fourth rank drops out. Driven by the arrows, the dots,
+click-to-front on a shoulder plate, arrow keys, and swipe. The plate art is one
+shared SVG (`assets/hejje-plate.svg`) — flag banner, lit skyline, pennants.
 
 ## Accessibility
 
