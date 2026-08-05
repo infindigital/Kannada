@@ -3,13 +3,13 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-<title>Craft — ಸಿನಿಮ್ಯಾಟಿಕ್ ಕಥನ ಕೋರ್ಸ್</title>
+<title>ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ</title>
 <meta name="description" content="ಸಿನಿಮಾದ ಭಾಷೆಯನ್ನು ಕನ್ನಡದಲ್ಲಿ ಕಲಿಯಿರಿ — ಪೂರ್ವ-ನಿರ್ಮಾಣದಿಂದ ಅಂತಿಮ ಕಟ್‌ವರೆಗೆ. 24 ಪಾಠಗಳು, 3 ಯೋಜನೆಗಳು." />
 <meta name="theme-color" content="#FDF6EC" />
-<meta property="og:title" content="Craft — ಸಿನಿಮ್ಯಾಟಿಕ್ ಕಥನ ಕೋರ್ಸ್" />
+<meta property="og:title" content="ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ" />
 <meta property="og:description" content="ಸಿನಿಮಾದ ಭಾಷೆಯನ್ನು ಕನ್ನಡದಲ್ಲಿ ಕಲಿಯಿರಿ." />
 <meta property="og:type" content="website" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='16' fill='%23FFCC00'/%3E%3Crect y='16' width='32' height='16' fill='%23D42A28'/%3E%3C/svg%3E" />
+<link rel="icon" type="image/png" href="assets/logo-mark.png" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -114,7 +114,7 @@ a { color: inherit; }
 .wrap { max-width: var(--maxw); margin-inline: auto; padding-inline: var(--gutter); }
 
 /* the header is sticky, so anchor targets need to clear it */
-section[id] { scroll-margin-top: 5.5rem; }
+section[id] { scroll-margin-top: 7rem; }
 
 .sr-only {
   position: absolute; width: 1px; height: 1px;
@@ -238,8 +238,9 @@ section[id] { scroll-margin-top: 5.5rem; }
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
-  min-height: 68px;
+  min-height: 88px;
 }
+@media (max-width: 620px) { .header-inner { min-height: 72px; } }
 
 .brand {
   display: flex;
@@ -247,12 +248,30 @@ section[id] { scroll-margin-top: 5.5rem; }
   gap: .7rem;
   text-decoration: none;
 }
-.brand-mark {
-  width: 30px; height: 30px;
-  border-radius: 50%;
-  background: linear-gradient(135deg, var(--yellow) 50%, var(--red) 50%);
+.brand-logo {
+  height: 64px;
+  width: auto;
   flex: none;
+  display: block;
 }
+@media (max-width: 620px) { .brand-logo { height: 48px; } }
+
+/* the crest is far too detailed to read at header size, so the wordmark
+   carries the name and the crest carries the identity */
+.brand-word {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(.95rem, 1.5vw, 1.2rem);
+  line-height: 1.2;
+  color: var(--ink);
+}
+.brand-word span { color: var(--red); }
+/* on narrow screens it wraps at the space rather than disappearing — dropping
+   it would leave only the crest, which is unreadable at 48px */
+@media (max-width: 620px) {
+  .brand-word { font-size: .82rem; max-width: 7.5em; }
+}
+.footer-logo { height: 64px; width: auto; display: block; margin-bottom: .9rem; }
 .brand-name {
   font-family: var(--font-display);
   font-weight: 700;   /* wordmark */
@@ -1053,8 +1072,8 @@ section[id] { scroll-margin-top: 5.5rem; }
   <div class="wrap">
     <div class="header-inner">
       <a class="brand" href="#">
-        <span class="brand-mark" aria-hidden="true"></span>
-        <span class="brand-name">Craft <span>ಕ್ರಾಫ್ಟ್</span></span>
+        <img class="brand-logo" src="assets/logo.png" width="245" height="220" alt="" />
+        <span class="brand-word">ಕರ್ನಾಟಕ <span>ರಕ್ಷಣಾ ವೇದಿಕೆ</span></span>
       </a>
 
       <nav class="nav-desktop" aria-label="ಮುಖ್ಯ ಮೆನು">
@@ -1590,7 +1609,8 @@ section[id] { scroll-margin-top: 5.5rem; }
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
-        <span class="brand-name">Craft <span style="color:var(--yellow)">ಕ್ರಾಫ್ಟ್</span></span>
+        <img class="footer-logo" src="assets/logo.png" width="245" height="220"
+             alt="ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ" />
         <p>ಕನ್ನಡದಲ್ಲಿ ಸಿನಿಮಾ ನಿರ್ಮಾಣ ಕಲಿಸುವ ಸ್ವತಂತ್ರ ಕೋರ್ಸ್.</p>
       </div>
 

@@ -63,15 +63,28 @@ def background_alpha(img, tol=34, feather=1.2):
 
 
 def prep(src, out_dir, height, tol, pad):
-    img = Image.open(src).convert("RGB")
-    print(f"source            {img.width}x{img.height}")
+    src_img = Image.open(src)
+    print(f"source            {src_img.width}x{src_img.height}  {src_img.mode}")
 
-    # JPEG mosquito noise sits around the high-contrast outlines; a light median
-    # clears it without softening the shapes the way a blur would
-    clean = img.filter(ImageFilter.MedianFilter(3))
+    # A source that already carries alpha is finished art — keying it again would
+    # only chew at edges the designer already cut. Detect it and leave it alone.
+    already_cut = False
+    if src_img.mode in ("RGBA", "LA"):
+        alpha = src_img.convert("RGBA").getchannel("A")
+        clear = alpha.histogram()[0] / (src_img.width * src_img.height)
+        already_cut = clear > 0.02
+        print(f"existing alpha    {clear:.0%} clear -> "
+              f"{'keeping it, no key' if already_cut else 'negligible, keying'}")
 
-    rgba = clean.convert("RGBA")
-    rgba.putalpha(background_alpha(clean, tol=tol))
+    if already_cut:
+        rgba = src_img.convert("RGBA")
+    else:
+        img = src_img.convert("RGB")
+        # JPEG mosquito noise sits around the high-contrast outlines; a light
+        # median clears it without softening the shapes the way a blur would
+        clean = img.filter(ImageFilter.MedianFilter(3))
+        rgba = clean.convert("RGBA")
+        rgba.putalpha(background_alpha(clean, tol=tol))
 
     box = rgba.getbbox()
     if box:
@@ -80,7 +93,8 @@ def prep(src, out_dir, height, tol, pad):
 
     scale = height / rgba.height
     big = rgba.resize((round(rgba.width * scale), height), Image.LANCZOS)
-    big = big.filter(ImageFilter.UnsharpMask(radius=1.6, percent=115, threshold=3))
+    if not already_cut:
+        big = big.filter(ImageFilter.UnsharpMask(radius=1.6, percent=115, threshold=3))
     print(f"upscaled          {big.width}x{big.height}  ({scale:.2f}x)")
 
     if pad:

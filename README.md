@@ -19,6 +19,15 @@ track the current page.
 - `assets/*.svg` — the page artwork (flag poster, Hampi colonnade, illuminated
   palace, viewfinder, film set, cinema hall). Vector, local, ~2–4 KB each, so
   the page renders complete with no network requests.
+- `assets/logo-kannada.png` — the Karnataka Rakshana Vedike crest, 1024², as
+  supplied. `assets/logo.png` (header, 220px tall) and `assets/logo-mark.png`
+  (192px square, favicon) are derived from it by `tools/logo-prep.py`.
+
+The crest is far too detailed to read at header size — a lion, a warrior,
+ribbon lettering, a shield and crossed swords. So the header pairs it with a
+wordmark: the crest carries the identity, the wordmark carries the name, and
+the crest's `alt` is empty so screen readers hear the name once rather than
+twice. The wordmark wraps to two lines under 620px instead of being hidden.
 
 ## Design system
 
