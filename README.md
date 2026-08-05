@@ -40,7 +40,12 @@ in one place.
 ## Sections
 
 Hero + book slider · stats · course modules (featured + grid) · themes ·
-about (the one deep band) · enrolment · footer.
+about (the one deep band) · ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (milestone timeline) ·
+enrolment · footer.
+
+The timeline rail is drawn per step rather than as one line behind the list,
+so it always stops at the last marker; it runs vertically on narrow screens
+and turns horizontal at 880px.
 
 ## Accessibility
 
