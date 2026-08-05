@@ -2,13 +2,13 @@
   <defs>
     <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#1A0800"/>
-      <stop offset="0.45" stop-color="#6E0F1D"/>
-      <stop offset="0.78" stop-color="#C8102E"/>
-      <stop offset="1" stop-color="#F5A623"/>
+      <stop offset="0.45" stop-color="#71161C"/>
+      <stop offset="0.78" stop-color="#D42A28"/>
+      <stop offset="1" stop-color="#FFCC00"/>
     </linearGradient>
     <radialGradient id="sunglow" cx="0.62" cy="0.72" r="0.42">
-      <stop offset="0" stop-color="#F5A623" stop-opacity="0.55"/>
-      <stop offset="1" stop-color="#F5A623" stop-opacity="0"/>
+      <stop offset="0" stop-color="#FFCC00" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FFCC00" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="vig" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#1A0800" stop-opacity="0.55"/>
@@ -18,7 +18,7 @@
 
   <rect width="1200" height="750" fill="url(#sky)"/>
   <rect width="1200" height="750" fill="url(#sunglow)"/>
-  <circle cx="744" cy="540" r="118" fill="#F5A623" opacity="0.92"/>
+  <circle cx="744" cy="540" r="118" fill="#FFCC00" opacity="0.92"/>
 
   <!-- distant boulder hills -->
   <g fill="#3A0A0E" opacity="0.75">

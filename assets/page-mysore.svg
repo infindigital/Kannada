@@ -6,8 +6,8 @@
       <stop offset="1" stop-color="#3A0D10"/>
     </linearGradient>
     <radialGradient id="halo" cx="0.5" cy="0.68" r="0.55">
-      <stop offset="0" stop-color="#F5A623" stop-opacity="0.42"/>
-      <stop offset="1" stop-color="#F5A623" stop-opacity="0"/>
+      <stop offset="0" stop-color="#FFCC00" stop-opacity="0.42"/>
+      <stop offset="1" stop-color="#FFCC00" stop-opacity="0"/>
     </radialGradient>
     <linearGradient id="vig2" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0" stop-color="#0D0300" stop-opacity="0.6"/>
@@ -36,7 +36,7 @@
   </g>
 
   <!-- arched windows -->
-  <g fill="#F5A623" opacity="0.22">
+  <g fill="#FFCC00" opacity="0.22">
     <path d="M400 560a22 22 0 0144 0v70h-44z"/>
     <path d="M500 560a22 22 0 0144 0v70h-44z"/>
     <path d="M600 560a22 22 0 0144 0v70h-44z"/>
@@ -45,7 +45,7 @@
   </g>
 
   <!-- strings of lights -->
-  <g fill="#F5A623">
+  <g fill="#FFCC00">
     <g id="row1">
       <circle cx="160" cy="472" r="5"/><circle cx="205" cy="472" r="5"/><circle cx="250" cy="472" r="5"/>
       <circle cx="295" cy="472" r="5"/><circle cx="340" cy="472" r="5"/><circle cx="385" cy="472" r="5"/>

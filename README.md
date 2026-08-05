@@ -25,13 +25,20 @@ track the current page.
 | | |
 |---|---|
 | Surfaces | `#FDF6EC` cream · `#FFFFFF` · `#1A0800` deep (hero + one band) |
-| Brand | `#C8102E` red · `#F5A623` yellow — the Karnataka flag |
+| Brand | `#D42A28` red · `#FFCC00` yellow · `#2F6E9E` blue · `#C9A227` gold |
 | Display type | Instrument Serif → Noto Serif Kannada |
 | Body type | Inter → Noto Sans Kannada |
 | Radii | 2px controls · 6px cards · 14px the book |
 
 Latin family is listed **first** in each stack: Noto's Kannada faces ship Latin
 glyphs, so a Kannada-first stack would silently render all Latin text in them.
+
+The four brand colors are read off the Karnataka Rakshana Vedike mark: the
+ribbon's red, the map and flag's yellow, the guardians' steel blue, the
+shield's bronze. Red carries emphasis and anything clickable; blue carries the
+icon system, so the two never compete. Yellow and gold are **fills only** —
+`#FFCC00` is 1.5:1 on cream and `#C9A227` is 2.4:1, so neither is ever set as
+text on a light ground.
 
 Everything is tokenised at the top of the `<style>` block — colors, radii,
 shadows, easing, spacing and the type stacks — so the palette can be changed

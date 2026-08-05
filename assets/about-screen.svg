@@ -5,12 +5,12 @@
       <stop offset="1" stop-color="#110300"/>
     </linearGradient>
     <linearGradient id="scr" x1="0" y1="0" x2="0" y2="1">
-      <stop offset="0" stop-color="#F5A623"/>
-      <stop offset="1" stop-color="#C8102E"/>
+      <stop offset="0" stop-color="#FFCC00"/>
+      <stop offset="1" stop-color="#D42A28"/>
     </linearGradient>
     <linearGradient id="proj" x1="0.5" y1="1" x2="0.5" y2="0">
-      <stop offset="0" stop-color="#F5A623" stop-opacity="0"/>
-      <stop offset="1" stop-color="#F5A623" stop-opacity="0.25"/>
+      <stop offset="0" stop-color="#FFCC00" stop-opacity="0"/>
+      <stop offset="1" stop-color="#FFCC00" stop-opacity="0.25"/>
     </linearGradient>
   </defs>
 

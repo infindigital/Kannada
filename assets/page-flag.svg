@@ -22,8 +22,8 @@
   <rect width="1200" height="750" fill="#1A0800"/>
 
   <g clip-path="url(#wave)">
-    <rect width="1200" height="750" fill="#F5A623"/>
-    <path d="M0 400c150-44 300 34 450 16s300-78 450-46 250 60 300 48v332H0z" fill="#C8102E"/>
+    <rect width="1200" height="750" fill="#FFCC00"/>
+    <path d="M0 400c150-44 300 34 450 16s300-78 450-46 250 60 300 48v332H0z" fill="#D42A28"/>
     <rect width="1200" height="750" fill="url(#fld)"/>
   </g>
 

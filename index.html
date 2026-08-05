@@ -9,7 +9,7 @@
 <meta property="og:title" content="Craft — ಸಿನಿಮ್ಯಾಟಿಕ್ ಕಥನ ಕೋರ್ಸ್" />
 <meta property="og:description" content="ಸಿನಿಮಾದ ಭಾಷೆಯನ್ನು ಕನ್ನಡದಲ್ಲಿ ಕಲಿಯಿರಿ." />
 <meta property="og:type" content="website" />
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='16' fill='%23F5A623'/%3E%3Crect y='16' width='32' height='16' fill='%23C8102E'/%3E%3C/svg%3E" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='16' fill='%23FFCC00'/%3E%3Crect y='16' width='32' height='16' fill='%23D42A28'/%3E%3C/svg%3E" />
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -20,11 +20,14 @@
    TOKENS
    ============================================================ */
 :root {
-  /* brand — Karnataka flag */
-  --red:        #C8102E;
-  --red-dark:   #A50D24;
-  --yellow:     #F5A623;
-  --yellow-dark:#D4870D;
+  /* brand — sampled from the Karnataka Rakshana Vedike mark */
+  --red:        #D42A28;   /* the ribbon            — 5.0:1 on white */
+  --red-dark:   #A81F1D;
+  --yellow:     #FFCC00;   /* the map and the flag  — fills only, 1.5:1 */
+  --yellow-dark:#E0A800;
+  --blue:       #2F6E9E;   /* the lion and warrior  — 5.5:1 on white */
+  --blue-dark:  #245A83;
+  --gold:       #C9A227;   /* the shield            — fills only, 2.4:1 */
 
   /* surfaces (light theme) */
   --surface:        #FFFFFF;
@@ -48,7 +51,7 @@
   /* elevation */
   --shadow-1: 0 1px 2px rgba(26,8,0,.05), 0 2px 8px rgba(26,8,0,.05);
   --shadow-2: 0 2px 4px rgba(26,8,0,.05), 0 12px 32px rgba(26,8,0,.09);
-  --shadow-3: 0 8px 16px rgba(26,8,0,.07), 0 28px 60px rgba(200,16,46,.13);
+  --shadow-3: 0 8px 16px rgba(26,8,0,.07), 0 28px 60px rgba(212,42,40,.13);
 
   /* motion */
   --ease:     cubic-bezier(.22,.61,.36,1);
@@ -198,9 +201,9 @@ section[id] { scroll-margin-top: 5.5rem; }
 .btn--primary { background: var(--red); color: #fff; box-shadow: var(--shadow-1); }
 .btn--primary:hover,
 .btn--primary:focus-visible { background: var(--red-dark); transform: translateY(-2px); box-shadow: var(--shadow-2); }
-.btn--ghost { border-color: rgba(200,16,46,.35); color: var(--red); }
+.btn--ghost { border-color: rgba(212,42,40,.35); color: var(--red); }
 .btn--ghost:hover,
-.btn--ghost:focus-visible { background: rgba(200,16,46,.07); border-color: var(--red); transform: translateY(-2px); }
+.btn--ghost:focus-visible { background: rgba(212,42,40,.07); border-color: var(--red); transform: translateY(-2px); }
 .btn--onVideo {
   border-color: rgba(255,255,255,.45);
   color: #fff;
@@ -567,9 +570,9 @@ section[id] { scroll-margin-top: 5.5rem; }
   align-items: center;
   justify-content: center;
   height: 132px;
-  color: var(--red);
+  color: var(--blue);
   background:
-    linear-gradient(135deg, rgba(245,166,35,.16) 0%, rgba(200,16,46,.09) 100%),
+    linear-gradient(135deg, rgba(255,204,0,.18) 0%, rgba(212,42,40,.09) 100%),
     var(--surface-sunken);
   border-bottom: 1px solid var(--border-soft);
   overflow: hidden;
@@ -581,11 +584,11 @@ section[id] { scroll-margin-top: 5.5rem; }
   font-size: 5.5rem;
   line-height: 1;
   color: transparent;
-  -webkit-text-stroke: 1.5px rgba(200,16,46,.28);
+  -webkit-text-stroke: 1.5px rgba(212,42,40,.28);
   user-select: none;
 }
 .card:hover .card-emblem,
-.card:focus-within .card-emblem { color: var(--red-dark); }
+.card:focus-within .card-emblem { color: var(--blue-dark); }
 
 .card-body { padding: 1.5rem 1.5rem 1.75rem; }
 .card-body h3 { font-size: 1.3rem; margin-bottom: .6rem; }
@@ -654,7 +657,9 @@ section[id] { scroll-margin-top: 5.5rem; }
               color var(--base) var(--ease),
               transform var(--base) var(--ease);
 }
-.theme-tile svg { color: var(--red); transition: color var(--base) var(--ease); }
+/* icons carry the mark's blue, so they stay distinct from red, which the page
+   uses for emphasis and for anything clickable */
+.theme-tile svg { color: var(--blue); transition: color var(--base) var(--ease); }
 .theme-tile .n { font-weight: 600; font-size: .95rem; }
 .theme-tile .c { font-size: .75rem; color: var(--ink-subtle); transition: color var(--base) var(--ease); }
 .theme-tile:hover,
@@ -677,8 +682,8 @@ section[id] { scroll-margin-top: 5.5rem; }
   overflow: hidden;
   padding-block: var(--section-y);
   background:
-    radial-gradient(circle at 18% 82%, rgba(245,166,35,.16) 0%, transparent 52%),
-    radial-gradient(circle at 82% 18%, rgba(200,16,46,.20) 0%, transparent 52%),
+    radial-gradient(circle at 18% 82%, rgba(255,204,0,.16) 0%, transparent 52%),
+    radial-gradient(circle at 82% 18%, rgba(212,42,40,.20) 0%, transparent 52%),
     var(--surface-inverse);
   color: rgba(255,255,255,.78);
 }
@@ -691,7 +696,7 @@ section[id] { scroll-margin-top: 5.5rem; }
   font-family: var(--font-display);
   font-size: min(30rem, 46vw);
   line-height: 1;
-  color: rgba(245,166,35,.06);
+  color: rgba(255,204,0,.06);
   user-select: none;
   pointer-events: none;
 }
@@ -749,13 +754,13 @@ section[id] { scroll-margin-top: 5.5rem; }
 .hejje {
   padding-block: var(--section-y);
   background:
-    radial-gradient(72% 52% at 50% 60%, rgba(245,166,35,.20) 0%, transparent 64%),
+    radial-gradient(72% 52% at 50% 60%, rgba(255,204,0,.20) 0%, transparent 64%),
     var(--surface-sunken);
   color: var(--ink-muted);
   overflow: hidden;
 }
 .hejje h2 { color: var(--ink); }   /* not the section's muted body colour */
-/* the accent word stays red, not yellow — #F5A623 on cream is 1.9:1 */
+/* the accent word stays red, not yellow — #FFCC00 on cream is 1.9:1 */
 .hejje h2 em { color: var(--red); font-style: normal; }
 
 .hejje-viewport {
@@ -791,7 +796,7 @@ section[id] { scroll-margin-top: 5.5rem; }
   will-change: transform, opacity;
 }
 .hejje-card:not(.is-current) { cursor: pointer; }
-.hejje-card.is-current { border-color: rgba(200,16,46,.45); }
+.hejje-card.is-current { border-color: rgba(212,42,40,.45); }
 
 /* the plate is bright gold exactly where the white title sits, so the title
    gets its own band of shade — starting below the flag banner, which stays
@@ -925,7 +930,7 @@ section[id] { scroll-margin-top: 5.5rem; }
   position: relative;
   overflow: hidden;
   padding-block: clamp(3.5rem, 7vw, 5.5rem);
-  background: linear-gradient(135deg, var(--red) 0%, #8B0000 62%, #5A0000 100%);
+  background: linear-gradient(135deg, var(--red) 0%, #9A1614 62%, #6B0F0E 100%);
   color: #fff;
   text-align: center;
 }
@@ -933,7 +938,7 @@ section[id] { scroll-margin-top: 5.5rem; }
   content: "";
   position: absolute; inset: 0 0 0 auto;
   width: 42%;
-  background: linear-gradient(to left, rgba(245,166,35,.14), transparent);
+  background: linear-gradient(to left, rgba(255,204,0,.14), transparent);
   pointer-events: none;
 }
 .enrol-inner { position: relative; z-index: 1; max-width: 40rem; margin-inline: auto; }
@@ -956,10 +961,10 @@ section[id] { scroll-margin-top: 5.5rem; }
 .enrol-status {
   display: inline-block;
   padding: 1rem 1.75rem;
-  border: 1px solid rgba(245,166,35,.55);
+  border: 1px solid rgba(255,204,0,.55);
   border-radius: var(--r-sm);
-  background: rgba(245,166,35,.16);
-  color: #FFD48A;
+  background: rgba(255,204,0,.16);
+  color: #FFE39A;
   font-weight: 600;
 }
 .enrol-status:empty { display: none; }
@@ -1001,7 +1006,7 @@ section[id] { scroll-margin-top: 5.5rem; }
   justify-content: space-between;
   gap: .75rem;
   padding-top: 1.5rem;
-  border-top: 1px solid rgba(245,166,35,.16);
+  border-top: 1px solid rgba(255,204,0,.16);
   font-size: .8rem;
 }
 .footer-flag { display: flex; gap: 4px; }
