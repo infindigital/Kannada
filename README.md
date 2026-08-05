@@ -1,15 +1,21 @@
 # Craft — ಸಿನಿಮ್ಯಾಟಿಕ್ ಕಥನ (Cinematic Storytelling)
 
-A single-page course site in **Kannada (ಕನ್ನಡ)**, built on a **light theme**
-in the Karnataka flag palette, with a **book-style sliding hero** — pages slide
-sideways over a shaded spine while the media inside counter-slides, so the
-slides read as leaves of a book rather than one flat strip.
+A single-page course site in **Kannada (ಕನ್ನಡ)**: a **full-bleed video hero**
+over a **light-theme** page in the Karnataka flag palette.
+
+The hero is a **book-style slider**. Page one is the looping Karnataka flag
+video; pages turn sideways over a shaded binding edge while the media inside
+counter-slides, so they read as leaves of a book rather than one flat strip.
+The chapter caption, page count and progress bars along the foot of the hero
+track the current page.
 
 ## Files
 
 - `index.html` — the whole page. No build step, no CDN, no framework: plain
   CSS custom properties and ~120 lines of vanilla JS.
 - `assets/karnataka-flag.mp4` — looping Karnataka flag video, page 1 of the hero.
+  Muted, autoplaying, `playsinline`, with a matching SVG poster so the hero is
+  never blank while it loads.
 - `assets/*.svg` — the page artwork (flag poster, Hampi colonnade, illuminated
   palace, viewfinder, film set, cinema hall). Vector, local, ~2–4 KB each, so
   the page renders complete with no network requests.
@@ -18,7 +24,7 @@ slides read as leaves of a book rather than one flat strip.
 
 | | |
 |---|---|
-| Surfaces | `#FDF6EC` cream · `#FFFFFF` · `#1A0800` deep (one contrast band) |
+| Surfaces | `#FDF6EC` cream · `#FFFFFF` · `#1A0800` deep (hero + one band) |
 | Brand | `#C8102E` red · `#F5A623` yellow — the Karnataka flag |
 | Display type | Instrument Serif → Noto Serif Kannada |
 | Body type | Inter → Noto Sans Kannada |
