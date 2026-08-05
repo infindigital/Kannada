@@ -26,12 +26,19 @@ track the current page.
 |---|---|
 | Surfaces | `#FDF6EC` cream · `#FFFFFF` · `#1A0800` deep (hero + one band) |
 | Brand | `#D42A28` red · `#FFCC00` yellow · `#2F6E9E` blue · `#C9A227` gold |
-| Display type | Instrument Serif → Noto Serif Kannada |
-| Body type | Inter → Noto Sans Kannada |
+| Type | Anek Latin → Anek Kannada, 400 / 500 / 700 |
 | Radii | 2px controls · 6px cards · 14px the book |
 
-Latin family is listed **first** in each stack: Noto's Kannada faces ship Latin
-glyphs, so a Kannada-first stack would silently render all Latin text in them.
+One superfamily covers both scripts. Anek was drawn by Ek Type across nine
+Indian scripts plus Latin, so the Kannada and the Latin share proportions,
+weight and rhythm instead of being two unrelated faces set side by side — the
+page has no seam where the scripts meet. Latin is still listed **first** in the
+stack, since Anek Kannada also carries Latin glyphs and would otherwise win.
+
+With one family, hierarchy comes from weight rather than from a serif/sans
+contrast: 700 for headings and display numerals, 400 for text. Anek has no
+italic, so nothing is set in one — a synthesised oblique distorts Kannada
+conjuncts.
 
 The four brand colors are read off the Karnataka Rakshana Vedike mark: the
 ribbon's red, the map and flag's yellow, the guardians' steel blue, the
