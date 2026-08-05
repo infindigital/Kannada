@@ -43,9 +43,10 @@ Hero + book slider · stats · course modules (featured + grid) · themes ·
 about (the deep band) · ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) ·
 enrolment · footer.
 
-**ನಮ್ಮ ಹೆಜ್ಜೆಗಳು** is a 3D coverflow of five campaign plates: the front plate
-is upright and lit, the shoulders fan out, tip away on `rotateY` and dim with
-distance, and the fourth rank drops out. Driven by the arrows, the dots,
+**ನಮ್ಮ ಹೆಜ್ಜೆಗಳು** is a 3D coverflow of five campaign plates on the cream
+ground: the front plate is upright and lit, the shoulders fan out, tip away on
+`rotateY`, and recede by fading and desaturating — not darkening, which only
+makes blots on a light background. The fourth rank drops out. Driven by the arrows, the dots,
 click-to-front on a shoulder plate, arrow keys, and swipe. The plate art is one
 shared SVG (`assets/hejje-plate.svg`) — flag banner, lit skyline, pennants.
 
