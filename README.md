@@ -63,11 +63,12 @@ in one place.
 ## Sections
 
 Hero + book slider · stats · course modules (featured + grid) · themes ·
-about (the deep band) · ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) ·
-ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) · enrolment · footer.
+about (the deep band) · ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) ·
+ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) · enrolment · footer.
 
-**ಅಧ್ಯಕ್ಷರ ಮಾತು** sits between the campaigns and the call to join, so the
-argument is made, then spoken for, then acted on. The portrait is a circular
+**ಅಧ್ಯಕ್ಷರ ಮಾತು** follows the about band directly — the organisation
+introduces itself, then speaks — and its light ground breaks that deep band
+before the campaigns. The portrait is a circular
 medallion: a flag-gradient ring showing through the wrapper's own padding,
 a white gap opened by the image's border, and a faint outer halo. Marked up as
 `figure` / `blockquote` / `figcaption` so the attribution is real structure
