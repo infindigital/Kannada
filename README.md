@@ -64,7 +64,19 @@ in one place.
 
 Hero + book slider · stats · course modules (featured + grid) · themes ·
 about (the deep band) · ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) ·
-enrolment · footer.
+ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) · enrolment · footer.
+
+**ಅಧ್ಯಕ್ಷರ ಮಾತು** sits between the campaigns and the call to join, so the
+argument is made, then spoken for, then acted on. The portrait is a composed
+image — flag, state map and crowd all carry meaning — so it is shown whole
+rather than cropped to a head-and-shoulders avatar, and marked up as
+`figure` / `blockquote` / `figcaption` so the attribution is real structure
+rather than styled text. `assets/kanmada-ownr.png` is the 2.3 MB source;
+`assets/talk-portrait.jpg` (160 KB) is what the page loads.
+
+> The quote, the name and the designation in that section are **placeholders**.
+> No statement there was made by anyone — replace them before this goes
+> anywhere public.
 
 **ನಮ್ಮ ಹೆಜ್ಜೆಗಳು** is a 3D coverflow of five campaign plates on the cream
 ground: the front plate is upright and lit, the shoulders fan out, tip away on

@@ -952,6 +952,105 @@ section[id] { scroll-margin-top: 7rem; }
 }
 
 /* ============================================================
+   ಅಧ್ಯಕ್ಷರ ಮಾತು — the leader's message
+   ============================================================ */
+.talk {
+  padding-block: var(--section-y);
+  background:
+    radial-gradient(58% 44% at 12% 18%, rgba(255,204,0,.16) 0%, transparent 62%),
+    var(--surface);
+}
+.talk-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(2rem, 5vw, 3.75rem);
+  align-items: center;
+}
+@media (min-width: 900px) {
+  .talk-grid { grid-template-columns: minmax(0, .92fr) minmax(0, 1fr); }
+}
+
+.talk-figure {
+  position: relative;
+  margin: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-3);
+}
+/* the portrait is a composed image — flag, map and crowd all carry meaning —
+   so it is shown whole rather than cropped to a head-and-shoulders avatar */
+.talk-figure img { width: 100%; height: auto; display: block; }
+.talk-figure .flag-rule {
+  position: absolute;
+  left: 0; right: 0; bottom: 0;
+  height: 6px;
+}
+
+.talk-body { position: relative; }
+
+.talk-quote {
+  position: relative;
+  /* clears the eyebrow above — the glyph hangs up out of its own box */
+  margin: 3rem 0 0;
+}
+.talk-quote::before {
+  content: "\201C";
+  position: absolute;
+  left: -.06em; top: -.46em;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 7rem;
+  line-height: 1;
+  color: rgba(212,42,40,.13);
+  pointer-events: none;
+}
+.talk-quote blockquote {
+  margin: 0;
+  position: relative;
+}
+.talk-quote blockquote p {
+  font-size: clamp(1.08rem, 1.8vw, 1.4rem);
+  line-height: 1.68;
+  color: var(--ink);
+  max-width: 38ch;
+}
+.talk-quote blockquote p + p {
+  margin-top: 1rem;
+  font-size: clamp(.95rem, 1.4vw, 1.08rem);
+  color: var(--ink-muted);
+}
+
+.talk-quote figcaption {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid var(--border);
+}
+.talk-quote figcaption::before {
+  content: "";
+  width: 34px; height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, var(--red) 50%, var(--yellow) 50%);
+  flex: none;
+}
+.talk-name {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.2rem;
+  color: var(--ink);
+}
+.talk-role {
+  font-size: .72rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--ink-subtle);
+  margin-top: .2rem;
+}
+
+/* ============================================================
    ENROL BAND
    ============================================================ */
 .enrol {
@@ -1583,6 +1682,46 @@ section[id] { scroll-margin-top: 7rem; }
     </div>
   </section>
 
+  <!-- ================= ಅಧ್ಯಕ್ಷರ ಮಾತು ================= -->
+  <section class="talk" id="talk">
+    <div class="wrap talk-grid">
+
+      <figure class="talk-figure">
+        <img src="assets/talk-portrait.jpg"
+             alt="ಕನ್ನಡ ಬಾವುಟದ ಶಾಲು ಧರಿಸಿದ ಮುಖಂಡರ ಭಾವಚಿತ್ರ — ಹಿಂದೆ ಕರ್ನಾಟಕದ ನಕ್ಷೆ ಮತ್ತು ಬಾವುಟ"
+             width="1000" height="800" loading="lazy" decoding="async" />
+        <div class="flag-rule" aria-hidden="true"></div>
+      </figure>
+
+      <div class="talk-body">
+        <p class="eyebrow">ಅಧ್ಯಕ್ಷರ ಮಾತು</p>
+
+        <!-- TODO: replace the quote, the name and the designation below.
+             These are placeholders — no statement here was made by anyone. -->
+        <figure class="talk-quote">
+          <blockquote>
+            <p>
+              ಕನ್ನಡ ನಮ್ಮ ಉಸಿರು. ಈ ನೆಲದ ಭಾಷೆ, ನೀರು ಮತ್ತು ಬದುಕು — ಇವು ಮೂರೂ
+              ಒಂದೇ ಹೋರಾಟದ ಭಾಗ.
+            </p>
+            <p>
+              ಕನ್ನಡಿಗರ ಸ್ವಾಭಿಮಾನವನ್ನು ಎತ್ತಿ ಹಿಡಿಯುವುದು, ಈ ನಾಡಿನ ಯುವಕರಿಗೆ
+              ಇಲ್ಲಿಯೇ ಬದುಕು ಕಟ್ಟಿಕೊಳ್ಳುವ ದಾರಿ ತೋರಿಸುವುದು — ಅದೇ ನಮ್ಮ ಮೊದಲ
+              ಮತ್ತು ಕೊನೆಯ ಕೆಲಸ.
+            </p>
+          </blockquote>
+          <figcaption>
+            <div>
+              <p class="talk-name">ಹೆಸರು</p>
+              <p class="talk-role">ಪದನಾಮ · ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ</p>
+            </div>
+          </figcaption>
+        </figure>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ================= ENROL ================= -->
   <section class="enrol" id="enrol">
     <div class="wrap enrol-inner">
@@ -1629,6 +1768,7 @@ section[id] { scroll-margin-top: 7rem; }
         <ul>
           <li><a href="#about">ಪರಿಚಯ</a></li>
           <li><a href="#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a></li>
+          <li><a href="#talk">ಅಧ್ಯಕ್ಷರ ಮಾತು</a></li>
           <li><a href="#enrol">ಶುಲ್ಕ</a></li>
           <li><a href="#">ಸಂಪರ್ಕ</a></li>
           <li><a href="#">ಗೌಪ್ಯತೆ ನೀತಿ</a></li>
