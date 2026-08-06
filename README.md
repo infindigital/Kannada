@@ -67,12 +67,13 @@ about (the deep band) · ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign cove
 ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) · enrolment · footer.
 
 **ಅಧ್ಯಕ್ಷರ ಮಾತು** sits between the campaigns and the call to join, so the
-argument is made, then spoken for, then acted on. The portrait is a composed
-image — flag, state map and crowd all carry meaning — so it is shown whole
-rather than cropped to a head-and-shoulders avatar, and marked up as
+argument is made, then spoken for, then acted on. The portrait is a circular
+medallion: a flag-gradient ring showing through the wrapper's own padding,
+a white gap opened by the image's border, and a faint outer halo. Marked up as
 `figure` / `blockquote` / `figcaption` so the attribution is real structure
 rather than styled text. `assets/kanmada-ownr.png` is the 2.3 MB source;
-`assets/talk-portrait.jpg` (160 KB) is what the page loads.
+`assets/talk-portrait.jpg` is a 115 KB square crop cut to put the eyes near
+the upper third, rather than leaving the framing to `object-position`.
 
 > The quote, the name and the designation in that section are **placeholders**.
 > No statement there was made by anyone — replace them before this goes
