@@ -66,7 +66,20 @@ in one place.
 Hero + book slider · stats · course modules (featured + grid) ·
 ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) · themes · about (the deep band) ·
 ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) · ವೀಡಿಯೊ ಸಂಗ್ರಹ (video library) ·
-ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು (recent campaigns) · enrolment · footer.
+ಚಿತ್ರ ಸಂಗ್ರಹ (image gallery) · ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು (recent campaigns) ·
+enrolment · footer.
+
+**ಚಿತ್ರ ಸಂಗ್ರಹ** is a mosaic, not an even grid — two tiles carry weight via
+`is-wide` / `is-tall` spans and `grid-auto-flow: dense` packs the rest around
+them, so adding a picture never leaves a hole. Captions ride in from the foot
+on hover and focus rather than sitting over the picture.
+
+The lightbox is a `<dialog>` opened with `showModal()`, which gives the focus
+trap and Escape handling natively instead of hand-rolled key handling. It adds
+prev/next, arrow keys, wrap-around, backdrop-click to close, and returns focus
+to the tile that opened it.
+
+> The pictures are page artwork and the captions are **placeholders**.
 
 **ವೀಡಿಯೊ ಸಂಗ್ರಹ** is a working player, not a wall of thumbnails: a native
 `<video>` with controls beside a scrolling playlist of real `<button>`s.

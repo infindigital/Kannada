@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" role="img" aria-label="Temple chariot procession with flags">
+  <defs>
+    <linearGradient id="jsky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"   stop-color="#2A0A06"/>
+      <stop offset="0.5" stop-color="#A02318"/>
+      <stop offset="1"   stop-color="#F2C246"/>
+    </linearGradient>
+    <radialGradient id="jsun" cx="0.72" cy="0.62" r="0.36">
+      <stop offset="0" stop-color="#FFEDB0" stop-opacity="0.9"/>
+      <stop offset="1" stop-color="#FFEDB0" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="900" height="600" fill="url(#jsky)"/>
+  <rect width="900" height="600" fill="url(#jsun)"/>
+  <circle cx="648" cy="372" r="70" fill="#FFCC00" opacity="0.85"/>
+
+  <!-- the chariot: tiered canopy over a wheeled base -->
+  <g fill="#1C0603">
+    <polygon points="300,150 336,150 318,96"/>
+    <polygon points="252,214 384,214 318,146"/>
+    <polygon points="228,272 408,272 252,208 384,208"/>
+    <polygon points="204,336 432,336 228,266 408,266"/>
+    <rect x="216" y="336" width="204" height="96"/>
+    <rect x="192" y="432" width="252" height="26"/>
+  </g>
+  <g fill="#1C0603">
+    <circle cx="252" cy="486" r="34"/><circle cx="384" cy="486" r="34"/>
+  </g>
+  <g stroke="#F2C246" stroke-width="3" opacity="0.55" fill="none">
+    <circle cx="252" cy="486" r="20"/><circle cx="384" cy="486" r="20"/>
+  </g>
+
+  <!-- pennants strung from the chariot -->
+  <g>
+    <g><rect x="466" y="238" width="5" height="130" fill="#1C0603"/><path d="M471 240l52 15-52 15z" fill="#FFCC00"/></g>
+    <g><rect x="546" y="206" width="5" height="162" fill="#1C0603"/><path d="M551 208l56 17-56 17z" fill="#D42A28"/></g>
+    <g><rect x="632" y="248" width="5" height="120" fill="#1C0603"/><path d="M637 250l48 14-48 14z" fill="#FFCC00"/></g>
+    <g><rect x="720" y="222" width="5" height="146" fill="#1C0603"/><path d="M725 224l54 16-54 16z" fill="#D42A28"/></g>
+    <g><rect x="140" y="256" width="5" height="112" fill="#1C0603"/><path d="M145 258l46 14-46 14z" fill="#D42A28"/></g>
+  </g>
+
+  <!-- crowd drawing the chariot -->
+  <g fill="#120400">
+    <g>
+      <circle cx="60"  cy="470" r="20"/><circle cx="128" cy="464" r="21"/><circle cx="470" cy="468" r="20"/>
+      <circle cx="536" cy="462" r="22"/><circle cx="604" cy="470" r="20"/><circle cx="672" cy="464" r="21"/>
+      <circle cx="742" cy="470" r="20"/><circle cx="812" cy="464" r="22"/><circle cx="874" cy="470" r="20"/>
+    </g>
+    <rect x="0" y="486" width="900" height="114"/>
+  </g>
+</svg>

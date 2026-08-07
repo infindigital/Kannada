@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" role="img" aria-label="Government building lit at dusk">
+  <defs>
+    <linearGradient id="vsky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#160500"/>
+      <stop offset="0.5"  stop-color="#5E1218"/>
+      <stop offset="0.82" stop-color="#C08326"/>
+      <stop offset="1"    stop-color="#FFCC00"/>
+    </linearGradient>
+    <radialGradient id="vglow" cx="0.5" cy="0.78" r="0.5">
+      <stop offset="0" stop-color="#FFCC00" stop-opacity="0.55"/>
+      <stop offset="1" stop-color="#FFCC00" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="900" height="600" fill="url(#vsky)"/>
+  <rect width="900" height="600" fill="url(#vglow)"/>
+
+  <g fill="#180502">
+    <!-- wings -->
+    <rect x="70"  y="330" width="220" height="180"/>
+    <rect x="610" y="330" width="220" height="180"/>
+    <!-- central block and portico -->
+    <rect x="300" y="286" width="300" height="224"/>
+    <polygon points="450,196 610,286 290,286"/>
+    <!-- dome -->
+    <path d="M450 108c46 0 74 36 74 76H376c0-40 28-76 74-76z"/>
+    <rect x="442" y="66" width="16" height="46"/>
+    <circle cx="450" cy="60" r="13"/>
+    <!-- steps -->
+    <path d="M240 510h420l30 40H210z"/>
+  </g>
+
+  <!-- colonnade openings, lit -->
+  <g fill="#FFCC00" opacity="0.5">
+    <path d="M330 400a16 16 0 0132 0v82h-32z"/>
+    <path d="M386 400a16 16 0 0132 0v82h-32z"/>
+    <path d="M442 400a16 16 0 0132 0v82h-32z"/>
+    <path d="M498 400a16 16 0 0132 0v82h-32z"/>
+    <path d="M554 400a16 16 0 0132 0v82h-32z"/>
+  </g>
+  <g fill="#FFCC00" opacity="0.32">
+    <rect x="104" y="380" width="26" height="60"/><rect x="152" y="380" width="26" height="60"/>
+    <rect x="200" y="380" width="26" height="60"/><rect x="248" y="380" width="26" height="60"/>
+    <rect x="644" y="380" width="26" height="60"/><rect x="692" y="380" width="26" height="60"/>
+    <rect x="740" y="380" width="26" height="60"/><rect x="788" y="380" width="26" height="60"/>
+  </g>
+
+  <!-- string of lamps along the roofline -->
+  <g fill="#FFCC00">
+    <circle cx="310" cy="292" r="4"/><circle cx="358" cy="292" r="4"/><circle cx="406" cy="292" r="4"/>
+    <circle cx="454" cy="292" r="4"/><circle cx="502" cy="292" r="4"/><circle cx="550" cy="292" r="4"/>
+    <circle cx="590" cy="292" r="4"/>
+  </g>
+
+  <rect x="0" y="548" width="900" height="52" fill="#120400"/>
+</svg>

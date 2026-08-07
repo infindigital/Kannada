@@ -1223,6 +1223,120 @@ section[id] { scroll-margin-top: 7rem; }
 .vlib :focus-visible { outline-color: var(--yellow); }
 
 /* ============================================================
+   ಚಿತ್ರ ಸಂಗ್ರಹ — image gallery
+   ============================================================ */
+.gal { padding-block: var(--section-y); background: var(--surface-sunken); }
+
+/* a mosaic rather than an even grid: two tiles carry weight and the rest
+   fill in around them, so the section reads as a wall of pictures */
+.gal-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  grid-auto-rows: clamp(7rem, 17vw, 11rem);
+  grid-auto-flow: dense;
+  gap: clamp(.6rem, 1.4vw, 1rem);
+}
+@media (min-width: 760px)  { .gal-grid { grid-template-columns: repeat(4, 1fr); } }
+.gal-item.is-wide  { grid-column: span 2; }
+.gal-item.is-tall  { grid-row: span 2; }
+
+.gal-item {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-md);
+  overflow: hidden;
+  background: var(--border-soft);
+  cursor: zoom-in;
+}
+.gal-item img {
+  width: 100%; height: 100%;
+  object-fit: cover;
+  display: block;
+  transition: transform 500ms var(--ease);
+}
+.gal-item:hover img,
+.gal-item:focus-visible img { transform: scale(1.06); }
+
+/* the caption rides in from the foot on hover and focus, never covering the
+   picture until asked */
+.gal-cap {
+  position: absolute;
+  inset: auto 0 0 0;
+  padding: 1.6rem .8rem .7rem;
+  font-size: .78rem;
+  font-weight: 600;
+  color: #fff;
+  text-align: left;
+  background: linear-gradient(to top, rgba(20,6,0,.88), rgba(20,6,0,0));
+  transform: translateY(100%);
+  opacity: 0;
+  transition: transform var(--base) var(--ease), opacity var(--base) var(--ease);
+}
+.gal-item:hover .gal-cap,
+.gal-item:focus-visible .gal-cap { transform: translateY(0); opacity: 1; }
+
+/* --- lightbox ------------------------------------------------ */
+.lb {
+  width: min(94vw, 68rem);
+  max-width: none;
+  padding: 0;
+  border: 0;
+  border-radius: var(--r-lg);
+  background: var(--surface-inverse);
+  color: #fff;
+  overflow: hidden;
+}
+.lb::backdrop { background: rgba(12,4,0,.86); backdrop-filter: blur(3px); }
+.lb img {
+  display: block;
+  width: 100%;
+  max-height: 76vh;
+  object-fit: contain;
+  background: #000;
+}
+.lb-bar {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  padding: .9rem 1rem;
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(to right, var(--red) 50%, var(--yellow) 50%) 1;
+}
+.lb-cap { flex: 1 1 auto; font-size: .9rem; font-weight: 600; }
+.lb-count {
+  font-size: .78rem;
+  color: var(--yellow);
+  font-variant-numeric: tabular-nums;
+  flex: none;
+}
+.lb-btn {
+  width: 42px; height: 42px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: none;
+  border-radius: 50%;
+  border: 1px solid rgba(255,255,255,.28);
+  background: rgba(255,255,255,.08);
+  color: #fff;
+  cursor: pointer;
+  transition: background var(--base) var(--ease), color var(--base) var(--ease);
+}
+.lb-btn:hover, .lb-btn:focus-visible { background: var(--yellow); color: var(--ink); }
+.lb-close {
+  position: absolute;
+  top: .75rem; right: .75rem;
+  z-index: 2;
+  background: rgba(20,6,0,.6);
+  backdrop-filter: blur(6px);
+}
+.lb :focus-visible { outline-color: var(--yellow); }
+
+/* ============================================================
    ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು — recent campaigns
    ============================================================ */
 .news { padding-block: var(--section-y); background: var(--surface); }
@@ -2047,6 +2161,91 @@ section[id] { scroll-margin-top: 7rem; }
     </div>
   </section>
 
+  <!-- ================= ಚಿತ್ರ ಸಂಗ್ರಹ ================= -->
+  <section class="gal" id="gallery">
+    <div class="wrap">
+
+      <div class="section-head">
+        <p class="eyebrow">ಫೋಟೊಗಳು</p>
+        <h2>ಚಿತ್ರ ಸಂಗ್ರಹ</h2>
+        <p class="lede">ಸಮಾವೇಶಗಳು, ಪ್ರತಿಭಟನೆಗಳು ಮತ್ತು ಸಂಘಟನೆಯ ಕ್ಷಣಗಳು.</p>
+      </div>
+
+      <!-- TODO: the pictures are page artwork and the captions are
+           PLACEHOLDERS. Swap in photographs; the mosaic spans are set by the
+           is-wide / is-tall classes. -->
+      <div class="gal-grid">
+        <button class="gal-item is-wide is-tall" type="button" data-index="0"
+                data-full="assets/gal-jatre.svg" data-caption="ನಾಡಹಬ್ಬದ ಮೆರವಣಿಗೆ">
+          <img src="assets/gal-jatre.svg" alt="ಬಾವುಟಗಳೊಂದಿಗೆ ರಥೋತ್ಸವದ ಮೆರವಣಿಗೆ" width="900" height="600"
+               loading="lazy" decoding="async" />
+          <span class="gal-cap">ನಾಡಹಬ್ಬದ ಮೆರವಣಿಗೆ</span>
+        </button>
+        <button class="gal-item " type="button" data-index="1"
+                data-full="assets/about-rally.svg" data-caption="ಬೆಂಗಳೂರಿನ ಸಮಾವೇಶ">
+          <img src="assets/about-rally.svg" alt="ಬಾವುಟ ಹಿಡಿದ ಜನಸಮೂಹ" width="900" height="600"
+               loading="lazy" decoding="async" />
+          <span class="gal-cap">ಬೆಂಗಳೂರಿನ ಸಮಾವೇಶ</span>
+        </button>
+        <button class="gal-item " type="button" data-index="2"
+                data-full="assets/gal-school.svg" data-caption="ಕನ್ನಡ ಶಾಲೆಯಲ್ಲಿ ಧ್ವಜಾರೋಹಣ">
+          <img src="assets/gal-school.svg" alt="ಬಾವುಟದೊಂದಿಗೆ ಶಾಲೆಯ ಕಟ್ಟಡ" width="900" height="600"
+               loading="lazy" decoding="async" />
+          <span class="gal-cap">ಕನ್ನಡ ಶಾಲೆಯಲ್ಲಿ ಧ್ವಜಾರೋಹಣ</span>
+        </button>
+        <button class="gal-item is-wide" type="button" data-index="3"
+                data-full="assets/gal-vidhana.svg" data-caption="ವಿಧಾನಸೌಧದ ಮುಂದೆ">
+          <img src="assets/gal-vidhana.svg" alt="ಸಂಜೆ ಬೆಳಗುವ ಸರ್ಕಾರಿ ಕಟ್ಟಡ" width="900" height="600"
+               loading="lazy" decoding="async" />
+          <span class="gal-cap">ವಿಧಾನಸೌಧದ ಮುಂದೆ</span>
+        </button>
+        <button class="gal-item " type="button" data-index="4"
+                data-full="assets/page-hampi.svg" data-caption="ಹಂಪಿ — ನಮ್ಮ ಪರಂಪರೆ">
+          <img src="assets/page-hampi.svg" alt="ಹಂಪಿಯ ಕಲ್ಲಿನ ಕಂಬಗಳ ಸಾಲು" width="900" height="600"
+               loading="lazy" decoding="async" />
+          <span class="gal-cap">ಹಂಪಿ — ನಮ್ಮ ಪರಂಪರೆ</span>
+        </button>
+        <button class="gal-item " type="button" data-index="5"
+                data-full="assets/about-unity.svg" data-caption="ಒಗ್ಗಟ್ಟಿನ ಪ್ರತಿಜ್ಞೆ">
+          <img src="assets/about-unity.svg" alt="ಬಾವುಟಗಳೊಂದಿಗೆ ಎತ್ತಿ ಹಿಡಿದ ಕೈಗಳು" width="900" height="600"
+               loading="lazy" decoding="async" />
+          <span class="gal-cap">ಒಗ್ಗಟ್ಟಿನ ಪ್ರತಿಜ್ಞೆ</span>
+        </button>
+        <button class="gal-item is-wide" type="button" data-index="6"
+                data-full="assets/page-mysore.svg" data-caption="ಮೈಸೂರು ದಸರಾ">
+          <img src="assets/page-mysore.svg" alt="ದೀಪಗಳಿಂದ ಬೆಳಗುವ ಅರಮನೆ" width="900" height="600"
+               loading="lazy" decoding="async" />
+          <span class="gal-cap">ಮೈಸೂರು ದಸರಾ</span>
+        </button>
+      </div>
+    </div>
+
+    <dialog class="lb" id="lightbox" aria-label="ಚಿತ್ರ">
+      <button class="lb-btn lb-close" type="button" id="lbClose" aria-label="ಮುಚ್ಚಿ">
+        <svg width="16" height="16" viewBox="0 0 18 18" fill="none" aria-hidden="true">
+          <path d="M1 1l16 16M17 1L1 17" stroke="currentColor" stroke-width="2"/>
+        </svg>
+      </button>
+      <img id="lbImage" src="" alt="" />
+      <div class="lb-bar">
+        <button class="lb-btn" type="button" id="lbPrev" aria-label="ಹಿಂದಿನ ಚಿತ್ರ">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+        <p class="lb-cap" id="lbCap"></p>
+        <p class="lb-count" id="lbCount"></p>
+        <button class="lb-btn" type="button" id="lbNext" aria-label="ಮುಂದಿನ ಚಿತ್ರ">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+            <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2"
+                  stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+        </button>
+      </div>
+    </dialog>
+  </section>
+
   <!-- ================= ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು ================= -->
   <section class="news" id="news">
     <div class="wrap">
@@ -2176,6 +2375,7 @@ section[id] { scroll-margin-top: 7rem; }
           <li><a href="#about">ಪರಿಚಯ</a></li>
           <li><a href="#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a></li>
           <li><a href="#videos">ವೀಡಿಯೊ ಸಂಗ್ರಹ</a></li>
+          <li><a href="#gallery">ಚಿತ್ರ ಸಂಗ್ರಹ</a></li>
           <li><a href="#news">ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು</a></li>
           <li><a href="#enrol">ಶುಲ್ಕ</a></li>
           <li><a href="#">ಸಂಪರ್ಕ</a></li>
@@ -2412,6 +2612,48 @@ section[id] { scroll-margin-top: 7rem; }
   stage.addEventListener('pointercancel', function () { swipeFrom = null; });
 
   layout();
+
+  /* ---------- ಚಿತ್ರ ಸಂಗ್ರಹ lightbox ---------- */
+  var shots   = Array.prototype.slice.call(document.querySelectorAll('.gal-item'));
+  var lb      = document.getElementById('lightbox');
+  var lbImage = document.getElementById('lbImage');
+  var lbCap   = document.getElementById('lbCap');
+  var lbCount = document.getElementById('lbCount');
+  var lbFrom  = null;
+  var lbIndex = 0;
+
+  function lbShow(i) {
+    lbIndex = (i + shots.length) % shots.length;
+    var shot = shots[lbIndex];
+    lbImage.src = shot.dataset.full;
+    lbImage.alt = shot.querySelector('img').alt;
+    lbCap.textContent = shot.dataset.caption;
+    lbCount.textContent = (lbIndex + 1) + ' / ' + shots.length;
+  }
+
+  shots.forEach(function (shot) {
+    shot.addEventListener('click', function () {
+      lbFrom = shot;                    /* so focus can go back where it came from */
+      lbShow(parseInt(shot.dataset.index, 10));
+      /* showModal gives the focus trap and Escape handling for free */
+      if (lb.showModal) lb.showModal(); else lb.setAttribute('open', '');
+    });
+  });
+
+  document.getElementById('lbPrev').addEventListener('click', function () { lbShow(lbIndex - 1); });
+  document.getElementById('lbNext').addEventListener('click', function () { lbShow(lbIndex + 1); });
+  document.getElementById('lbClose').addEventListener('click', function () { lb.close(); });
+
+  lb.addEventListener('keydown', function (e) {
+    if (e.key === 'ArrowLeft')  lbShow(lbIndex - 1);
+    if (e.key === 'ArrowRight') lbShow(lbIndex + 1);
+  });
+
+  /* clicking the backdrop closes: the dialog fills its own box, so a click
+     whose target is the dialog itself landed outside the content */
+  lb.addEventListener('click', function (e) { if (e.target === lb) lb.close(); });
+
+  lb.addEventListener('close', function () { if (lbFrom) lbFrom.focus(); });
 
   /* ---------- ವೀಡಿಯೊ ಸಂಗ್ರಹ ---------- */
   var vItems  = Array.prototype.slice.call(document.querySelectorAll('.vlib-item'));

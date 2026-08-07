@@ -1,0 +1,51 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 600" width="900" height="600" role="img" aria-label="School building with the Kannada flag at morning">
+  <defs>
+    <linearGradient id="ssky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#3A0D10"/>
+      <stop offset="0.46" stop-color="#C0451E"/>
+      <stop offset="0.8"  stop-color="#F2C246"/>
+      <stop offset="1"    stop-color="#FFE9A8"/>
+    </linearGradient>
+    <radialGradient id="ssun" cx="0.24" cy="0.66" r="0.34">
+      <stop offset="0" stop-color="#FFF3D2" stop-opacity="0.95"/>
+      <stop offset="1" stop-color="#FFF3D2" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <rect width="900" height="600" fill="url(#ssky)"/>
+  <rect width="900" height="600" fill="url(#ssun)"/>
+  <circle cx="216" cy="396" r="52" fill="#FFF3D2" opacity="0.9"/>
+
+  <!-- school block -->
+  <g fill="#1C0603">
+    <rect x="330" y="286" width="480" height="222"/>
+    <polygon points="570,222 830,286 310,286"/>
+    <rect x="556" y="196" width="10" height="34"/>
+  </g>
+  <!-- windows and a doorway -->
+  <g fill="#FFCC00" opacity="0.5">
+    <rect x="368" y="330" width="52" height="46"/><rect x="448" y="330" width="52" height="46"/>
+    <rect x="640" y="330" width="52" height="46"/><rect x="720" y="330" width="52" height="46"/>
+    <rect x="368" y="408" width="52" height="46"/><rect x="448" y="408" width="52" height="46"/>
+    <rect x="640" y="408" width="52" height="46"/><rect x="720" y="408" width="52" height="46"/>
+  </g>
+  <path d="M540 508v-70a30 30 0 0160 0v70z" fill="#3A0D10"/>
+
+  <!-- flagpole in the yard -->
+  <g>
+    <rect x="180" y="196" width="7" height="312" fill="#1C0603"/>
+    <rect x="187" y="200" width="104" height="30" fill="#FFCC00"/>
+    <rect x="187" y="230" width="104" height="30" fill="#D42A28"/>
+    <circle cx="183" cy="190" r="9" fill="#1C0603"/>
+  </g>
+
+  <!-- children in the yard -->
+  <g fill="#120400">
+    <g><circle cx="286" cy="462" r="14"/><path d="M266 508c0-22 9-34 20-34s20 12 20 34z"/></g>
+    <g><circle cx="342" cy="470" r="12"/><path d="M325 508c0-19 8-29 17-29s17 10 17 29z"/></g>
+    <g><circle cx="112" cy="468" r="13"/><path d="M93 508c0-20 9-31 19-31s19 11 19 31z"/></g>
+  </g>
+
+  <rect x="0" y="508" width="900" height="92" fill="#150502"/>
+  <rect x="0" y="508" width="900" height="3" fill="#FFCC00" opacity="0.35"/>
+</svg>
