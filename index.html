@@ -4,10 +4,10 @@
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ</title>
-<meta name="description" content="ಸಿನಿಮಾದ ಭಾಷೆಯನ್ನು ಕನ್ನಡದಲ್ಲಿ ಕಲಿಯಿರಿ — ಪೂರ್ವ-ನಿರ್ಮಾಣದಿಂದ ಅಂತಿಮ ಕಟ್‌ವರೆಗೆ. 24 ಪಾಠಗಳು, 3 ಯೋಜನೆಗಳು." />
+<meta name="description" content="ನಾಡು, ನುಡಿ, ನೆಲ, ಸಂಸ್ಕೃತಿ ಮತ್ತು ಕನ್ನಡಿಗರ ಹಕ್ಕುಗಳ ರಕ್ಷಣೆಗಾಗಿ ಒಗ್ಗಟ್ಟಿನ ಹೋರಾಟ." />
 <meta name="theme-color" content="#FDF6EC" />
 <meta property="og:title" content="ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ" />
-<meta property="og:description" content="ಸಿನಿಮಾದ ಭಾಷೆಯನ್ನು ಕನ್ನಡದಲ್ಲಿ ಕಲಿಯಿರಿ." />
+<meta property="og:description" content="ನಾಡು, ನುಡಿ, ನೆಲ, ಸಂಸ್ಕೃತಿ ಮತ್ತು ಕನ್ನಡಿಗರ ಹಕ್ಕುಗಳ ರಕ್ಷಣೆಗಾಗಿ ಒಗ್ಗಟ್ಟಿನ ಹೋರಾಟ." />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/png" href="assets/logo-mark.png" />
 
@@ -408,13 +408,13 @@ section[id] { scroll-margin-top: 7rem; }
   padding-block: clamp(3rem, 8vw, 5.5rem) clamp(1.5rem, 4vw, 3rem);
 }
 .hero-inner > .wrap { width: 100%; }
-.hero-copy { max-width: 40rem; color: #fff; }
+.hero-copy { max-width: 46rem; color: #fff; }
 
 .hero .eyebrow { color: var(--yellow); }
 .hero .eyebrow::before { background: linear-gradient(to right, var(--yellow), var(--red)); }
 
 .hero-title {
-  font-size: clamp(2.9rem, 9vw, 6.25rem);
+  font-size: clamp(1.95rem, 5.1vw, 3.9rem);
   /* Kannada carries vowel signs above and below the base line —
      tight leading collides, so the display size buys its own headroom */
   line-height: 1.1;
@@ -425,8 +425,18 @@ section[id] { scroll-margin-top: 7rem; }
 .hero-title .line { display: block; }
 .hero-title .line--outline {
   color: transparent;
-  -webkit-text-stroke: 1.5px var(--yellow);
+  /* the stroke scales with the type: a fixed width is proportionally three
+     times heavier at 31px than at 62px, and fills in the Kannada counters */
+  -webkit-text-stroke: .032em var(--yellow);
   padding-left: .12em;
+}
+/* below this the outline is finer than a hairline and the conjuncts close up,
+   so the line goes solid and keeps the two-tone without losing legibility */
+@media (max-width: 620px) {
+  .hero-title .line--outline {
+    color: var(--yellow);
+    -webkit-text-stroke: 0;
+  }
 }
 .hero-lede {
   color: rgba(255,255,255,.88);
@@ -1234,7 +1244,7 @@ section[id] { scroll-margin-top: 7rem; }
     <div class="hero-track" id="bookTrack">
 
       <article class="hero-slide" aria-roledescription="ಪುಟ" aria-label="1 / 3"
-               data-chapter="ಅಧ್ಯಾಯ 01" data-title="ಬೆಳಕು, ಬಣ್ಣ, ಚಲನೆ">
+               data-chapter="01" data-title="ಕನ್ನಡ ಬಾವುಟ">
         <video class="hero-media" id="heroVideo"
                autoplay muted loop playsinline preload="auto"
                poster="assets/page-flag.svg">
@@ -1243,14 +1253,14 @@ section[id] { scroll-margin-top: 7rem; }
       </article>
 
       <article class="hero-slide" aria-roledescription="ಪುಟ" aria-label="2 / 3"
-               data-chapter="ಅಧ್ಯಾಯ 02" data-title="ಹಂಪಿ — ಕಲ್ಲಿನ ಕಥೆಗಳು">
+               data-chapter="02" data-title="ಹಂಪಿ — ನಮ್ಮ ಪರಂಪರೆ">
         <img class="hero-media" alt="ಸೂರ್ಯಾಸ್ತದಲ್ಲಿ ಹಂಪಿಯ ಕಲ್ಲಿನ ಕಂಬಗಳ ಸಾಲು"
              loading="lazy" decoding="async" width="1200" height="750"
              src="assets/page-hampi.svg" />
       </article>
 
       <article class="hero-slide" aria-roledescription="ಪುಟ" aria-label="3 / 3"
-               data-chapter="ಅಧ್ಯಾಯ 03" data-title="ಮೈಸೂರು — ಬೆಳಕಿನ ಅರಮನೆ">
+               data-chapter="03" data-title="ಮೈಸೂರು — ನಮ್ಮ ಹೆಮ್ಮೆ">
         <img class="hero-media" alt="ರಾತ್ರಿಯಲ್ಲಿ ದೀಪಗಳಿಂದ ಬೆಳಗುವ ಅರಮನೆ"
              loading="lazy" decoding="async" width="1200" height="750"
              src="assets/page-mysore.svg" />
@@ -1263,28 +1273,26 @@ section[id] { scroll-margin-top: 7rem; }
     <div class="hero-inner">
       <div class="wrap">
       <div class="hero-copy">
-        <p class="eyebrow">ಕೋರ್ಸ್ 03 · ಚಲನಚಿತ್ರ &amp; ನಿರ್ದೇಶನ</p>
+        <p class="eyebrow">ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ</p>
 
         <h1 class="hero-title">
-          <span class="line">ಸಿನಿಮ್ಯಾಟಿಕ್</span>
-          <span class="line line--outline">ಕಥನ</span>
+          <span class="line">ಕರ್ನಾಟಕದ ಗೌರವ,</span>
+          <span class="line line--outline">ಕನ್ನಡದ ಹೆಮ್ಮೆ</span>
         </h1>
 
         <p class="hero-lede">
-          ಉದ್ದೇಶದಿಂದ ನಿರ್ದೇಶಿಸಿ. ನಿಖರತೆಯಿಂದ ಬಣ್ಣ ಸಂಯೋಜಿಸಿ. ಸಿನಿಮಾದ ಭಾಷೆಯನ್ನು
-          ಕಲಿಯಿರಿ — ಪೂರ್ವ-ನಿರ್ಮಾಣದಿಂದ ಪ್ರೇಕ್ಷಕರ ಹೃದಯವನ್ನು ಕಲಕುವ ಅಂತಿಮ
-          ಕಟ್‌ವರೆಗೆ.
+          ನಾಡು, ನುಡಿ, ನೆಲ, ಸಂಸ್ಕೃತಿ ಮತ್ತು ಕನ್ನಡಿಗರ ಹಕ್ಕುಗಳ ರಕ್ಷಣೆಗಾಗಿ
+          ಒಗ್ಗಟ್ಟಿನ ಹೋರಾಟ.
         </p>
 
         <div class="hero-actions">
           <a class="btn btn--primary" href="#enrol">
-            ಇಂದೇ ಸೇರಿ
+            ನಮ್ಮೊಂದಿಗೆ ಸೇರಿ
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M14 5l7 7-7 7M21 12H3" stroke="currentColor" stroke-width="2.2"
                     stroke-linecap="round" stroke-linejoin="round"/>
             </svg>
           </a>
-          <a class="btn btn--onVideo" href="#modules">ಪಾಠಗಳನ್ನು ನೋಡಿ</a>
         </div>
       </div>
       </div>
@@ -1292,8 +1300,8 @@ section[id] { scroll-margin-top: 7rem; }
 
     <div class="wrap hero-bar">
       <div class="hero-caption">
-        <p class="chapter" id="heroChapter">ಅಧ್ಯಾಯ 01</p>
-        <p class="title" id="heroTitle">ಬೆಳಕು, ಬಣ್ಣ, ಚಲನೆ</p>
+        <p class="chapter" id="heroChapter">01</p>
+        <p class="title" id="heroTitle">ಕನ್ನಡ ಬಾವುಟ</p>
       </div>
 
       <div class="book-controls">
