@@ -62,13 +62,16 @@ in one place.
 
 ## Sections
 
-Hero + book slider · stats · course modules (featured + grid) · themes ·
-about (the deep band) · ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) ·
+Hero + book slider · stats · course modules (featured + grid) ·
+ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) · themes · about (the deep band) ·
 ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) · enrolment · footer.
 
-**ಅಧ್ಯಕ್ಷರ ಮಾತು** follows the about band directly — the organisation
-introduces itself, then speaks — and its light ground breaks that deep band
-before the campaigns. The portrait is a circular
+Bands alternate ground so no two neighbours share a surface: dark, white,
+cream, white, cream, dark, cream, red, dark. Moving a section means checking
+that run — when ಅಧ್ಯಕ್ಷರ ಮಾತು landed between modules and themes, themes went
+from white to cream (and its tiles from cream to white) to keep the seam.
+
+**ಅಧ್ಯಕ್ಷರ ಮಾತು** portrait is a circular
 medallion: a flag-gradient ring showing through the wrapper's own padding,
 a white gap opened by the image's border, and a faint outer halo. Marked up as
 `figure` / `blockquote` / `figcaption` so the attribution is real structure
