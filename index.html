@@ -1081,6 +1081,148 @@ section[id] { scroll-margin-top: 7rem; }
 }
 
 /* ============================================================
+   ವೀಡಿಯೊ ಸಂಗ್ರಹ — video library
+   ============================================================ */
+.vlib {
+  padding-block: var(--section-y);
+  background:
+    radial-gradient(60% 46% at 80% 12%, rgba(212,42,40,.22) 0%, transparent 62%),
+    radial-gradient(46% 40% at 6% 88%, rgba(255,204,0,.12) 0%, transparent 60%),
+    var(--surface-inverse);
+  color: rgba(255,255,255,.72);
+}
+.vlib .eyebrow { color: var(--yellow); }
+.vlib .eyebrow::before { background: linear-gradient(to right, var(--yellow), var(--red)); }
+.vlib h2 { color: #fff; }
+.vlib .lede { color: rgba(255,255,255,.62); }
+
+.vlib-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: clamp(1.5rem, 3vw, 2.25rem);
+}
+@media (min-width: 940px) {
+  .vlib-grid { grid-template-columns: minmax(0, 1fr) 22rem; }
+}
+
+.vlib-stage {
+  margin: 0;
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  background: #000;
+  box-shadow: 0 24px 60px rgba(0,0,0,.5);
+}
+.vlib-stage video {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
+  object-fit: cover;
+}
+.vlib-stage figcaption {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1.1rem 1.25rem;
+  background: rgba(255,255,255,.05);
+  border-top: 3px solid transparent;
+  border-image: linear-gradient(to right, var(--red) 50%, var(--yellow) 50%) 1;
+}
+.vlib-now {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1rem, 1.7vw, 1.25rem);
+  color: #fff;
+}
+.vlib-time {
+  font-size: .78rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--yellow);
+  flex: none;
+}
+
+/* the playlist scrolls beside the player rather than pushing the section
+   taller as entries are added */
+.vlib-list {
+  display: flex;
+  flex-direction: column;
+  gap: .6rem;
+  margin: 0; padding: 0;
+  list-style: none;
+  max-height: 27rem;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255,255,255,.28) transparent;
+}
+@media (max-width: 939px) { .vlib-list { max-height: none; } }
+
+.vlib-item {
+  display: flex;
+  align-items: center;
+  gap: .9rem;
+  width: 100%;
+  padding: .6rem;
+  text-align: left;
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: var(--r-md);
+  color: inherit;
+  cursor: pointer;
+  transition: background var(--base) var(--ease), border-color var(--base) var(--ease);
+}
+.vlib-item:hover { background: rgba(255,255,255,.12); }
+.vlib-item[aria-current="true"] {
+  background: rgba(212,42,40,.22);
+  border-color: rgba(255,204,0,.55);
+}
+
+.vlib-thumb {
+  position: relative;
+  flex: none;
+  width: 6.5rem;
+  aspect-ratio: 16 / 9;
+  border-radius: 4px;
+  overflow: hidden;
+  background: #000;
+}
+.vlib-thumb img { width: 100%; height: 100%; object-fit: cover; display: block; }
+/* play badge, drawn rather than shipped as an icon file */
+.vlib-thumb::after {
+  content: "";
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 0; height: 0;
+  transform: translate(-40%, -50%);
+  border-left: 13px solid rgba(255,255,255,.95);
+  border-top: 8px solid transparent;
+  border-bottom: 8px solid transparent;
+  filter: drop-shadow(0 1px 3px rgba(0,0,0,.7));
+}
+.vlib-item[aria-current="true"] .vlib-thumb::after { border-left-color: var(--yellow); }
+
+.vlib-text { min-width: 0; }
+.vlib-title {
+  font-size: .9rem;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.35;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+.vlib-dur {
+  font-size: .72rem;
+  letter-spacing: .08em;
+  color: rgba(255,255,255,.55);
+  font-variant-numeric: tabular-nums;
+  margin-top: .2rem;
+}
+.vlib :focus-visible { outline-color: var(--yellow); }
+
+/* ============================================================
    ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು — recent campaigns
    ============================================================ */
 .news { padding-block: var(--section-y); background: var(--surface); }
@@ -1815,6 +1957,96 @@ section[id] { scroll-margin-top: 7rem; }
     </div>
   </section>
 
+  <!-- ================= ವೀಡಿಯೊ ಸಂಗ್ರಹ ================= -->
+  <section class="vlib" id="videos">
+    <div class="wrap">
+
+      <div class="section-head">
+        <p class="eyebrow">ವೀಡಿಯೊ</p>
+        <h2>ವೀಡಿಯೊ ಸಂಗ್ರಹ</h2>
+        <p class="lede">ಹೋರಾಟಗಳ ದೃಶ್ಯಗಳು, ಭಾಷಣಗಳು ಮತ್ತು ಸಮಾವೇಶಗಳು.</p>
+      </div>
+
+      <!-- TODO: every entry points at the one flag clip in assets/ and the
+           thumbnails are page artwork. Titles and durations are PLACEHOLDERS.
+           Give each button a data-src and the player will use it. -->
+      <div class="vlib-grid">
+
+        <figure class="vlib-stage">
+          <video id="vlibPlayer" controls preload="metadata" playsinline
+                 poster="assets/page-flag.svg">
+            <source src="assets/karnataka-flag.mp4" type="video/mp4" />
+          </video>
+          <figcaption>
+            <span class="vlib-now" id="vlibNow">ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ ಸಮಾವೇಶ</span>
+            <span class="vlib-time" id="vlibTime">4:12</span>
+          </figcaption>
+        </figure>
+
+        <ul class="vlib-list" id="vlibList">
+          <li>
+            <button class="vlib-item" type="button" data-index="0"
+                    data-poster="assets/page-flag.svg" data-title="ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ ಸಮಾವೇಶ" data-duration="4:12"
+                    aria-current="true">
+              <span class="vlib-thumb">
+                <img src="assets/page-flag.svg" alt="ಕನ್ನಡ ಬಾವುಟ" width="160" height="90"
+                     loading="lazy" decoding="async" />
+              </span>
+              <span class="vlib-text">
+                <span class="vlib-title">ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ ಸಮಾವೇಶ</span>
+                <span class="vlib-dur">4:12</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="vlib-item" type="button" data-index="1"
+                    data-poster="assets/about-rally.svg" data-title="ಬೆಂಗಳೂರಿನಲ್ಲಿ ಬೃಹತ್ ಪ್ರತಿಭಟನೆ" data-duration="2:48"
+                    aria-current="false">
+              <span class="vlib-thumb">
+                <img src="assets/about-rally.svg" alt="ಬಾವುಟ ಹಿಡಿದ ಜನಸಮೂಹ" width="160" height="90"
+                     loading="lazy" decoding="async" />
+              </span>
+              <span class="vlib-text">
+                <span class="vlib-title">ಬೆಂಗಳೂರಿನಲ್ಲಿ ಬೃಹತ್ ಪ್ರತಿಭಟನೆ</span>
+                <span class="vlib-dur">2:48</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="vlib-item" type="button" data-index="2"
+                    data-poster="assets/page-hampi.svg" data-title="ಗಡಿ ಭಾಗದಲ್ಲಿ ಕನ್ನಡ ಶಾಲೆಗಳ ಸ್ಥಿತಿ" data-duration="6:05"
+                    aria-current="false">
+              <span class="vlib-thumb">
+                <img src="assets/page-hampi.svg" alt="ಹಂಪಿಯ ಕಲ್ಲಿನ ಕಂಬಗಳು" width="160" height="90"
+                     loading="lazy" decoding="async" />
+              </span>
+              <span class="vlib-text">
+                <span class="vlib-title">ಗಡಿ ಭಾಗದಲ್ಲಿ ಕನ್ನಡ ಶಾಲೆಗಳ ಸ್ಥಿತಿ</span>
+                <span class="vlib-dur">6:05</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="vlib-item" type="button" data-index="3"
+                    data-poster="assets/page-mysore.svg" data-title="ಸಂಘಟನೆಯ ವಾರ್ಷಿಕ ಸಮಾವೇಶ" data-duration="8:30"
+                    aria-current="false">
+              <span class="vlib-thumb">
+                <img src="assets/page-mysore.svg" alt="ದೀಪಗಳ ಅರಮನೆ" width="160" height="90"
+                     loading="lazy" decoding="async" />
+              </span>
+              <span class="vlib-text">
+                <span class="vlib-title">ಸಂಘಟನೆಯ ವಾರ್ಷಿಕ ಸಮಾವೇಶ</span>
+                <span class="vlib-dur">8:30</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+
+      </div>
+      <p class="sr-only" role="status" aria-live="polite" id="vlibStatus"></p>
+    </div>
+  </section>
+
   <!-- ================= ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು ================= -->
   <section class="news" id="news">
     <div class="wrap">
@@ -1943,6 +2175,7 @@ section[id] { scroll-margin-top: 7rem; }
           <li><a href="#talk">ಅಧ್ಯಕ್ಷರ ಮಾತು</a></li>
           <li><a href="#about">ಪರಿಚಯ</a></li>
           <li><a href="#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a></li>
+          <li><a href="#videos">ವೀಡಿಯೊ ಸಂಗ್ರಹ</a></li>
           <li><a href="#news">ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು</a></li>
           <li><a href="#enrol">ಶುಲ್ಕ</a></li>
           <li><a href="#">ಸಂಪರ್ಕ</a></li>
@@ -2179,6 +2412,37 @@ section[id] { scroll-margin-top: 7rem; }
   stage.addEventListener('pointercancel', function () { swipeFrom = null; });
 
   layout();
+
+  /* ---------- ವೀಡಿಯೊ ಸಂಗ್ರಹ ---------- */
+  var vItems  = Array.prototype.slice.call(document.querySelectorAll('.vlib-item'));
+  var vPlayer = document.getElementById('vlibPlayer');
+  var vNow    = document.getElementById('vlibNow');
+  var vTime   = document.getElementById('vlibTime');
+  var vStatus = document.getElementById('vlibStatus');
+
+  vItems.forEach(function (item) {
+    item.addEventListener('click', function () {
+      vItems.forEach(function (other) {
+        other.setAttribute('aria-current', other === item ? 'true' : 'false');
+      });
+
+      vNow.textContent  = item.dataset.title;
+      vTime.textContent = item.dataset.duration;
+      vPlayer.poster    = item.dataset.poster;
+
+      /* only reload the media when the entry actually points somewhere else —
+         otherwise selecting an entry would restart the clip already playing */
+      var src = item.dataset.src;
+      if (src && vPlayer.currentSrc.indexOf(src) === -1) {
+        vPlayer.src = src;
+        vPlayer.load();
+      }
+      var played = vPlayer.play();
+      if (played && played.catch) played.catch(function () {});
+
+      vStatus.textContent = item.dataset.title + ' — ' + item.dataset.duration;
+    });
+  });
 
   /* ---------- enrol form ---------- */
   var form = document.getElementById('enrolForm');

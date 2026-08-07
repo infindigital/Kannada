@@ -65,8 +65,19 @@ in one place.
 
 Hero + book slider · stats · course modules (featured + grid) ·
 ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) · themes · about (the deep band) ·
-ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) · ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು (recent campaigns) ·
-enrolment · footer.
+ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) · ವೀಡಿಯೊ ಸಂಗ್ರಹ (video library) ·
+ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು (recent campaigns) · enrolment · footer.
+
+**ವೀಡಿಯೊ ಸಂಗ್ರಹ** is a working player, not a wall of thumbnails: a native
+`<video>` with controls beside a scrolling playlist of real `<button>`s.
+Selecting an entry swaps the poster, the caption and the duration, marks itself
+`aria-current`, and announces through an `aria-live` line. Give a button a
+`data-src` and the player loads it — without one it keeps the clip already
+playing rather than restarting it.
+
+> Every entry currently points at the one flag clip in `assets/`, the
+> thumbnails are page artwork, and the titles and durations are
+> **placeholders**.
 
 **ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು** reuses the `.card` component rather than introducing a
 second card style — image, place tag, date, headline, and a "know more" that
