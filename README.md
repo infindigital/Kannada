@@ -65,7 +65,19 @@ in one place.
 
 Hero + book slider · stats · course modules (featured + grid) ·
 ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) · themes · about (the deep band) ·
-ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) · enrolment · footer.
+ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) · ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು (recent campaigns) ·
+enrolment · footer.
+
+**ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು** reuses the `.card` component rather than introducing a
+second card style — image, place tag, date, headline, and a "know more" that
+looks like a button but is a `<span>`. The whole card is already one stretched
+link, so a real control there would be a second focus stop onto the same
+target. The card bodies are flex columns so the buttons line up across cards
+whose headlines run to different lengths.
+
+> The place, date and headline on each of those cards are **placeholders**, and
+> the images are existing page artwork standing in for photographs. No campaign
+> shown is a recorded event.
 
 Bands alternate ground so no two neighbours share a surface: dark, white,
 cream, white, cream, dark, cream, red, dark. Moving a section means checking
