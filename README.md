@@ -17,8 +17,9 @@ track the current page.
   Muted, autoplaying, `playsinline`, with a matching SVG poster so the hero is
   never blank while it loads.
 - `assets/*.svg` — the page artwork (flag poster, Hampi colonnade, illuminated
-  palace, viewfinder, film set, cinema hall). Vector, local, ~2–4 KB each, so
-  the page renders complete with no network requests.
+  palace, a flag-raising crowd, raised fists, campaign plate, viewfinder).
+  Vector, local, ~2–4 KB each, so the page renders complete with no network
+  requests.
 - `assets/logo-kannada.png` — the Karnataka Rakshana Vedike crest, 1024², as
   supplied. `assets/logo.png` (header, 220px tall) and `assets/logo-mark.png`
   (192px square, favicon) are derived from it by `tools/logo-prep.py`.

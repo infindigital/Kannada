@@ -1,0 +1,55 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 400" width="800" height="400" role="img" aria-label="Crowd raising Kannada flags">
+  <defs>
+    <linearGradient id="rsky" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0"    stop-color="#1A0800"/>
+      <stop offset="0.42" stop-color="#71161C"/>
+      <stop offset="0.74" stop-color="#D42A28"/>
+      <stop offset="1"    stop-color="#FFCC00"/>
+    </linearGradient>
+    <radialGradient id="rglow" cx="0.5" cy="0.86" r="0.55">
+      <stop offset="0" stop-color="#FFCC00" stop-opacity="0.75"/>
+      <stop offset="1" stop-color="#FFCC00" stop-opacity="0"/>
+    </radialGradient>
+    <linearGradient id="rvig" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0" stop-color="#1A0800" stop-opacity="0.6"/>
+      <stop offset="0.45" stop-color="#1A0800" stop-opacity="0"/>
+    </linearGradient>
+  </defs>
+
+  <rect width="800" height="400" fill="url(#rsky)"/>
+  <rect width="800" height="400" fill="url(#rglow)"/>
+
+  <!-- raised flags, poles rising out of the crowd -->
+  <g>
+    <g><rect x="92"  y="150" width="4" height="150" fill="#160402"/><path d="M96 152l44 13-44 13z" fill="#FFCC00"/></g>
+    <g><rect x="188" y="120" width="4" height="180" fill="#160402"/><path d="M192 122l50 15-50 15z" fill="#D42A28"/></g>
+    <g><rect x="286" y="164" width="4" height="140" fill="#160402"/><path d="M290 166l42 12-42 12z" fill="#FFCC00"/></g>
+    <g><rect x="404" y="104" width="5" height="200" fill="#160402"/><path d="M409 106l58 17-58 17z" fill="#D42A28"/></g>
+    <g><rect x="512" y="150" width="4" height="154" fill="#160402"/><path d="M516 152l46 13-46 13z" fill="#FFCC00"/></g>
+    <g><rect x="614" y="128" width="4" height="176" fill="#160402"/><path d="M618 130l50 15-50 15z" fill="#D42A28"/></g>
+    <g><rect x="706" y="168" width="4" height="136" fill="#160402"/><path d="M710 170l40 12-40 12z" fill="#FFCC00"/></g>
+  </g>
+
+  <!-- crowd: back rank, then front rank, so it reads as depth -->
+  <g fill="#2A0C05" opacity="0.85">
+    <g>
+      <circle cx="60"  cy="292" r="17"/><circle cx="132" cy="286" r="18"/><circle cx="212" cy="294" r="16"/>
+      <circle cx="286" cy="288" r="18"/><circle cx="360" cy="292" r="17"/><circle cx="436" cy="286" r="18"/>
+      <circle cx="510" cy="294" r="16"/><circle cx="584" cy="288" r="18"/><circle cx="660" cy="292" r="17"/>
+      <circle cx="740" cy="288" r="18"/>
+    </g>
+    <rect x="0" y="304" width="800" height="60"/>
+  </g>
+
+  <g fill="#160402">
+    <g>
+      <circle cx="24"  cy="332" r="21"/><circle cx="98"  cy="326" r="22"/><circle cx="176" cy="334" r="20"/>
+      <circle cx="252" cy="328" r="22"/><circle cx="330" cy="332" r="21"/><circle cx="408" cy="326" r="23"/>
+      <circle cx="486" cy="334" r="20"/><circle cx="562" cy="328" r="22"/><circle cx="640" cy="332" r="21"/>
+      <circle cx="716" cy="326" r="22"/><circle cx="788" cy="334" r="20"/>
+    </g>
+    <rect x="0" y="348" width="800" height="52"/>
+  </g>
+
+  <rect width="800" height="400" fill="url(#rvig)"/>
+</svg>
