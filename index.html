@@ -578,8 +578,6 @@ section[id] { scroll-margin-top: 7rem; }
 /* ============================================================
    MODULES
    ============================================================ */
-.modules { padding-block: var(--section-y); background: var(--surface-sunken); }
-
 .card {
   position: relative;
   background: var(--surface);
@@ -600,78 +598,18 @@ section[id] { scroll-margin-top: 7rem; }
 .card-figure img { width: 100%; height: 100%; object-fit: cover; }
 .card-figure .tag { position: absolute; top: .875rem; left: .875rem; }
 
-/* image-free card header: big outlined lesson number + icon */
-.card-emblem {
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  height: 132px;
-  color: var(--blue);
-  background:
-    linear-gradient(135deg, rgba(255,204,0,.18) 0%, rgba(212,42,40,.09) 100%),
-    var(--surface-sunken);
-  border-bottom: 1px solid var(--border-soft);
-  overflow: hidden;
-}
-.emblem-num {
-  position: absolute;
-  right: .5rem; bottom: -.32em;
-  font-family: var(--font-display);
-  font-size: 5.5rem;
-  line-height: 1;
-  color: transparent;
-  -webkit-text-stroke: 1.5px rgba(212,42,40,.28);
-  user-select: none;
-}
-.card:hover .card-emblem,
-.card:focus-within .card-emblem { color: var(--blue-dark); }
-
 .card-body { padding: 1.5rem 1.5rem 1.75rem; }
 .card-body h3 { font-size: 1.3rem; margin-bottom: .6rem; }
-.card-excerpt {
-  font-size: .9rem;
-  color: var(--ink-subtle);
-  display: -webkit-box;
-  -webkit-line-clamp: 3;
-  line-clamp: 3;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-.card-foot {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-top: 1.25rem;
-  padding-top: 1rem;
-  border-top: 1px solid var(--border-soft);
-  font-size: .78rem;
-  color: var(--ink-subtle);
-}
-.card-foot .go { color: var(--red); font-weight: 600; }
-
-/* featured module — two-up, collapses cleanly */
-.card--featured { display: grid; grid-template-columns: 1fr; }
-@media (min-width: 860px) {
-  .card--featured { grid-template-columns: 1.05fr 1fr; }
-  .card--featured .card-figure { aspect-ratio: auto; height: 100%; min-height: 400px; }
-  .card--featured .card-body { padding: clamp(2rem, 4vw, 3rem); align-self: center; }
-}
-.card--featured .card-body h2 { font-size: clamp(1.6rem, 3vw, 2.15rem); margin-block: .75rem .9rem; }
-.card--featured .card-excerpt { -webkit-line-clamp: 5; line-clamp: 5; font-size: .95rem; }
-
 .card-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: clamp(1.25rem, 2.5vw, 1.75rem);
 }
-.stack-lg { margin-bottom: clamp(2.5rem, 6vw, 4rem); }
 
 /* ============================================================
    THEMES / CATEGORIES
    ============================================================ */
-.themes { padding-block: var(--section-y); background: var(--surface-sunken); }
+.themes { padding-block: var(--section-y); background: var(--surface); }
 .theme-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(100%, 165px), 1fr));
@@ -683,7 +621,7 @@ section[id] { scroll-margin-top: 7rem; }
   align-items: center;
   gap: .65rem;
   padding: 1.75rem 1rem;
-  background: var(--surface);
+  background: var(--surface-sunken);
   border: 1px solid var(--border-soft);
   border-radius: var(--r-md);
   color: var(--ink);
@@ -778,7 +716,7 @@ section[id] { scroll-margin-top: 7rem; }
   padding-block: var(--section-y);
   background:
     radial-gradient(72% 52% at 50% 60%, rgba(255,204,0,.20) 0%, transparent 64%),
-    var(--surface);
+    var(--surface-sunken);
   color: var(--ink-muted);
   overflow: hidden;
 }
@@ -954,7 +892,7 @@ section[id] { scroll-margin-top: 7rem; }
   padding-block: var(--section-y);
   background:
     radial-gradient(58% 44% at 12% 18%, rgba(255,204,0,.16) 0%, transparent 62%),
-    var(--surface);
+    var(--surface-sunken);
 }
 .talk-grid {
   display: grid;
@@ -1491,7 +1429,6 @@ section[id] { scroll-margin-top: 7rem; }
     -webkit-text-stroke: 0;
   }
   .card, .theme-tile, .icon-btn { border: 1px solid CanvasText; }
-  .emblem-num { color: CanvasText; -webkit-text-stroke: 0; opacity: .35; }
 }
 </style>
 </head>
@@ -1510,7 +1447,6 @@ section[id] { scroll-margin-top: 7rem; }
       </a>
 
       <nav class="nav-desktop" aria-label="ಮುಖ್ಯ ಮೆನು">
-        <a class="nav-link" href="#modules">ಪಾಠಗಳು</a>
         <a class="nav-link" href="#themes">ವಿಷಯಗಳು</a>
         <a class="nav-link" href="#about">ಪರಿಚಯ</a>
         <a class="nav-link" href="#hejje">ಹೆಜ್ಜೆಗಳು</a>
@@ -1530,7 +1466,6 @@ section[id] { scroll-margin-top: 7rem; }
     </div>
 
     <nav class="nav-mobile" id="navMobile" aria-label="ಮೊಬೈಲ್ ಮೆನು">
-      <a href="#modules">ಪಾಠಗಳು</a>
       <a href="#themes">ವಿಷಯಗಳು</a>
       <a href="#about">ಪರಿಚಯ</a>
       <a href="#hejje">ಹೆಜ್ಜೆಗಳು</a>
@@ -1712,138 +1647,6 @@ section[id] { scroll-margin-top: 7rem; }
     </div>
   </section>
 
-  <!-- ================= MODULES ================= -->
-  <section class="modules" id="modules">
-    <div class="wrap">
-
-      <div class="section-head">
-        <p class="eyebrow">ಪಠ್ಯಕ್ರಮ</p>
-        <h2>ಈ ಪಾಠದಿಂದ ಆರಂಭಿಸಿ</h2>
-        <p class="lede">
-          ಪ್ರತಿ ಪಾಠವೂ ಒಂದು ಸಣ್ಣ ಯೋಜನೆಯೊಂದಿಗೆ ಮುಗಿಯುತ್ತದೆ — ನೋಡಿ, ಮಾಡಿ, ತೋರಿಸಿ.
-        </p>
-      </div>
-
-      <article class="card card--featured stack-lg">
-        <div class="card-figure">
-          <img src="assets/module-frame.svg"
-               alt="ರೂಲ್-ಆಫ್-ಥರ್ಡ್ಸ್ ಗ್ರಿಡ್ ಮತ್ತು ಅಪರ್ಚರ್ ಇರುವ ವ್ಯೂಫೈಂಡರ್"
-               width="900" height="800" loading="lazy" decoding="async" />
-        </div>
-        <div class="card-body">
-          <span class="tag">ಪಾಠ 01</span>
-          <h2><a class="card-link" href="#modules">ಫ್ರೇಮ್‌ನ ವ್ಯಾಕರಣ</a></h2>
-          <p class="card-excerpt">
-            ಶಾಟ್ ಗಾತ್ರ, ಕೋನ, ಚಲನೆ ಮತ್ತು ಕಣ್ಣಿನ ಸಾಲು — ಪ್ರೇಕ್ಷಕನ ಗಮನವನ್ನು
-            ಎಲ್ಲಿಗೆ ಒಯ್ಯಬೇಕೆಂದು ನಿರ್ಧರಿಸುವ ನಾಲ್ಕು ಸಾಧನಗಳು. ಒಂದೇ ದೃಶ್ಯವನ್ನು
-            ಆರು ರೀತಿಯಲ್ಲಿ ಚಿತ್ರೀಕರಿಸಿ, ಪ್ರತಿಯೊಂದೂ ಅರ್ಥವನ್ನು ಹೇಗೆ ಬದಲಾಯಿಸುತ್ತದೆ
-            ಎಂಬುದನ್ನು ನೀವೇ ನೋಡುತ್ತೀರಿ.
-          </p>
-          <div class="card-foot">
-            <span>8 ಭಾಗಗಳು · 96 ನಿಮಿಷ</span>
-            <span class="go" aria-hidden="true">ಪ್ರಾರಂಭಿಸಿ →</span>
-          </div>
-        </div>
-      </article>
-
-      <div class="section-head">
-        <p class="eyebrow">ಮುಂದಿನ ಪಾಠಗಳು</p>
-      </div>
-
-      <div class="card-grid">
-
-        <article class="card">
-          <div class="card-emblem">
-            <span class="emblem-num" aria-hidden="true">02</span>
-            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"
-                    stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/>
-              <circle cx="12" cy="12" r="4.2" stroke="currentColor" stroke-width="1.7"/>
-            </svg>
-          </div>
-          <div class="card-body">
-            <h3><a class="card-link" href="#modules">ಬೆಳಕಿನ ಶಿಸ್ತು</a></h3>
-            <p class="card-excerpt">
-              ಒಂದೇ ಮೂಲದಿಂದ ಆರಂಭಿಸಿ. ನೆರಳು ಎಲ್ಲಿ ಬೀಳಬೇಕೆಂದು ನಿರ್ಧರಿಸಿದ ಮೇಲೆಯೇ
-              ಎರಡನೇ ದೀಪ ಹಚ್ಚಿ.
-            </p>
-            <div class="card-foot">
-              <span>6 ಭಾಗಗಳು · 74 ನಿ</span>
-              <span class="go" aria-hidden="true">→</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-emblem">
-            <span class="emblem-num" aria-hidden="true">03</span>
-            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M12 3c5 0 9 3.6 9 8 0 2.5-2 4-4 4h-1.5a1.5 1.5 0 00-1 2.6c.6.6.3 1.9-.9 2.2A9.6 9.6 0 0112 21c-5 0-9-4-9-9s4-9 9-9z"
-                    stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-              <circle cx="8" cy="10" r="1.2" fill="currentColor"/>
-              <circle cx="12" cy="7.5" r="1.2" fill="currentColor"/>
-              <circle cx="16" cy="10" r="1.2" fill="currentColor"/>
-            </svg>
-          </div>
-          <div class="card-body">
-            <h3><a class="card-link" href="#modules">ಬಣ್ಣದ ಭಾವ</a></h3>
-            <p class="card-excerpt">
-              ಬಣ್ಣ ಸಂಯೋಜನೆ ಅಲಂಕಾರವಲ್ಲ — ಅದು ನಿರೂಪಣೆ. ಬೆಚ್ಚಗಿನ ಮತ್ತು ತಣ್ಣನೆಯ
-              ಪ್ಯಾಲೆಟ್‌ಗಳಿಂದ ಕಥೆಯ ಸಮಯವನ್ನು ಗುರುತಿಸಿ.
-            </p>
-            <div class="card-foot">
-              <span>5 ಭಾಗಗಳು · 61 ನಿ</span>
-              <span class="go" aria-hidden="true">→</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-emblem">
-            <span class="emblem-num" aria-hidden="true">04</span>
-            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
-              <path d="M3 9h18M3 15h18M8 5v14M16 5v14" stroke="currentColor" stroke-width="1.6"/>
-            </svg>
-          </div>
-          <div class="card-body">
-            <h3><a class="card-link" href="#modules">ಕಟ್‌ನ ಲಯ</a></h3>
-            <p class="card-excerpt">
-              ಯಾವಾಗ ಕತ್ತರಿಸಬೇಕು ಎಂಬುದಕ್ಕಿಂತ ಯಾಕೆ ಕತ್ತರಿಸಬೇಕು ಎಂಬುದು ಮುಖ್ಯ.
-              ಲಯ, ಉಸಿರು ಮತ್ತು ಮೌನದ ಬಳಕೆ.
-            </p>
-            <div class="card-foot">
-              <span>7 ಭಾಗಗಳು · 88 ನಿ</span>
-              <span class="go" aria-hidden="true">→</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="card">
-          <div class="card-emblem">
-            <span class="emblem-num" aria-hidden="true">05</span>
-            <svg width="46" height="46" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-              <path d="M3 12v2M7 8v10M11 4v16M15 8v10M19 11v3" stroke="currentColor"
-                    stroke-width="1.8" stroke-linecap="round"/>
-            </svg>
-          </div>
-          <div class="card-body">
-            <h3><a class="card-link" href="#modules">ಕಾಣದ ಧ್ವನಿ</a></h3>
-            <p class="card-excerpt">
-              ಪ್ರೇಕ್ಷಕ ಗಮನಿಸದ ಧ್ವನಿಯೇ ಅತ್ಯುತ್ತಮ ಧ್ವನಿ. ಫೋಲಿ, ಪರಿಸರ ಮತ್ತು
-              ಸಂಗೀತದ ಸಮತೋಲನ.
-            </p>
-            <div class="card-foot">
-              <span>4 ಭಾಗಗಳು · 52 ನಿ</span>
-              <span class="go" aria-hidden="true">→</span>
-            </div>
-          </div>
-        </article>
-
-      </div>
-    </div>
-  </section>
-
   <!-- ================= ಅಧ್ಯಕ್ಷರ ಮಾತು ================= -->
   <section class="talk" id="talk">
     <div class="wrap talk-grid">
@@ -1893,7 +1696,7 @@ section[id] { scroll-margin-top: 7rem; }
 
       <div class="theme-grid">
 
-        <a class="theme-tile" href="#modules">
+        <a class="theme-tile" href="#hejje">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M3 8a2 2 0 012-2h2.5l1.2-2h6.6l1.2 2H20a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"
                   stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
@@ -1903,7 +1706,7 @@ section[id] { scroll-margin-top: 7rem; }
           <span class="c">18 ಪಾಠಗಳು</span>
         </a>
 
-        <a class="theme-tile" href="#modules">
+        <a class="theme-tile" href="#hejje">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M12 3c5 0 9 3.6 9 8 0 2.5-2 4-4 4h-1.5a1.5 1.5 0 00-1 2.6c.6.6.3 1.9-.9 2.2A9.6 9.6 0 0112 21c-5 0-9-4-9-9s4-9 9-9z"
                   stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
@@ -1915,7 +1718,7 @@ section[id] { scroll-margin-top: 7rem; }
           <span class="c">12 ಪಾಠಗಳು</span>
         </a>
 
-        <a class="theme-tile" href="#modules">
+        <a class="theme-tile" href="#hejje">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
             <path d="M3 9h18M3 15h18M8 5v14M16 5v14" stroke="currentColor" stroke-width="1.6"/>
@@ -1924,7 +1727,7 @@ section[id] { scroll-margin-top: 7rem; }
           <span class="c">15 ಪಾಠಗಳು</span>
         </a>
 
-        <a class="theme-tile" href="#modules">
+        <a class="theme-tile" href="#hejje">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M3 12v2M7 8v10M11 4v16M15 8v10M19 11v3" stroke="currentColor"
                   stroke-width="1.8" stroke-linecap="round"/>
@@ -1933,7 +1736,7 @@ section[id] { scroll-margin-top: 7rem; }
           <span class="c">9 ಪಾಠಗಳು</span>
         </a>
 
-        <a class="theme-tile" href="#modules">
+        <a class="theme-tile" href="#hejje">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M4 20l3-11M20 20l-3-11M6 9h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
             <path d="M4 5.5l14 2.2M4.6 9.2L18.6 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
@@ -1942,7 +1745,7 @@ section[id] { scroll-margin-top: 7rem; }
           <span class="c">11 ಪಾಠಗಳು</span>
         </a>
 
-        <a class="theme-tile" href="#modules">
+        <a class="theme-tile" href="#hejje">
           <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
             <path d="M4 5.5A2.5 2.5 0 016.5 3H12v17H6.5A2.5 2.5 0 004 22V5.5zM20 5.5A2.5 2.5 0 0017.5 3H12v17h5.5A2.5 2.5 0 0120 22V5.5z"
                   stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
@@ -2205,7 +2008,7 @@ section[id] { scroll-margin-top: 7rem; }
           <path d="M1 1l16 16M17 1L1 17" stroke="currentColor" stroke-width="2"/>
         </svg>
       </button>
-      <img id="lbImage" src="" alt="" />
+      <img id="lbImage" alt="" />
       <div class="lb-bar">
         <button class="lb-btn" type="button" id="lbPrev" aria-label="ಹಿಂದಿನ ಚಿತ್ರ">
           <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -2340,10 +2143,10 @@ section[id] { scroll-margin-top: 7rem; }
       <div>
         <h3>ಪಾಠಗಳು</h3>
         <ul>
-          <li><a href="#modules">ಛಾಯಾಗ್ರಹಣ</a></li>
-          <li><a href="#modules">ಬಣ್ಣ</a></li>
-          <li><a href="#modules">ಸಂಕಲನ</a></li>
-          <li><a href="#modules">ಧ್ವನಿ</a></li>
+          <li><a href="#themes">ಛಾಯಾಗ್ರಹಣ</a></li>
+          <li><a href="#themes">ಬಣ್ಣ</a></li>
+          <li><a href="#themes">ಸಂಕಲನ</a></li>
+          <li><a href="#themes">ಧ್ವನಿ</a></li>
         </ul>
       </div>
 

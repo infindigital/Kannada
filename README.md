@@ -17,7 +17,8 @@ track the current page.
   Muted, autoplaying, `playsinline`, with a matching SVG poster so the hero is
   never blank while it loads.
 - `assets/*.svg` — the page artwork (flag poster, Hampi colonnade, illuminated
-  palace, a flag-raising crowd, raised fists, campaign plate, viewfinder).
+  palace, a flag-raising crowd, raised fists, campaign plate, chariot
+  procession, government building, village school).
   Vector, local, ~2–4 KB each, so the page renders complete with no network
   requests.
 - `assets/logo-kannada.png` — the Karnataka Rakshana Vedike crest, 1024², as
@@ -63,8 +64,7 @@ in one place.
 
 ## Sections
 
-Hero + book slider · about · stats · course modules (featured + grid) ·
-ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) · themes ·
+Hero + book slider · about · stats · ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) · themes ·
 ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) · ವೀಡಿಯೊ ಸಂಗ್ರಹ (video library) ·
 ಚಿತ್ರ ಸಂಗ್ರಹ (image gallery) · ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು (recent campaigns) ·
 enrolment · footer.
@@ -108,12 +108,12 @@ whose headlines run to different lengths.
 > shown is a recorded event.
 
 Bands alternate ground so no two neighbours share a surface: dark, cream,
-white, cream, white, cream, white, dark, cream, white, red, dark. Moving a
-section means re-checking that whole run, not just the two seams either side of
-it. Moving about up under the hero cost two other changes: about itself went
-from the deep band to cream, since two dark bands cannot sit together, and the
-coverflow went cream to white, because about leaving had put it next to themes
-on the same ground.
+white, cream, white, cream, dark, cream, white, red, dark. Adding, moving or
+removing a section means re-checking that whole run, not just the seams either
+side of it — pulling the modules band out left stats and the leader's message
+both white, and fixing that rippled through the two sections after them. The
+check is done by reading every section's computed background in order, not by
+eye.
 
 **ಅಧ್ಯಕ್ಷರ ಮಾತು** portrait is a circular
 medallion: a flag-gradient ring showing through the wrapper's own padding,
