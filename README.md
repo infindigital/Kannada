@@ -11,8 +11,13 @@ track the current page.
 
 ## Files
 
-- `index.html` — the whole page. No build step, no CDN, no framework: plain
-  CSS custom properties and ~120 lines of vanilla JS.
+- `index.html` — the home page. No build step, no CDN, no framework.
+- `campaign.html` — the report detail page a card on the home page opens.
+- `assets/site.css` — every style, shared by both pages. `url()` inside it
+  resolves against the stylesheet, not the page, so asset paths in here carry
+  no `assets/` prefix.
+- `assets/nav.js` — the header behaviour, needed by every page. The sliders,
+  lightbox and player stay inline on the page that uses them.
 - `assets/karnataka-flag.mp4` — looping Karnataka flag video, page 1 of the hero.
   Muted, autoplaying, `playsinline`, with a matching SVG poster so the hero is
   never blank while it loads.
@@ -153,3 +158,7 @@ shared SVG (`assets/hejje-plate.svg`) — flag banner, lit skyline, pennants.
 - To view: open `index.html` in any modern browser. Fonts come from Google
   Fonts; everything else is local, so it degrades to system serif/sans offline.
 - `DESIGN-RECOMMENDATIONS.md` holds the full UI review this page was built from.
+- Images carry `width`/`height` attributes for layout stability, and those are
+  presentational hints mapped to CSS. Any rule that sets only `width` on such an
+  image must also set `height: auto`, or the attribute's height stays in force
+  and `aspect-ratio` never applies.
