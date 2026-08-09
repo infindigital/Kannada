@@ -719,13 +719,11 @@ section[id] { scroll-margin-top: 7rem; }
   overflow: hidden;
   padding-block: var(--section-y);
   background:
-    radial-gradient(circle at 18% 82%, rgba(255,204,0,.16) 0%, transparent 52%),
-    radial-gradient(circle at 82% 18%, rgba(212,42,40,.20) 0%, transparent 52%),
-    var(--surface-inverse);
-  color: rgba(255,255,255,.78);
+    radial-gradient(circle at 16% 84%, rgba(255,204,0,.22) 0%, transparent 54%),
+    radial-gradient(circle at 84% 16%, rgba(212,42,40,.10) 0%, transparent 54%),
+    var(--surface-sunken);
+  color: var(--ink-muted);
 }
-.about .eyebrow { color: var(--yellow); }
-.about .eyebrow::before { background: linear-gradient(to right, var(--yellow), var(--red)); }
 .about-watermark {
   position: absolute;
   right: -.12em; top: 50%;
@@ -733,7 +731,7 @@ section[id] { scroll-margin-top: 7rem; }
   font-family: var(--font-display);
   font-size: min(30rem, 46vw);
   line-height: 1;
-  color: rgba(255,204,0,.06);
+  color: rgba(26,8,0,.05);
   user-select: none;
   pointer-events: none;
 }
@@ -748,41 +746,29 @@ section[id] { scroll-margin-top: 7rem; }
 @media (min-width: 900px) { .about-grid { grid-template-columns: 1fr 1fr; } }
 .about h2 {
   font-size: clamp(1.9rem, 4vw, 3rem);
-  color: #fff;
+  color: var(--ink);
   margin-block: .75rem 1.25rem;
 }
-.about h2 em { color: var(--yellow); font-style: normal; }
-.about p + p { margin-top: 1rem; color: rgba(255,255,255,.66); font-size: .95rem; }
+.about h2 em { color: var(--red); font-style: normal; }
+.about p + p { margin-top: 1rem; color: var(--ink-subtle); font-size: .95rem; }
 
-.about-collage { display: grid; grid-template-columns: 1fr 1fr; gap: .75rem; }
-.about-collage .wide { grid-column: 1 / -1; }
-.about-collage figure {
-  position: relative;
+.about-figure {
   margin: 0;
-  border-radius: var(--r-md);
+  border-radius: var(--r-lg);
   overflow: hidden;
+  box-shadow: var(--shadow-3);
+  background: var(--surface);
 }
-.about-collage img { width: 100%; height: 100%; object-fit: cover; }
-.about-collage .wide { aspect-ratio: 16 / 8; }
-.about-collage .small { aspect-ratio: 1 / 1; }
-.about-collage figcaption {
-  position: absolute; left: .75rem; bottom: .75rem;
-}
-.about-note {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  gap: .5rem;
-  padding: 1.25rem;
-  text-align: center;
+.about-figure img { display: block; width: 100%; height: auto; }
+/* the strip that was a separate tile in the collage now closes the picture */
+.about-figure figcaption {
+  padding: .9rem 1.1rem;
   background: var(--red);
   color: #fff;
-  border-radius: var(--r-md);
-  aspect-ratio: 1 / 1;
-  font-size: .9rem;
-  font-weight: 500;
-  line-height: 1.4;
+  font-size: .82rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-align: center;
 }
 
 /* ============================================================
@@ -792,7 +778,7 @@ section[id] { scroll-margin-top: 7rem; }
   padding-block: var(--section-y);
   background:
     radial-gradient(72% 52% at 50% 60%, rgba(255,204,0,.20) 0%, transparent 64%),
-    var(--surface-sunken);
+    var(--surface);
   color: var(--ink-muted);
   overflow: hidden;
 }
@@ -1668,6 +1654,42 @@ section[id] { scroll-margin-top: 7rem; }
 
     <p class="sr-only" role="status" aria-live="polite" id="bookStatus"></p>
   </section>
+  <!-- ================= ABOUT ================= -->
+  <section class="about" id="about">
+    <div class="flag-rule" style="position:absolute;top:0;left:0;right:0;"></div>
+    <span class="about-watermark" aria-hidden="true">ಕ</span>
+
+    <div class="wrap about-grid">
+      <div>
+        <p class="eyebrow">ನಮ್ಮ ಬಗ್ಗೆ</p>
+        <h2>ಶಕ್ತಿ ನಮ್ಮ ಏಕತೆ, <em>ಗುರಿ ಕನ್ನಡದ ಅಭ್ಯುದಯ</em></h2>
+        <p>
+          ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ ಕನ್ನಡ ಭಾಷೆ, ಸಂಸ್ಕೃತಿ, ನೆಲ ಮತ್ತು ಕನ್ನಡಿಗರ
+          ಹಿತಾಸಕ್ತಿಗಳ ರಕ್ಷಣೆಗೆ ಸಮರ್ಪಿತವಾದ ಸಾಮಾಜಿಕ ಸಂಘಟನೆಯಾಗಿದೆ.
+        </p>
+        <p>
+          ಕನ್ನಡದ ಅಸ್ತಿತ್ವವನ್ನು ಉಳಿಸಿ ಬೆಳೆಸುವುದು, ಕನ್ನಡಿಗರ ಹಕ್ಕುಗಳನ್ನು
+          ಕಾಪಾಡುವುದು ಮತ್ತು ಸಮಾಜದಲ್ಲಿ ಜಾಗೃತಿ ಮೂಡಿಸುವುದು ನಮ್ಮ ಪ್ರಮುಖ
+          ಧ್ಯೇಯವಾಗಿದೆ.
+        </p>
+        <p>
+          ರಾಜ್ಯದ ಅಭಿವೃದ್ಧಿಯಲ್ಲಿ ಪ್ರತಿಯೊಬ್ಬ ಕನ್ನಡಿಗನ ಪಾತ್ರ ಮಹತ್ವದ್ದಾಗಿದೆ ಎಂಬ
+          ನಂಬಿಕೆಯಿಂದ ನಾವು ನಿರಂತರವಾಗಿ ಸೇವೆ ಸಲ್ಲಿಸುತ್ತಿದ್ದೇವೆ.
+        </p>
+      </div>
+
+      <figure class="about-figure">
+        <img src="assets/about-leader.jpg"
+             alt="ಕನ್ನಡ ಬಾವುಟದ ಶಾಲು ಧರಿಸಿದ ಮುಖಂಡರ ಭಾವಚಿತ್ರ — ಹಿಂದೆ ಗೋಪುರ ಮತ್ತು ವಿಧಾನಸೌಧ"
+             width="1100" height="733" loading="lazy" decoding="async" />
+        <figcaption>ನಾಡು · ನುಡಿ · ನೆಲ · ಸಂಸ್ಕೃತಿ</figcaption>
+      </figure>
+    </div>
+    </div>
+
+    <div class="flag-rule" style="position:absolute;bottom:0;left:0;right:0;"></div>
+  </section>
+
   <!-- ================= STATS ================= -->
   <section class="stats" aria-label="ಕೋರ್ಸ್ ಸಂಖ್ಯೆಗಳಲ್ಲಿ">
     <div class="wrap stats-grid">
@@ -1931,49 +1953,6 @@ section[id] { scroll-margin-top: 7rem; }
 
       </div>
     </div>
-  </section>
-
-  <!-- ================= ABOUT ================= -->
-  <section class="about" id="about">
-    <div class="flag-rule" style="position:absolute;top:0;left:0;right:0;"></div>
-    <span class="about-watermark" aria-hidden="true">ಕ</span>
-
-    <div class="wrap about-grid">
-      <div>
-        <p class="eyebrow">ನಮ್ಮ ಬಗ್ಗೆ</p>
-        <h2>ಶಕ್ತಿ ನಮ್ಮ ಏಕತೆ, <em>ಗುರಿ ಕನ್ನಡದ ಅಭ್ಯುದಯ</em></h2>
-        <p>
-          ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ ಕನ್ನಡ ಭಾಷೆ, ಸಂಸ್ಕೃತಿ, ನೆಲ ಮತ್ತು ಕನ್ನಡಿಗರ
-          ಹಿತಾಸಕ್ತಿಗಳ ರಕ್ಷಣೆಗೆ ಸಮರ್ಪಿತವಾದ ಸಾಮಾಜಿಕ ಸಂಘಟನೆಯಾಗಿದೆ.
-        </p>
-        <p>
-          ಕನ್ನಡದ ಅಸ್ತಿತ್ವವನ್ನು ಉಳಿಸಿ ಬೆಳೆಸುವುದು, ಕನ್ನಡಿಗರ ಹಕ್ಕುಗಳನ್ನು
-          ಕಾಪಾಡುವುದು ಮತ್ತು ಸಮಾಜದಲ್ಲಿ ಜಾಗೃತಿ ಮೂಡಿಸುವುದು ನಮ್ಮ ಪ್ರಮುಖ
-          ಧ್ಯೇಯವಾಗಿದೆ.
-        </p>
-        <p>
-          ರಾಜ್ಯದ ಅಭಿವೃದ್ಧಿಯಲ್ಲಿ ಪ್ರತಿಯೊಬ್ಬ ಕನ್ನಡಿಗನ ಪಾತ್ರ ಮಹತ್ವದ್ದಾಗಿದೆ ಎಂಬ
-          ನಂಬಿಕೆಯಿಂದ ನಾವು ನಿರಂತರವಾಗಿ ಸೇವೆ ಸಲ್ಲಿಸುತ್ತಿದ್ದೇವೆ.
-        </p>
-      </div>
-
-      <div class="about-collage">
-        <figure class="wide">
-          <img src="assets/about-rally.svg"
-               alt="ಕನ್ನಡ ಬಾವುಟಗಳನ್ನು ಎತ್ತಿ ಹಿಡಿದ ಜನಸಮೂಹ"
-               width="800" height="400" loading="lazy" decoding="async" />
-          <figcaption><span class="tag tag--yellow">ಒಗ್ಗಟ್ಟು</span></figcaption>
-        </figure>
-        <figure class="small">
-          <img src="assets/about-unity.svg"
-               alt="ಬಾವುಟಗಳೊಂದಿಗೆ ಎತ್ತಿ ಹಿಡಿದ ಕೈಗಳು"
-               width="400" height="400" loading="lazy" decoding="async" />
-        </figure>
-        <p class="about-note">ನಾಡು · ನುಡಿ · ನೆಲ · ಸಂಸ್ಕೃತಿ</p>
-      </div>
-    </div>
-
-    <div class="flag-rule" style="position:absolute;bottom:0;left:0;right:0;"></div>
   </section>
 
   <!-- ================= ನಮ್ಮ ಹೆಜ್ಜೆಗಳು ================= -->

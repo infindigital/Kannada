@@ -63,11 +63,15 @@ in one place.
 
 ## Sections
 
-Hero + book slider · stats · course modules (featured + grid) ·
-ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) · themes · about (the deep band) ·
+Hero + book slider · about · stats · course modules (featured + grid) ·
+ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) · themes ·
 ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) · ವೀಡಿಯೊ ಸಂಗ್ರಹ (video library) ·
 ಚಿತ್ರ ಸಂಗ್ರಹ (image gallery) · ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು (recent campaigns) ·
 enrolment · footer.
+
+The **about** band carries the supplied portrait (`assets/narayana-guru.png`,
+1.9 MB, served as a 98 KB JPEG) closed by the ನಾಡು · ನುಡಿ · ನೆಲ · ಸಂಸ್ಕೃತಿ
+strip, which was a separate tile when that column was a three-part collage.
 
 **ಚಿತ್ರ ಸಂಗ್ರಹ** is a mosaic, not an even grid — two tiles carry weight via
 `is-wide` / `is-tall` spans and `grid-auto-flow: dense` packs the rest around
@@ -103,10 +107,13 @@ whose headlines run to different lengths.
 > the images are existing page artwork standing in for photographs. No campaign
 > shown is a recorded event.
 
-Bands alternate ground so no two neighbours share a surface: dark, white,
-cream, white, cream, dark, cream, red, dark. Moving a section means checking
-that run — when ಅಧ್ಯಕ್ಷರ ಮಾತು landed between modules and themes, themes went
-from white to cream (and its tiles from cream to white) to keep the seam.
+Bands alternate ground so no two neighbours share a surface: dark, cream,
+white, cream, white, cream, white, dark, cream, white, red, dark. Moving a
+section means re-checking that whole run, not just the two seams either side of
+it. Moving about up under the hero cost two other changes: about itself went
+from the deep band to cream, since two dark bands cannot sit together, and the
+coverflow went cream to white, because about leaving had put it next to themes
+on the same ground.
 
 **ಅಧ್ಯಕ್ಷರ ಮಾತು** portrait is a circular
 medallion: a flag-gradient ring showing through the wrapper's own padding,
