@@ -1,0 +1,57 @@
+  <!-- ================= ಸಂಪರ್ಕಿಸಿ ================= -->
+  <!-- TODO: every detail on this page is a PLACEHOLDER — the address, the two
+       phone numbers, the email addresses and the office hours. Nothing here
+       reaches anyone. The form has no server behind it either: it validates
+       and announces, nothing more. Replace all of it before publishing. -->
+  <section class="contact" id="contact">
+    <div class="wrap contact-grid">
+
+      <div class="contact-details">
+        <h2>ಕಚೇರಿ</h2>
+        <ul class="contact-list">
+          <li>
+            <span class="contact-label">ವಿಳಾಸ</span>
+            <span>ಕಚೇರಿಯ ವಿಳಾಸ ಇಲ್ಲಿ,<br />ಬೆಂಗಳೂರು – 560 001, ಕರ್ನಾಟಕ</span>
+          </li>
+          <li>
+            <span class="contact-label">ದೂರವಾಣಿ</span>
+            <span><a href="tel:+910000000000">+91 00000 00000</a></span>
+          </li>
+          <li>
+            <span class="contact-label">ಇಮೇಲ್</span>
+            <span><a href="mailto:name@example.org">name@example.org</a></span>
+          </li>
+          <li>
+            <span class="contact-label">ಸಮಯ</span>
+            <span>ಸೋಮವಾರ – ಶನಿವಾರ, ಬೆಳಿಗ್ಗೆ 10 – ಸಂಜೆ 6</span>
+          </li>
+        </ul>
+
+        <p class="contact-note">
+          ಜಿಲ್ಲಾ ಘಟಕವನ್ನು ತಲುಪಲು <a href="districts.html">ಜಿಲ್ಲೆಗಳು</a> ಪುಟ ನೋಡಿ.
+        </p>
+      </div>
+
+      <form class="contact-form" id="contactForm" novalidate>
+        <h2>ಸಂದೇಶ ಕಳುಹಿಸಿ</h2>
+
+        <p class="field">
+          <label for="cName">ಹೆಸರು</label>
+          <input id="cName" name="name" type="text" autocomplete="name" required />
+        </p>
+        <p class="field">
+          <label for="cMail">ಇಮೇಲ್ ವಿಳಾಸ</label>
+          <input id="cMail" name="email" type="email" inputmode="email"
+                 autocomplete="email" required />
+        </p>
+        <p class="field">
+          <label for="cMsg">ಸಂದೇಶ</label>
+          <textarea id="cMsg" name="message" rows="5" required></textarea>
+        </p>
+
+        <button class="btn btn--primary" type="submit">ಕಳುಹಿಸಿ</button>
+        <p class="contact-status" role="status" aria-live="polite" id="contactStatus"></p>
+      </form>
+
+    </div>
+  </section>

@@ -1,9 +1,10 @@
-# Craft — ಸಿನಿಮ್ಯಾಟಿಕ್ ಕಥನ (Cinematic Storytelling)
+# ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ
 
-A single-page course site in **Kannada (ಕನ್ನಡ)**: a **full-bleed video hero**
-over a **light-theme** page in the Karnataka flag palette.
+A site in **Kannada (ಕನ್ನಡ)** for Karnataka Rakshana Vedike: a **full-bleed
+video hero** over **light-theme** pages in the Karnataka flag palette, with a
+page for each of the fourteen menu entries.
 
-The hero is a **book-style slider**. Page one is the looping Karnataka flag
+The home page opens on a **book-style slider**. Page one is the looping Karnataka flag
 video; pages turn sideways over a shaded binding edge while the media inside
 counter-slides, so they read as leaves of a book rather than one flat strip.
 The chapter caption, page count and progress bars along the foot of the hero
@@ -11,23 +12,41 @@ track the current page.
 
 ## Files
 
-- `index.html` — the home page. No build step, no CDN, no framework.
-- `campaign.html` — the report detail page a card on the home page opens.
-- `assets/site.css` — every style, shared by both pages. `url()` inside it
+There is a **page per menu entry** — sixteen in all — and every one carries the
+same header, the same footer and the same fourteen links. Keeping that in step
+by hand across sixteen files is how a menu ends up disagreeing with itself, so
+the chrome lives in one place and the pages are generated:
+
+```
+python3 tools/pages.py
+```
+
+- `tools/pages.py` — the menu, the page table, and the shared head, header and
+  footer. Change the menu here, run it, and every page follows. It also rewrites
+  `campaign.html`'s chrome in place, so the report page cannot drift either.
+- `content/*.html` — one fragment per section, copied in verbatim. The generator
+  never edits these; it only chooses which pages carry which fragments. Editing
+  copy means editing a fragment, then re-running the generator.
+- `*.html` at the root — **generated output**. Edits here are overwritten on the
+  next run; make them in `content/` or `tools/pages.py` instead. The output is
+  plain static HTML, so a build step is needed only to *change* the site, never
+  to serve it.
+- `assets/site.css` — every style, shared by all pages. `url()` inside it
   resolves against the stylesheet, not the page, so asset paths in here carry
   no `assets/` prefix.
-- `assets/nav.js` — the header behaviour, needed by every page: the mobile
-  sheet and the grouped menus. The sliders, lightbox and player stay inline on
-  the page that uses them.
-
-- `assets/karnataka-flag.mp4` — looping Karnataka flag video, page 1 of the hero.
-  Muted, autoplaying, `playsinline`, with a matching SVG poster so the hero is
-  never blank while it loads.
+- `assets/nav.js` — the header behaviour, loaded by every page: the mobile sheet
+  and the grouped menus.
+- `assets/hero.js`, `hejje.js`, `vlib.js`, `gallery.js`, `form.js`,
+  `contact.js` — one behaviour each, and a page loads only what it uses. Each
+  bails out quietly when its root element is not on the page, so a stray include
+  costs nothing and a missing one fails loudly rather than throwing.
+- `assets/karnataka-flag.mp4` — looping Karnataka flag video, page 1 of the
+  hero. Muted, autoplaying, `playsinline`, with a matching SVG poster so the
+  hero is never blank while it loads.
 - `assets/*.svg` — the page artwork (flag poster, Hampi colonnade, illuminated
   palace, a flag-raising crowd, raised fists, campaign plate, chariot
-  procession, government building, village school).
-  Vector, local, ~2–4 KB each, so the page renders complete with no network
-  requests.
+  procession, government building, village school). Vector, local, ~2–4 KB
+  each, so a page renders complete with no network requests.
 - `assets/logo-kannada.png` — the Karnataka Rakshana Vedike crest, 1024², as
   supplied. `assets/logo.png` (header, 220px tall) and `assets/logo-mark.png`
   (192px square, favicon) are derived from it by `tools/logo-prep.py`.
@@ -60,8 +79,13 @@ menu cannot be reached by touch; one opens at a time, Escape closes and returns
 focus to its trigger, and a click or focus outside closes them. Below 900px the
 whole set lists flat in the mobile sheet under its group headings.
 
-Every entry lands on a real section — checked by resolving each `href` against
-the ids actually present in the target file, not by reading the markup.
+Every entry lands on a real page, and the header says which one you are on:
+`aria-current="page"` marks the entry and the disclosure holding it, with the
+styling hanging off that attribute so the marker cannot drift out of step with
+what a screen reader announces.
+
+Checked by resolving every `href` on every page against the files that actually
+exist, not by reading the markup.
 
 ## Design system
 
@@ -94,18 +118,29 @@ Everything is tokenised at the top of the `<style>` block — colors, radii,
 shadows, easing, spacing and the type stacks — so the palette can be changed
 in one place.
 
-## Sections
+## Pages
 
-Hero + book slider · ನಮ್ಮ ಸಂಘಟನೆಯ ಬಗ್ಗೆ · ಸದಸ್ಯರು · ನಮ್ಮ ನಾಯಕರು ·
-ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು · ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) ·
-ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು · ಜಿಲ್ಲೆಗಳು · ವೀಡಿಯೊ ಸಂಗ್ರಹ (video library) ·
-ಗ್ಯಾಲರಿ (image gallery) · ಹೋರಾಟಗಳು (recent campaigns) · ಮಾಧ್ಯಮ ವರದಿ ·
-ದೇಣಿಗೆ · ಸದಸ್ಯತ್ವ · footer (ಸಂಪರ್ಕಿಸಿ).
+`index.html` (ಮುಖಪುಟ) · `about.html` · `leaders.html` · `journey.html` ·
+`districts.html` · `members.html` · `programmes.html` · `social.html` ·
+`campaigns.html` · `press.html` · `videos.html` · `gallery.html` ·
+`membership.html` · `donate.html` · `contact.html`, plus `campaign.html`, the
+report a card on ಹೋರಾಟಗಳು opens.
 
-Building the menu removed the last of the film-course content the page started
-from: the stats strip is now the organisation's reach, the ಪಠ್ಯಕ್ರಮ tile grid is
-now ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು, the enrolment band is now ಸದಸ್ಯತ್ವ, and the footer
-carries contact details rather than lesson links.
+Every page but the home page opens on a **page head**: breadcrumb, `h1` and one
+line of context. It is cream, and the bands that are also cream take the white
+ground when they follow it — otherwise the two would meet with no seam. The
+first fragment on such a page loses its own `.section-head`, since the page head
+already carries that heading; the `h1` count is checked per page, and every page
+has exactly one.
+
+The **home page** is hero → a short ನಮ್ಮ ಬಗ್ಗೆ that hands off to `about.html` →
+the ಸದಸ್ಯರು strip → a grid of all twelve category pages, so a visitor who
+scrolls rather than opens a menu reaches the same set.
+
+Splitting the site this way retired the last of the film-course content it
+started from: the stats strip is now the organisation's reach, the ಪಠ್ಯಕ್ರಮ
+tile grid is now ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು, the enrolment band is now ಸದಸ್ಯತ್ವ, and
+the footer carries contact details rather than lesson links.
 
 **ಜಿಲ್ಲೆಗಳು** lists Karnataka's 31 districts, which is a fact rather than a
 placeholder — but the names carry no `href` yet, because what a district unit's
@@ -157,10 +192,11 @@ whose headlines run to different lengths.
 > the images are existing page artwork standing in for photographs. No campaign
 > shown is a recorded event.
 
-Bands alternate ground so no two neighbours share a surface: dark, cream,
-white, cream, white, cream, white, cream, dark, cream, white, cream, dark, red,
-dark. Adding, moving or
-removing a section means re-checking that whole run, not just the seams either
+Bands alternate ground so no two neighbours share a surface. With a page per
+category each run is short — page head, one band, footer — but the home page
+still runs hero, cream, white, cream, dark, and the seam between the page head
+and whatever follows it has to be checked on all sixteen. Adding, moving or
+removing a section means re-checking the whole run, not just the seams either
 side of it — pulling the modules band out left stats and the leader's message
 both white, and fixing that rippled through the two sections after them. The
 check is done by reading every section's computed background in order, not by

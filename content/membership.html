@@ -1,0 +1,20 @@
+  <!-- ================= ಸದಸ್ಯತ್ವ ================= -->
+  <section class="enrol" id="membership">
+    <div class="wrap enrol-inner">
+      <h2>ಸಂಘಟನೆಯ ಸದಸ್ಯರಾಗಿ</h2>
+      <p>
+        ಇಮೇಲ್ ಬಿಟ್ಟುಹೋಗಿ — ನಿಮ್ಮ ಜಿಲ್ಲಾ ಘಟಕದಿಂದ ಸದಸ್ಯತ್ವದ ವಿವರ ತಲುಪುತ್ತದೆ.
+      </p>
+
+      <!-- TODO: the form has no server behind it yet; it only validates and
+           announces. Point it at the real endpoint before publishing. -->
+      <form class="enrol-form" id="enrolForm" novalidate>
+        <label class="sr-only" for="enrolEmail">ಇಮೇಲ್ ವಿಳಾಸ</label>
+        <input id="enrolEmail" name="email" type="email" inputmode="email"
+               autocomplete="email" required placeholder="nimma@email.com" />
+        <button class="btn btn--onDark" type="submit">ಸೇರಿ</button>
+      </form>
+
+      <p class="enrol-status" role="status" aria-live="polite" id="enrolStatus"></p>
+    </div>
+  </section>

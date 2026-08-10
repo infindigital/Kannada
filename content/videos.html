@@ -1,0 +1,89 @@
+  <!-- ================= ವೀಡಿಯೊ ಸಂಗ್ರಹ ================= -->
+  <section class="vlib" id="videos">
+    <div class="wrap">
+
+      <div class="section-head">
+        <p class="eyebrow">ವೀಡಿಯೊ</p>
+        <h2>ವೀಡಿಯೊ ಸಂಗ್ರಹ</h2>
+        <p class="lede">ಹೋರಾಟಗಳ ದೃಶ್ಯಗಳು, ಭಾಷಣಗಳು ಮತ್ತು ಸಮಾವೇಶಗಳು.</p>
+      </div>
+
+      <!-- TODO: every entry points at the one flag clip in assets/ and the
+           thumbnails are page artwork. Titles and durations are PLACEHOLDERS.
+           Give each button a data-src and the player will use it. -->
+      <div class="vlib-grid">
+
+        <figure class="vlib-stage">
+          <video id="vlibPlayer" controls preload="metadata" playsinline
+                 poster="assets/page-flag.svg">
+            <source src="assets/karnataka-flag.mp4" type="video/mp4" />
+          </video>
+          <figcaption>
+            <span class="vlib-now" id="vlibNow">ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ ಸಮಾವೇಶ</span>
+            <span class="vlib-time" id="vlibTime">4:12</span>
+          </figcaption>
+        </figure>
+
+        <ul class="vlib-list" id="vlibList">
+          <li>
+            <button class="vlib-item" type="button" data-index="0"
+                    data-poster="assets/page-flag.svg" data-title="ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ ಸಮಾವೇಶ" data-duration="4:12"
+                    aria-current="true">
+              <span class="vlib-thumb">
+                <img src="assets/page-flag.svg" alt="ಕನ್ನಡ ಬಾವುಟ" width="160" height="90"
+                     loading="lazy" decoding="async" />
+              </span>
+              <span class="vlib-text">
+                <span class="vlib-title">ಕನ್ನಡ ರಾಜ್ಯೋತ್ಸವ ಸಮಾವೇಶ</span>
+                <span class="vlib-dur">4:12</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="vlib-item" type="button" data-index="1"
+                    data-poster="assets/about-rally.svg" data-title="ಬೆಂಗಳೂರಿನಲ್ಲಿ ಬೃಹತ್ ಪ್ರತಿಭಟನೆ" data-duration="2:48"
+                    aria-current="false">
+              <span class="vlib-thumb">
+                <img src="assets/about-rally.svg" alt="ಬಾವುಟ ಹಿಡಿದ ಜನಸಮೂಹ" width="160" height="90"
+                     loading="lazy" decoding="async" />
+              </span>
+              <span class="vlib-text">
+                <span class="vlib-title">ಬೆಂಗಳೂರಿನಲ್ಲಿ ಬೃಹತ್ ಪ್ರತಿಭಟನೆ</span>
+                <span class="vlib-dur">2:48</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="vlib-item" type="button" data-index="2"
+                    data-poster="assets/page-hampi.svg" data-title="ಗಡಿ ಭಾಗದಲ್ಲಿ ಕನ್ನಡ ಶಾಲೆಗಳ ಸ್ಥಿತಿ" data-duration="6:05"
+                    aria-current="false">
+              <span class="vlib-thumb">
+                <img src="assets/page-hampi.svg" alt="ಹಂಪಿಯ ಕಲ್ಲಿನ ಕಂಬಗಳು" width="160" height="90"
+                     loading="lazy" decoding="async" />
+              </span>
+              <span class="vlib-text">
+                <span class="vlib-title">ಗಡಿ ಭಾಗದಲ್ಲಿ ಕನ್ನಡ ಶಾಲೆಗಳ ಸ್ಥಿತಿ</span>
+                <span class="vlib-dur">6:05</span>
+              </span>
+            </button>
+          </li>
+          <li>
+            <button class="vlib-item" type="button" data-index="3"
+                    data-poster="assets/page-mysore.svg" data-title="ಸಂಘಟನೆಯ ವಾರ್ಷಿಕ ಸಮಾವೇಶ" data-duration="8:30"
+                    aria-current="false">
+              <span class="vlib-thumb">
+                <img src="assets/page-mysore.svg" alt="ದೀಪಗಳ ಅರಮನೆ" width="160" height="90"
+                     loading="lazy" decoding="async" />
+              </span>
+              <span class="vlib-text">
+                <span class="vlib-title">ಸಂಘಟನೆಯ ವಾರ್ಷಿಕ ಸಮಾವೇಶ</span>
+                <span class="vlib-dur">8:30</span>
+              </span>
+            </button>
+          </li>
+        </ul>
+
+      </div>
+      <p class="sr-only" role="status" aria-live="polite" id="vlibStatus"></p>
+    </div>
+  </section>

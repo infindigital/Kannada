@@ -1,0 +1,113 @@
+  <!-- ================= HERO — full-bleed video + book slider ================= -->
+  <section class="hero" id="hero">
+
+    <!-- the pages: video first, then the two chapter plates -->
+    <div class="hero-track" id="bookTrack">
+
+      <article class="hero-slide" aria-roledescription="ಪುಟ" aria-label="1 / 3"
+               data-chapter="01" data-title="ಕನ್ನಡ ಬಾವುಟ">
+        <video class="hero-media" id="heroVideo"
+               autoplay muted loop playsinline preload="auto"
+               poster="assets/page-flag.svg">
+          <source src="assets/karnataka-flag.mp4" type="video/mp4" />
+        </video>
+      </article>
+
+      <article class="hero-slide" aria-roledescription="ಪುಟ" aria-label="2 / 3"
+               data-chapter="02" data-title="ಹಂಪಿ — ನಮ್ಮ ಪರಂಪರೆ">
+        <img class="hero-media" alt="ಸೂರ್ಯಾಸ್ತದಲ್ಲಿ ಹಂಪಿಯ ಕಲ್ಲಿನ ಕಂಬಗಳ ಸಾಲು"
+             loading="lazy" decoding="async" width="1200" height="750"
+             src="assets/page-hampi.svg" />
+      </article>
+
+      <article class="hero-slide" aria-roledescription="ಪುಟ" aria-label="3 / 3"
+               data-chapter="03" data-title="ಮೈಸೂರು — ನಮ್ಮ ಹೆಮ್ಮೆ">
+        <img class="hero-media" alt="ರಾತ್ರಿಯಲ್ಲಿ ದೀಪಗಳಿಂದ ಬೆಳಗುವ ಅರಮನೆ"
+             loading="lazy" decoding="async" width="1200" height="750"
+             src="assets/page-mysore.svg" />
+      </article>
+
+    </div>
+
+    <div class="hero-scrim" aria-hidden="true"></div>
+
+    <div class="hero-inner">
+      <div class="wrap">
+      <div class="hero-copy">
+        <p class="eyebrow">ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ</p>
+
+        <h1 class="hero-title">
+          <span class="line">ಕರ್ನಾಟಕದ ಗೌರವ,</span>
+          <span class="line line--outline">ಕನ್ನಡದ ಹೆಮ್ಮೆ</span>
+        </h1>
+
+        <p class="hero-lede">
+          ನಾಡು, ನುಡಿ, ನೆಲ, ಸಂಸ್ಕೃತಿ ಮತ್ತು ಕನ್ನಡಿಗರ ಹಕ್ಕುಗಳ ರಕ್ಷಣೆಗಾಗಿ
+          ಒಗ್ಗಟ್ಟಿನ ಹೋರಾಟ.
+        </p>
+
+        <div class="hero-actions">
+          <a class="btn btn--primary" href="membership.html">
+            ನಮ್ಮೊಂದಿಗೆ ಸೇರಿ
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M14 5l7 7-7 7M21 12H3" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+      </div>
+    </div>
+
+    <div class="wrap hero-bar">
+      <div class="hero-caption">
+        <p class="chapter" id="heroChapter">01</p>
+        <p class="title" id="heroTitle">ಕನ್ನಡ ಬಾವುಟ</p>
+      </div>
+
+      <div class="book-controls">
+        <p class="book-count" aria-hidden="true">
+          <span id="bookCurrent">01</span><span class="total"> / 03</span>
+        </p>
+
+        <ul class="book-bars" id="bookBars">
+          <li><button class="book-bar" type="button" data-index="0" aria-current="true">
+            <span></span><span class="sr-only">ಪುಟ 1</span>
+          </button></li>
+          <li><button class="book-bar" type="button" data-index="1" aria-current="false">
+            <span></span><span class="sr-only">ಪುಟ 2</span>
+          </button></li>
+          <li><button class="book-bar" type="button" data-index="2" aria-current="false">
+            <span></span><span class="sr-only">ಪುಟ 3</span>
+          </button></li>
+        </ul>
+
+        <div class="book-buttons">
+          <button class="icon-btn" type="button" id="bookPrev" aria-label="ಹಿಂದಿನ ಪುಟ">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+          <button class="icon-btn" type="button" id="bookToggle" data-state="playing"
+                  aria-label="ಸ್ಲೈಡ್‌ಶೋ ನಿಲ್ಲಿಸಿ">
+            <svg class="icon-pause" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <rect x="6" y="4" width="4" height="16" fill="currentColor"/>
+              <rect x="14" y="4" width="4" height="16" fill="currentColor"/>
+            </svg>
+            <svg class="icon-play" width="14" height="14" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M7 4l13 8-13 8z" fill="currentColor"/>
+            </svg>
+          </button>
+          <button class="icon-btn" type="button" id="bookNext" aria-label="ಮುಂದಿನ ಪುಟ">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+              <path d="M9 5l7 7-7 7" stroke="currentColor" stroke-width="2.2"
+                    stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <p class="sr-only" role="status" aria-live="polite" id="bookStatus"></p>
+  </section>

@@ -1305,6 +1305,49 @@ section[id] { scroll-margin-top: 7rem; }
 }
 
 /* ============================================================
+   PAGE HEAD — the opening band on every page but the home page
+   ============================================================ */
+.page-head {
+  padding-block: clamp(2.25rem, 5vw, 3.75rem);
+  background:
+    radial-gradient(52% 60% at 88% 0%, rgba(255,204,0,.18) 0%, transparent 62%),
+    var(--surface-sunken);
+  border-bottom: 1px solid var(--border-soft);
+}
+.page-head h1 {
+  font-size: clamp(2rem, 5vw, 3.1rem);
+  margin-bottom: .5rem;
+}
+.page-head > .wrap > p {
+  color: var(--ink-muted);
+  max-width: 52ch;
+}
+
+.page-crumb {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: .5rem;
+  margin-bottom: clamp(.75rem, 2vw, 1.25rem);
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--ink-subtle);
+}
+.page-crumb a { color: var(--ink-subtle); text-decoration: none; }
+.page-crumb a:hover, .page-crumb a:focus-visible { color: var(--red); }
+
+/* The page head is cream, so the bands that are also cream would meet it with
+   no seam. They take the white ground on a category page instead. Each of
+   these sets background-color only, so the gradients layered on top survive. */
+.page-head + .about,
+.page-head + .talk,
+.page-head + .hejje,
+.page-head + .districts,
+.page-head + .gal,
+.page-head + .press,
+.page-head + .contact { background-color: var(--surface); }
+
+/* ============================================================
    ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು — reuses the .theme-tile grid
    ============================================================ */
 .social { padding-block: var(--section-y); background: var(--surface); }
@@ -1830,3 +1873,80 @@ section[id] { scroll-margin-top: 7rem; }
   margin: 1rem 0 .2rem;
 }
 .nav-mobile h4:first-child { margin-top: .4rem; }
+
+/* ============================================================
+   ಸಂಪರ್ಕಿಸಿ — details beside a message form
+   ============================================================ */
+.contact { padding-block: var(--section-y); background: var(--surface-sunken); }
+.contact-grid {
+  display: grid;
+  gap: clamp(2rem, 4vw, 3.5rem);
+  align-items: start;
+}
+@media (min-width: 860px) { .contact-grid { grid-template-columns: 1fr 1.1fr; } }
+
+.contact h2 { font-size: 1.5rem; margin-bottom: 1.25rem; }
+
+.contact-list { list-style: none; margin: 0; padding: 0; display: grid; gap: 1.1rem; }
+.contact-list li { display: grid; gap: .2rem; }
+.contact-label {
+  font-size: .7rem;
+  font-weight: 600;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--red);
+}
+.contact-list a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--border-soft); }
+.contact-list a:hover, .contact-list a:focus-visible { color: var(--red); border-color: var(--red); }
+.contact-note { margin-top: 1.5rem; font-size: .875rem; color: var(--ink-subtle); }
+.contact-note a { color: var(--red); }
+
+.contact-form {
+  padding: clamp(1.5rem, 3vw, 2.25rem);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-md);
+  box-shadow: var(--shadow-1);
+}
+.contact-form .field { display: grid; gap: .35rem; margin-bottom: 1rem; }
+.contact-form label { font-size: .8rem; font-weight: 600; color: var(--ink-muted); }
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: .7rem .85rem;
+  font: inherit;
+  color: var(--ink);
+  background: var(--surface-sunken);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-sm);
+  transition: border-color var(--base) var(--ease);
+}
+.contact-form textarea { resize: vertical; min-height: 7rem; }
+.contact-form input:focus-visible,
+.contact-form textarea:focus-visible { border-color: var(--red); outline-offset: 1px; }
+.contact-status { margin-top: 1rem; font-size: .875rem; color: var(--red); }
+
+/* the home page's "read more" out to the full text */
+.about-more { margin-top: 1.75rem; }
+
+/* ============================================================
+   CURRENT PAGE — the header says where you are
+   ============================================================ */
+/* aria-current is the source of truth and the styling hangs off it, so the
+   marker cannot drift out of step with what a screen reader announces. */
+.nav-link[aria-current="page"] { color: var(--ink); }
+.nav-link[aria-current="page"]::after { width: 100%; }
+
+.nav-trigger[data-current="true"] { color: var(--ink); }
+.nav-trigger[data-current="true"]::after { width: 100%; }
+
+.nav-panel a[aria-current="page"],
+.nav-mobile a[aria-current="page"] {
+  color: var(--red);
+  font-weight: 600;
+}
+.nav-cta[aria-current="page"] { box-shadow: 0 0 0 3px rgba(212,42,40,.25); }
+
+/* on the home page this grid follows the white stats strip, so it takes the
+   cream ground instead — no two bands in the run share a surface */
+.themes.is-alt { background: var(--surface-sunken); }
