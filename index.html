@@ -26,44 +26,62 @@
   <div class="flag-rule"></div>
   <div class="wrap">
     <div class="header-inner">
-      <a class="brand" href="#">
+      <a class="brand" href="#hero">
         <img class="brand-logo" src="assets/logo.png" width="245" height="220" alt="" />
         <span class="brand-word">ಕರ್ನಾಟಕ <span>ರಕ್ಷಣಾ ವೇದಿಕೆ</span></span>
       </a>
 
+      <!-- Fourteen menu entries will not sit on one line, so the four that
+           name a group of pages become disclosures and the rest hang under
+           them. ಇನ್ನಷ್ಟು is the supplied list's own catch-all. -->
       <nav class="nav-desktop" aria-label="ಮುಖ್ಯ ಮೆನು">
+        <a class="nav-link" href="#hero">ಮುಖಪುಟ</a>
         <div class="nav-group">
           <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-org">
-            ಸಂಸ್ಥೆ
+            ಸಂಘಟನೆ
             <svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="nav-panel" id="menu-org" hidden>
-            <a href="#about">ಪರಿಚಯ</a>
-            <a href="#talk">ಅಧ್ಯಕ್ಷರ ಮಾತು</a>
+            <a href="#about">ನಮ್ಮ ಸಂಘಟನೆಯ ಬಗ್ಗೆ</a>
+            <a href="#talk">ನಮ್ಮ ನಾಯಕರು</a>
+            <a href="#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a>
+            <a href="#districts">ಜಿಲ್ಲೆಗಳು</a>
+            <a href="#members">ಸದಸ್ಯರು</a>
           </div>
         </div>
         <div class="nav-group">
-          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-fight">
-            ಹೋರಾಟ
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-work">
+            ಕಾರ್ಯಕ್ರಮಗಳು
             <svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <div class="nav-panel" id="menu-fight" hidden>
-            <a href="#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a>
-            <a href="#news">ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು</a>
+          <div class="nav-panel" id="menu-work" hidden>
+            <a href="#programmes">ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು</a>
+            <a href="#social">ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು</a>
+            <a href="#news">ಹೋರಾಟಗಳು</a>
           </div>
         </div>
         <div class="nav-group">
           <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-media">
-            ಸಂಗ್ರಹ
+            ಮಾಧ್ಯಮ
             <svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="nav-panel" id="menu-media" hidden>
+            <a href="#press">ಮಾಧ್ಯಮ ವರದಿ</a>
             <a href="#videos">ವೀಡಿಯೊ ಸಂಗ್ರಹ</a>
-            <a href="#gallery">ಚಿತ್ರ ಸಂಗ್ರಹ</a>
+            <a href="#gallery">ಗ್ಯಾಲರಿ</a>
           </div>
         </div>
-        <a class="nav-link" href="#themes">ವಿಷಯಗಳು</a>
-        <a class="btn btn--primary nav-cta" href="#enrol">ನಮ್ಮೊಂದಿಗೆ ಸೇರಿ</a>
+        <div class="nav-group">
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-more">
+            ಇನ್ನಷ್ಟು
+            <svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav-panel" id="menu-more" hidden>
+            <a href="#membership">ಸದಸ್ಯತ್ವ</a>
+            <a href="#contact">ಸಂಪರ್ಕಿಸಿ</a>
+          </div>
+        </div>
+        <a class="btn btn--primary nav-cta" href="#donate">ದೇಣಿಗೆ</a>
       </nav>
 
       <button class="nav-toggle" type="button" id="navToggle"
@@ -78,18 +96,25 @@
     </div>
 
     <nav class="nav-mobile" id="navMobile" aria-label="ಮೊಬೈಲ್ ಮೆನು">
-      <h4>ಸಂಸ್ಥೆ</h4>
-      <a href="#about">ಪರಿಚಯ</a>
-      <a href="#talk">ಅಧ್ಯಕ್ಷರ ಮಾತು</a>
-      <h4>ಹೋರಾಟ</h4>
+      <a href="#hero">ಮುಖಪುಟ</a>
+      <h4>ಸಂಘಟನೆ</h4>
+      <a href="#about">ನಮ್ಮ ಸಂಘಟನೆಯ ಬಗ್ಗೆ</a>
+      <a href="#talk">ನಮ್ಮ ನಾಯಕರು</a>
       <a href="#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a>
-      <a href="#news">ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು</a>
-      <h4>ಸಂಗ್ರಹ</h4>
+      <a href="#districts">ಜಿಲ್ಲೆಗಳು</a>
+      <a href="#members">ಸದಸ್ಯರು</a>
+      <h4>ಕಾರ್ಯಕ್ರಮಗಳು</h4>
+      <a href="#programmes">ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು</a>
+      <a href="#social">ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು</a>
+      <a href="#news">ಹೋರಾಟಗಳು</a>
+      <h4>ಮಾಧ್ಯಮ</h4>
+      <a href="#press">ಮಾಧ್ಯಮ ವರದಿ</a>
       <a href="#videos">ವೀಡಿಯೊ ಸಂಗ್ರಹ</a>
-      <a href="#gallery">ಚಿತ್ರ ಸಂಗ್ರಹ</a>
-      <h4>ಇತರೆ</h4>
-      <a href="#themes">ವಿಷಯಗಳು</a>
-      <a href="#enrol">ನಮ್ಮೊಂದಿಗೆ ಸೇರಿ</a>
+      <a href="#gallery">ಗ್ಯಾಲರಿ</a>
+      <h4>ಇನ್ನಷ್ಟು</h4>
+      <a href="#membership">ಸದಸ್ಯತ್ವ</a>
+      <a href="#contact">ಸಂಪರ್ಕಿಸಿ</a>
+      <a href="#donate">ದೇಣಿಗೆ</a>
     </nav>
   </div>
 </header>
@@ -145,7 +170,7 @@
         </p>
 
         <div class="hero-actions">
-          <a class="btn btn--primary" href="#enrol">
+          <a class="btn btn--primary" href="#membership">
             ನಮ್ಮೊಂದಿಗೆ ಸೇರಿ
             <svg width="16" height="16" viewBox="0 0 24 24" fill="none" aria-hidden="true">
               <path d="M14 5l7 7-7 7M21 12H3" stroke="currentColor" stroke-width="2.2"
@@ -245,24 +270,28 @@
     <div class="flag-rule" style="position:absolute;bottom:0;left:0;right:0;"></div>
   </section>
 
-  <!-- ================= STATS ================= -->
-  <section class="stats" aria-label="ಕೋರ್ಸ್ ಸಂಖ್ಯೆಗಳಲ್ಲಿ">
+  <!-- ================= ಸದಸ್ಯರು ================= -->
+  <!-- TODO: every figure below except the district count is a PLACEHOLDER.
+       Karnataka has 31 districts, which is why that one is stated; the
+       taluk-unit, member and year counts are invented and must be replaced
+       with the organisation's own numbers before this is published. -->
+  <section class="stats" id="members" aria-label="ಸದಸ್ಯರು">
     <div class="wrap stats-grid">
       <div>
-        <p class="stat-num">24</p>
-        <p class="stat-label">ವಿಡಿಯೊ ಪಾಠಗಳು</p>
+        <p class="stat-num">31</p>
+        <p class="stat-label">ಜಿಲ್ಲಾ ಘಟಕಗಳು</p>
       </div>
       <div>
-        <p class="stat-num">12</p>
-        <p class="stat-label">ಗಂಟೆಗಳ ವಿಷಯ</p>
+        <p class="stat-num">240+</p>
+        <p class="stat-label">ತಾಲೂಕು ಘಟಕಗಳು</p>
       </div>
       <div>
-        <p class="stat-num">03</p>
-        <p class="stat-label">ಪ್ರಾಯೋಗಿಕ ಯೋಜನೆಗಳು</p>
+        <p class="stat-num">00,000</p>
+        <p class="stat-label">ನೋಂದಾಯಿತ ಸದಸ್ಯರು</p>
       </div>
       <div>
-        <p class="stat-num">1,800+</p>
-        <p class="stat-label">ವಿದ್ಯಾರ್ಥಿಗಳು</p>
+        <p class="stat-num">00</p>
+        <p class="stat-label">ವರ್ಷಗಳ ಹೋರಾಟ</p>
       </div>
     </div>
   </section>
@@ -306,73 +335,54 @@
     </div>
   </section>
 
-  <!-- ================= THEMES ================= -->
-  <section class="themes" id="themes">
+  <!-- ================= ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು ================= -->
+  <!-- TODO: the six programme areas below are PLACEHOLDERS standing in for
+       the organisation's own list, and every count is invented. Replace both
+       before this is published. -->
+  <section class="themes" id="programmes">
     <div class="wrap">
       <div class="section-head is-centered">
-        <p class="eyebrow is-centered">ವಿಷಯಗಳು</p>
-        <h2>ನಿಮಗೆ ಯಾವುದು ಕರೆಯುತ್ತಿದೆ?</h2>
+        <p class="eyebrow is-centered">ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು</p>
+        <h2>ವರ್ಷವಿಡೀ ನಡೆಯುವ ಕೆಲಸ</h2>
       </div>
 
       <div class="theme-grid">
 
-        <a class="theme-tile" href="#hejje">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M3 8a2 2 0 012-2h2.5l1.2-2h6.6l1.2 2H20a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V8z"
-                  stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-            <circle cx="12.5" cy="12.5" r="3.5" stroke="currentColor" stroke-width="1.6"/>
-          </svg>
-          <span class="n">ಛಾಯಾಗ್ರಹಣ</span>
-          <span class="c">18 ಪಾಠಗಳು</span>
-        </a>
+        <div class="theme-tile is-static">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3L2 8l10 5 10-5-10-5z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M6 10.5V16c0 1.7 2.7 3 6 3s6-1.3 6-3v-5.5" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span class="n">ಕನ್ನಡ ಶಾಲೆಗಳ ಬೆಂಬಲ</span>
+          <span class="c">00 ಕಾರ್ಯಕ್ರಮ</span>
+        </div>
 
-        <a class="theme-tile" href="#hejje">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M12 3c5 0 9 3.6 9 8 0 2.5-2 4-4 4h-1.5a1.5 1.5 0 00-1 2.6c.6.6.3 1.9-.9 2.2A9.6 9.6 0 0112 21c-5 0-9-4-9-9s4-9 9-9z"
-                  stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
-            <circle cx="8" cy="10" r="1.2" fill="currentColor"/>
-            <circle cx="12" cy="7.5" r="1.2" fill="currentColor"/>
-            <circle cx="16" cy="10" r="1.2" fill="currentColor"/>
-          </svg>
-          <span class="n">ಬಣ್ಣ</span>
-          <span class="c">12 ಪಾಠಗಳು</span>
-        </a>
+        <div class="theme-tile is-static">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="7" width="18" height="13" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M9 7V5a2 2 0 012-2h2a2 2 0 012 2v2M3 12h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="n">ಉದ್ಯೋಗದಲ್ಲಿ ಆದ್ಯತೆ</span>
+          <span class="c">00 ಕಾರ್ಯಕ್ರಮ</span>
+        </div>
 
-        <a class="theme-tile" href="#hejje">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.6"/>
-            <path d="M3 9h18M3 15h18M8 5v14M16 5v14" stroke="currentColor" stroke-width="1.6"/>
-          </svg>
-          <span class="n">ಸಂಕಲನ</span>
-          <span class="c">15 ಪಾಠಗಳು</span>
-        </a>
+        <div class="theme-tile is-static">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><rect x="3" y="4" width="18" height="10" rx="2" stroke="currentColor" stroke-width="1.6"/><path d="M12 14v6M8 20h8M7 9h10" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="n">ನಾಮಫಲಕ ಅಭಿಯಾನ</span>
+          <span class="c">00 ಕಾರ್ಯಕ್ರಮ</span>
+        </div>
 
-        <a class="theme-tile" href="#hejje">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M3 12v2M7 8v10M11 4v16M15 8v10M19 11v3" stroke="currentColor"
-                  stroke-width="1.8" stroke-linecap="round"/>
-          </svg>
-          <span class="n">ಧ್ವನಿ</span>
-          <span class="c">9 ಪಾಠಗಳು</span>
-        </a>
+        <div class="theme-tile is-static">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 20V4l6 3 5-3 5 3v13l-5-3-5 3-6-3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span class="n">ಗಡಿನಾಡ ಕನ್ನಡಿಗರ ರಕ್ಷಣೆ</span>
+          <span class="c">00 ಕಾರ್ಯಕ್ರಮ</span>
+        </div>
 
-        <a class="theme-tile" href="#hejje">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 20l3-11M20 20l-3-11M6 9h12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-            <path d="M4 5.5l14 2.2M4.6 9.2L18.6 7" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
-          </svg>
-          <span class="n">ನಿರ್ದೇಶನ</span>
-          <span class="c">11 ಪಾಠಗಳು</span>
-        </a>
+        <div class="theme-tile is-static">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 20h18M6 20v-6l6-4 6 4v6" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M10 20v-4h4v4" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span class="n">ರೈತ ಮತ್ತು ಕಾರ್ಮಿಕ ಬೆಂಬಲ</span>
+          <span class="c">00 ಕಾರ್ಯಕ್ರಮ</span>
+        </div>
 
-        <a class="theme-tile" href="#hejje">
-          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-            <path d="M4 5.5A2.5 2.5 0 016.5 3H12v17H6.5A2.5 2.5 0 004 22V5.5zM20 5.5A2.5 2.5 0 0017.5 3H12v17h5.5A2.5 2.5 0 0120 22V5.5z"
-                  stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-          </svg>
-          <span class="n">ಕಥೆ</span>
-          <span class="c">14 ಪಾಠಗಳು</span>
-        </a>
+        <div class="theme-tile is-static">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 21V4" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M6 5h11l-2.2 3.4L17 12H6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span class="n">ರಾಜ್ಯೋತ್ಸವ ಆಚರಣೆ</span>
+          <span class="c">00 ಕಾರ್ಯಕ್ರಮ</span>
+        </div>
 
       </div>
     </div>
@@ -470,6 +480,106 @@
       </ul>
 
       <p class="sr-only" role="status" aria-live="polite" id="hejjeStatus"></p>
+    </div>
+  </section>
+
+  <!-- ================= ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು ================= -->
+  <!-- TODO: PLACEHOLDER list — no camp, drive or relief effort named here is
+       a recorded event. Replace with the organisation's own record. -->
+  <section class="social" id="social">
+    <div class="wrap">
+      <div class="section-head is-centered">
+        <p class="eyebrow is-centered">ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು</p>
+        <h2>ಹೋರಾಟದ ಆಚೆಗಿನ ಸೇವೆ</h2>
+      </div>
+
+      <div class="theme-grid">
+
+        <div class="theme-tile is-static">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 3s6 6.4 6 10.2A6 6 0 016 13.2C6 9.4 12 3 12 3z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 13.5h5M12 11v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="n">ರಕ್ತದಾನ ಶಿಬಿರ</span>
+          <span class="c">00 ಶಿಬಿರ</span>
+        </div>
+
+        <div class="theme-tile is-static">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 21v-5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/><path d="M12 3l5 6h-3l4 5H6l4-5H7l5-6z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          <span class="n">ಸಸಿ ನೆಡುವ ಅಭಿಯಾನ</span>
+          <span class="c">00 ಅಭಿಯಾನ</span>
+        </div>
+
+        <div class="theme-tile is-static">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M3 13h4l2-3 3 6 2.5-4.5L17 13h4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/><path d="M3 18h18" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="n">ಪ್ರವಾಹ ಪರಿಹಾರ</span>
+          <span class="c">00 ಕಾರ್ಯ</span>
+        </div>
+
+        <div class="theme-tile is-static">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M12 20s-7-4.4-7-9a4 4 0 017-2.6A4 4 0 0119 11c0 4.6-7 9-7 9z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M9.5 12h5M12 9.5v5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="n">ಆರೋಗ್ಯ ತಪಾಸಣಾ ಶಿಬಿರ</span>
+          <span class="c">00 ಶಿಬಿರ</span>
+        </div>
+
+        <div class="theme-tile is-static">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 5.5A2.5 2.5 0 016.5 3H12v17H6.5A2.5 2.5 0 004 22V5.5zM20 5.5A2.5 2.5 0 0017.5 3H12v17h5.5A2.5 2.5 0 0120 22V5.5z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+          <span class="n">ವಿದ್ಯಾರ್ಥಿ ವೇತನ</span>
+          <span class="c">00 ವಿದ್ಯಾರ್ಥಿ</span>
+        </div>
+
+        <div class="theme-tile is-static">
+          <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M4 11h16a8 8 0 01-16 0z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/><path d="M3 20h18M9 7V4M12 8V4M15 7V4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg>
+          <span class="n">ಅನ್ನದಾನ</span>
+          <span class="c">00 ಕಾರ್ಯ</span>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ಜಿಲ್ಲೆಗಳು ================= -->
+  <!-- The 31 names are Karnataka's actual districts, so the list is a fact
+       rather than a placeholder. What each unit's page should link to is
+       still to be decided — the names carry no href yet. -->
+  <section class="districts" id="districts">
+    <div class="wrap">
+      <div class="section-head is-centered">
+        <p class="eyebrow is-centered">ಜಿಲ್ಲೆಗಳು</p>
+        <h2>ರಾಜ್ಯದ ಎಲ್ಲ ಜಿಲ್ಲೆಗಳಲ್ಲಿ</h2>
+        <p class="lede">ಕರ್ನಾಟಕದ ೩೧ ಜಿಲ್ಲೆಗಳಲ್ಲಿಯೂ ಘಟಕಗಳು.</p>
+      </div>
+
+      <ul class="district-list">
+        <li>ಬಾಗಲಕೋಟೆ</li>
+        <li>ಬಳ್ಳಾರಿ</li>
+        <li>ಬೆಳಗಾವಿ</li>
+        <li>ಬೆಂಗಳೂರು ನಗರ</li>
+        <li>ಬೆಂಗಳೂರು ಗ್ರಾಮಾಂತರ</li>
+        <li>ಬೀದರ್</li>
+        <li>ಚಾಮರಾಜನಗರ</li>
+        <li>ಚಿಕ್ಕಬಳ್ಳಾಪುರ</li>
+        <li>ಚಿಕ್ಕಮಗಳೂರು</li>
+        <li>ಚಿತ್ರದುರ್ಗ</li>
+        <li>ದಕ್ಷಿಣ ಕನ್ನಡ</li>
+        <li>ದಾವಣಗೆರೆ</li>
+        <li>ಧಾರವಾಡ</li>
+        <li>ಗದಗ</li>
+        <li>ಹಾಸನ</li>
+        <li>ಹಾವೇರಿ</li>
+        <li>ಕಲಬುರಗಿ</li>
+        <li>ಕೊಡಗು</li>
+        <li>ಕೋಲಾರ</li>
+        <li>ಕೊಪ್ಪಳ</li>
+        <li>ಮಂಡ್ಯ</li>
+        <li>ಮೈಸೂರು</li>
+        <li>ರಾಯಚೂರು</li>
+        <li>ರಾಮನಗರ</li>
+        <li>ಶಿವಮೊಗ್ಗ</li>
+        <li>ತುಮಕೂರು</li>
+        <li>ಉಡುಪಿ</li>
+        <li>ಉತ್ತರ ಕನ್ನಡ</li>
+        <li>ವಿಜಯನಗರ</li>
+        <li>ವಿಜಯಪುರ</li>
+        <li>ಯಾದಗಿರಿ</li>
+      </ul>
     </div>
   </section>
 
@@ -729,19 +839,80 @@
     </div>
   </section>
 
-  <!-- ================= ENROL ================= -->
-  <section class="enrol" id="enrol">
+  <!-- ================= ಮಾಧ್ಯಮ ವರದಿ ================= -->
+  <!-- TODO: every outlet name, date and headline below is a PLACEHOLDER. No
+       report shown here was published. Replace with real clippings and give
+       each one the link to its source before this goes anywhere public. -->
+  <section class="press" id="press">
+    <div class="wrap">
+      <div class="section-head is-centered">
+        <p class="eyebrow is-centered">ಮಾಧ್ಯಮ ವರದಿ</p>
+        <h2>ಪತ್ರಿಕೆಗಳಲ್ಲಿ ನಮ್ಮ ಹೋರಾಟ</h2>
+      </div>
+
+      <ul class="press-list">
+        <li class="press-item">
+          <p class="press-meta"><span class="press-outlet">ಪತ್ರಿಕೆಯ ಹೆಸರು</span> · ದಿನಾಂಕ</p>
+          <h3>ವರದಿಯ ಶೀರ್ಷಿಕೆ ಇಲ್ಲಿ ಬರುತ್ತದೆ</h3>
+          <p>ವರದಿಯ ಸಾರಾಂಶದ ಒಂದೆರಡು ಸಾಲು ಇಲ್ಲಿ ಬರುತ್ತದೆ.</p>
+        </li>
+        <li class="press-item">
+          <p class="press-meta"><span class="press-outlet">ಪತ್ರಿಕೆಯ ಹೆಸರು</span> · ದಿನಾಂಕ</p>
+          <h3>ವರದಿಯ ಶೀರ್ಷಿಕೆ ಇಲ್ಲಿ ಬರುತ್ತದೆ</h3>
+          <p>ವರದಿಯ ಸಾರಾಂಶದ ಒಂದೆರಡು ಸಾಲು ಇಲ್ಲಿ ಬರುತ್ತದೆ.</p>
+        </li>
+        <li class="press-item">
+          <p class="press-meta"><span class="press-outlet">ಪತ್ರಿಕೆಯ ಹೆಸರು</span> · ದಿನಾಂಕ</p>
+          <h3>ವರದಿಯ ಶೀರ್ಷಿಕೆ ಇಲ್ಲಿ ಬರುತ್ತದೆ</h3>
+          <p>ವರದಿಯ ಸಾರಾಂಶದ ಒಂದೆರಡು ಸಾಲು ಇಲ್ಲಿ ಬರುತ್ತದೆ.</p>
+        </li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= ದೇಣಿಗೆ ================= -->
+  <!-- TODO: the account name, number, IFSC and UPI id below are DUMMY values.
+       Nothing here can receive money. Put the organisation's real, verified
+       details in before this page is published, or take the block out. -->
+  <section class="donate" id="donate">
+    <div class="wrap donate-grid">
+      <div class="donate-body">
+        <p class="eyebrow">ದೇಣಿಗೆ</p>
+        <h2>ನಿಮ್ಮ ಕೊಡುಗೆ ಹೋರಾಟಕ್ಕೆ ಬಲ</h2>
+        <p>
+          ಸಂಘಟನೆಯ ಕೆಲಸ ನಡೆಯುವುದು ಕನ್ನಡಿಗರ ಕೊಡುಗೆಯಿಂದಲೇ. ಶಾಲೆಗಳ ಬೆಂಬಲ,
+          ಪರಿಹಾರ ಕಾರ್ಯ, ಜಿಲ್ಲಾ ಘಟಕಗಳ ನಿರ್ವಹಣೆ — ಎಲ್ಲಕ್ಕೂ ನಿಮ್ಮ ನೆರವು ಬೇಕು.
+        </p>
+      </div>
+
+      <div class="donate-card">
+        <h3>ಬ್ಯಾಂಕ್ ವಿವರ</h3>
+        <dl class="donate-rows">
+          <div><dt>ಖಾತೆಯ ಹೆಸರು</dt><dd>ಖಾತೆಯ ಹೆಸರು ಇಲ್ಲಿ</dd></div>
+          <div><dt>ಖಾತೆ ಸಂಖ್ಯೆ</dt><dd>0000 0000 0000</dd></div>
+          <div><dt>IFSC</dt><dd>XXXX0000000</dd></div>
+          <div><dt>UPI</dt><dd>name@bank</dd></div>
+        </dl>
+        <p class="donate-note">ಈ ವಿವರಗಳು ಇನ್ನೂ ಭರ್ತಿ ಮಾಡಬೇಕಾಗಿವೆ.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= ಸದಸ್ಯತ್ವ ================= -->
+  <section class="enrol" id="membership">
     <div class="wrap enrol-inner">
-      <h2>ಮುಂದಿನ ತಂಡ ಶೀಘ್ರದಲ್ಲೇ ಆರಂಭ</h2>
+      <h2>ಸಂಘಟನೆಯ ಸದಸ್ಯರಾಗಿ</h2>
       <p>
-        ಇಮೇಲ್ ಬಿಟ್ಟುಹೋಗಿ — ಪ್ರವೇಶ ತೆರೆದಾಗ ಮೊದಲು ನಿಮಗೇ ತಿಳಿಸುತ್ತೇವೆ.
+        ಇಮೇಲ್ ಬಿಟ್ಟುಹೋಗಿ — ನಿಮ್ಮ ಜಿಲ್ಲಾ ಘಟಕದಿಂದ ಸದಸ್ಯತ್ವದ ವಿವರ ತಲುಪುತ್ತದೆ.
       </p>
 
+      <!-- TODO: the form has no server behind it yet; it only validates and
+           announces. Point it at the real endpoint before publishing. -->
       <form class="enrol-form" id="enrolForm" novalidate>
         <label class="sr-only" for="enrolEmail">ಇಮೇಲ್ ವಿಳಾಸ</label>
         <input id="enrolEmail" name="email" type="email" inputmode="email"
                autocomplete="email" required placeholder="nimma@email.com" />
-        <button class="btn btn--onDark" type="submit">ತಿಳಿಸಿ</button>
+        <button class="btn btn--onDark" type="submit">ಸೇರಿ</button>
       </form>
 
       <p class="enrol-status" role="status" aria-live="polite" id="enrolStatus"></p>
@@ -751,43 +922,53 @@
 </main>
 
 <!-- ================= FOOTER ================= -->
-<footer class="site-footer">
+<footer class="site-footer" id="contact">
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
         <img class="footer-logo" src="assets/logo.png" width="245" height="220"
              alt="ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ" />
-        <p>ಕನ್ನಡದಲ್ಲಿ ಸಿನಿಮಾ ನಿರ್ಮಾಣ ಕಲಿಸುವ ಸ್ವತಂತ್ರ ಕೋರ್ಸ್.</p>
+        <p>ನಾಡು, ನುಡಿ, ನೆಲ ಮತ್ತು ಕನ್ನಡಿಗರ ಹಕ್ಕುಗಳ ರಕ್ಷಣೆಗಾಗಿ.</p>
       </div>
 
       <div>
-        <h3>ಪಾಠಗಳು</h3>
+        <h3>ಸಂಘಟನೆ</h3>
         <ul>
-          <li><a href="#themes">ಛಾಯಾಗ್ರಹಣ</a></li>
-          <li><a href="#themes">ಬಣ್ಣ</a></li>
-          <li><a href="#themes">ಸಂಕಲನ</a></li>
-          <li><a href="#themes">ಧ್ವನಿ</a></li>
+          <li><a href="#about">ನಮ್ಮ ಸಂಘಟನೆಯ ಬಗ್ಗೆ</a></li>
+          <li><a href="#talk">ನಮ್ಮ ನಾಯಕರು</a></li>
+          <li><a href="#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a></li>
+          <li><a href="#districts">ಜಿಲ್ಲೆಗಳು</a></li>
+          <li><a href="#members">ಸದಸ್ಯರು</a></li>
         </ul>
       </div>
 
       <div>
-        <h3>ಸಂಸ್ಥೆ</h3>
+        <h3>ಕಾರ್ಯಕ್ರಮ</h3>
         <ul>
-          <li><a href="#talk">ಅಧ್ಯಕ್ಷರ ಮಾತು</a></li>
-          <li><a href="#about">ಪರಿಚಯ</a></li>
-          <li><a href="#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a></li>
-          <li><a href="#videos">ವೀಡಿಯೊ ಸಂಗ್ರಹ</a></li>
-          <li><a href="#gallery">ಚಿತ್ರ ಸಂಗ್ರಹ</a></li>
-          <li><a href="#news">ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು</a></li>
-          <li><a href="#enrol">ಶುಲ್ಕ</a></li>
-          <li><a href="#">ಸಂಪರ್ಕ</a></li>
-          <li><a href="#">ಗೌಪ್ಯತೆ ನೀತಿ</a></li>
+          <li><a href="#programmes">ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು</a></li>
+          <li><a href="#social">ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು</a></li>
+          <li><a href="#news">ಹೋರಾಟಗಳು</a></li>
+          <li><a href="#press">ಮಾಧ್ಯಮ ವರದಿ</a></li>
+          <li><a href="#gallery">ಗ್ಯಾಲರಿ</a></li>
+        </ul>
+      </div>
+
+      <!-- TODO: the address, phone and email below are PLACEHOLDERS. Nothing
+           here reaches anyone. Replace before this page is published. -->
+      <div>
+        <h3>ಸಂಪರ್ಕಿಸಿ</h3>
+        <ul class="footer-contact">
+          <li>ಕಚೇರಿಯ ವಿಳಾಸ ಇಲ್ಲಿ,<br />ಬೆಂಗಳೂರು – 560 001</li>
+          <li><a href="tel:+910000000000">+91 00000 00000</a></li>
+          <li><a href="mailto:name@example.org">name@example.org</a></li>
+          <li><a href="#membership">ಸದಸ್ಯತ್ವ</a></li>
+          <li><a href="#donate">ದೇಣಿಗೆ</a></li>
         </ul>
       </div>
     </div>
 
     <div class="footer-bottom">
-      <p>© 2026 Craft. ಬೆಂಗಳೂರಿನಲ್ಲಿ ಪ್ರೀತಿಯಿಂದ ಮಾಡಲಾಗಿದೆ.</p>
+      <p>© 2026 ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ.</p>
       <span class="footer-flag" aria-hidden="true">
         <i style="background:var(--yellow)"></i>
         <i style="background:var(--red)"></i>

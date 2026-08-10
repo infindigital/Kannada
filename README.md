@@ -20,14 +20,6 @@ track the current page.
   sheet and the grouped menus. The sliders, lightbox and player stay inline on
   the page that uses them.
 
-Every section is reachable from the header. Eight Kannada section names will
-not sit on one line — laid out flat they run about 1350px against a 1120px
-container — so they are grouped into three disclosures (ಸಂಸ್ಥೆ, ಹೋರಾಟ, ಸಂಗ್ರಹ)
-plus ವಿಷಯಗಳು and the call to action, which fits from 900px up with room to
-spare. The menus open on click rather than hover, since a hover menu cannot be
-reached by touch; one opens at a time, Escape closes and returns focus to its
-trigger, and a click or focus outside closes them. Below 900px the whole set
-lists flat in the mobile sheet under its group headings.
 - `assets/karnataka-flag.mp4` — looping Karnataka flag video, page 1 of the hero.
   Muted, autoplaying, `playsinline`, with a matching SVG poster so the hero is
   never blank while it loads.
@@ -45,6 +37,31 @@ ribbon lettering, a shield and crossed swords. So the header pairs it with a
 wordmark: the crest carries the identity, the wordmark carries the name, and
 the crest's `alt` is empty so screen readers hear the name once rather than
 twice. The wordmark wraps to two lines under 620px instead of being hidden.
+
+## Menu
+
+The supplied menu is fourteen entries, which will not sit on one line. The four
+that name a *group* of pages become click-toggled disclosures and the rest hang
+under them — ಇನ್ನಷ್ಟು is the supplied list's own catch-all, so the shape was
+already there:
+
+| Top level | Under it |
+|---|---|
+| ಮುಖಪುಟ | — |
+| ಸಂಘಟನೆ | ನಮ್ಮ ಸಂಘಟನೆಯ ಬಗ್ಗೆ · ನಮ್ಮ ನಾಯಕರು · ನಮ್ಮ ಹೆಜ್ಜೆಗಳು · ಜಿಲ್ಲೆಗಳು · ಸದಸ್ಯರು |
+| ಕಾರ್ಯಕ್ರಮಗಳು | ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು · ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು · ಹೋರಾಟಗಳು |
+| ಮಾಧ್ಯಮ | ಮಾಧ್ಯಮ ವರದಿ · ವೀಡಿಯೊ ಸಂಗ್ರಹ · ಗ್ಯಾಲರಿ |
+| ಇನ್ನಷ್ಟು | ಸದಸ್ಯತ್ವ · ಸಂಪರ್ಕಿಸಿ |
+| ದೇಣಿಗೆ | the call to action |
+
+That measures 544px against the 626px free at 900px wide, so it fits from 900px
+up with room to spare. The menus open on click rather than hover, since a hover
+menu cannot be reached by touch; one opens at a time, Escape closes and returns
+focus to its trigger, and a click or focus outside closes them. Below 900px the
+whole set lists flat in the mobile sheet under its group headings.
+
+Every entry lands on a real section — checked by resolving each `href` against
+the ids actually present in the target file, not by reading the markup.
 
 ## Design system
 
@@ -79,10 +96,28 @@ in one place.
 
 ## Sections
 
-Hero + book slider · about · stats · ಅಧ್ಯಕ್ಷರ ಮಾತು (leader's message) · themes ·
-ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) · ವೀಡಿಯೊ ಸಂಗ್ರಹ (video library) ·
-ಚಿತ್ರ ಸಂಗ್ರಹ (image gallery) · ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು (recent campaigns) ·
-enrolment · footer.
+Hero + book slider · ನಮ್ಮ ಸಂಘಟನೆಯ ಬಗ್ಗೆ · ಸದಸ್ಯರು · ನಮ್ಮ ನಾಯಕರು ·
+ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು · ನಮ್ಮ ಹೆಜ್ಜೆಗಳು (campaign coverflow) ·
+ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು · ಜಿಲ್ಲೆಗಳು · ವೀಡಿಯೊ ಸಂಗ್ರಹ (video library) ·
+ಗ್ಯಾಲರಿ (image gallery) · ಹೋರಾಟಗಳು (recent campaigns) · ಮಾಧ್ಯಮ ವರದಿ ·
+ದೇಣಿಗೆ · ಸದಸ್ಯತ್ವ · footer (ಸಂಪರ್ಕಿಸಿ).
+
+Building the menu removed the last of the film-course content the page started
+from: the stats strip is now the organisation's reach, the ಪಠ್ಯಕ್ರಮ tile grid is
+now ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು, the enrolment band is now ಸದಸ್ಯತ್ವ, and the footer
+carries contact details rather than lesson links.
+
+**ಜಿಲ್ಲೆಗಳು** lists Karnataka's 31 districts, which is a fact rather than a
+placeholder — but the names carry no `href` yet, because what a district unit's
+page should show has not been decided. The tiles under ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು and
+ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು are `div`s for the same reason, with `.is-static`
+dropping the pointer and the hover invert so they don't offer a click that does
+nothing.
+
+> The programme names, the social-work list, every press clipping, the member
+> and taluk counts, the bank details and the footer's address, phone and email
+> are **placeholders**. Nothing in the ದೇಣಿಗೆ block can receive money and
+> nothing in the footer reaches anyone.
 
 The **about** band carries the supplied portrait (`assets/narayana-guru.png`,
 1.9 MB, served as a 98 KB JPEG) closed by the ನಾಡು · ನುಡಿ · ನೆಲ · ಸಂಸ್ಕೃತಿ
@@ -123,7 +158,8 @@ whose headlines run to different lengths.
 > shown is a recorded event.
 
 Bands alternate ground so no two neighbours share a surface: dark, cream,
-white, cream, white, cream, dark, cream, white, red, dark. Adding, moving or
+white, cream, white, cream, white, cream, dark, cream, white, cream, dark, red,
+dark. Adding, moving or
 removing a section means re-checking that whole run, not just the seams either
 side of it — pulling the modules band out left stats and the leader's message
 both white, and fixing that rippled through the two sections after them. The

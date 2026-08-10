@@ -29,39 +29,57 @@
         <span class="brand-word">ಕರ್ನಾಟಕ <span>ರಕ್ಷಣಾ ವೇದಿಕೆ</span></span>
       </a>
 
+      <!-- Fourteen menu entries will not sit on one line, so the four that
+           name a group of pages become disclosures and the rest hang under
+           them. ಇನ್ನಷ್ಟು is the supplied list's own catch-all. -->
       <nav class="nav-desktop" aria-label="ಮುಖ್ಯ ಮೆನು">
+        <a class="nav-link" href="index.html#hero">ಮುಖಪುಟ</a>
         <div class="nav-group">
           <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-org">
-            ಸಂಸ್ಥೆ
+            ಸಂಘಟನೆ
             <svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="nav-panel" id="menu-org" hidden>
-            <a href="index.html#about">ಪರಿಚಯ</a>
-            <a href="index.html#talk">ಅಧ್ಯಕ್ಷರ ಮಾತು</a>
+            <a href="index.html#about">ನಮ್ಮ ಸಂಘಟನೆಯ ಬಗ್ಗೆ</a>
+            <a href="index.html#talk">ನಮ್ಮ ನಾಯಕರು</a>
+            <a href="index.html#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a>
+            <a href="index.html#districts">ಜಿಲ್ಲೆಗಳು</a>
+            <a href="index.html#members">ಸದಸ್ಯರು</a>
           </div>
         </div>
         <div class="nav-group">
-          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-fight">
-            ಹೋರಾಟ
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-work">
+            ಕಾರ್ಯಕ್ರಮಗಳು
             <svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
-          <div class="nav-panel" id="menu-fight" hidden>
-            <a href="index.html#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a>
-            <a href="index.html#news">ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು</a>
+          <div class="nav-panel" id="menu-work" hidden>
+            <a href="index.html#programmes">ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು</a>
+            <a href="index.html#social">ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು</a>
+            <a href="index.html#news">ಹೋರಾಟಗಳು</a>
           </div>
         </div>
         <div class="nav-group">
           <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-media">
-            ಸಂಗ್ರಹ
+            ಮಾಧ್ಯಮ
             <svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
           </button>
           <div class="nav-panel" id="menu-media" hidden>
+            <a href="index.html#press">ಮಾಧ್ಯಮ ವರದಿ</a>
             <a href="index.html#videos">ವೀಡಿಯೊ ಸಂಗ್ರಹ</a>
-            <a href="index.html#gallery">ಚಿತ್ರ ಸಂಗ್ರಹ</a>
+            <a href="index.html#gallery">ಗ್ಯಾಲರಿ</a>
           </div>
         </div>
-        <a class="nav-link" href="index.html#themes">ವಿಷಯಗಳು</a>
-        <a class="btn btn--primary nav-cta" href="index.html#enrol">ನಮ್ಮೊಂದಿಗೆ ಸೇರಿ</a>
+        <div class="nav-group">
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-more">
+            ಇನ್ನಷ್ಟು
+            <svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav-panel" id="menu-more" hidden>
+            <a href="index.html#membership">ಸದಸ್ಯತ್ವ</a>
+            <a href="index.html#contact">ಸಂಪರ್ಕಿಸಿ</a>
+          </div>
+        </div>
+        <a class="btn btn--primary nav-cta" href="index.html#donate">ದೇಣಿಗೆ</a>
       </nav>
 
       <button class="nav-toggle" type="button" id="navToggle"
@@ -76,18 +94,25 @@
     </div>
 
     <nav class="nav-mobile" id="navMobile" aria-label="ಮೊಬೈಲ್ ಮೆನು">
-      <h4>ಸಂಸ್ಥೆ</h4>
-      <a href="index.html#about">ಪರಿಚಯ</a>
-      <a href="index.html#talk">ಅಧ್ಯಕ್ಷರ ಮಾತು</a>
-      <h4>ಹೋರಾಟ</h4>
+      <a href="index.html#hero">ಮುಖಪುಟ</a>
+      <h4>ಸಂಘಟನೆ</h4>
+      <a href="index.html#about">ನಮ್ಮ ಸಂಘಟನೆಯ ಬಗ್ಗೆ</a>
+      <a href="index.html#talk">ನಮ್ಮ ನಾಯಕರು</a>
       <a href="index.html#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a>
-      <a href="index.html#news">ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು</a>
-      <h4>ಸಂಗ್ರಹ</h4>
+      <a href="index.html#districts">ಜಿಲ್ಲೆಗಳು</a>
+      <a href="index.html#members">ಸದಸ್ಯರು</a>
+      <h4>ಕಾರ್ಯಕ್ರಮಗಳು</h4>
+      <a href="index.html#programmes">ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು</a>
+      <a href="index.html#social">ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು</a>
+      <a href="index.html#news">ಹೋರಾಟಗಳು</a>
+      <h4>ಮಾಧ್ಯಮ</h4>
+      <a href="index.html#press">ಮಾಧ್ಯಮ ವರದಿ</a>
       <a href="index.html#videos">ವೀಡಿಯೊ ಸಂಗ್ರಹ</a>
-      <a href="index.html#gallery">ಚಿತ್ರ ಸಂಗ್ರಹ</a>
-      <h4>ಇತರೆ</h4>
-      <a href="index.html#themes">ವಿಷಯಗಳು</a>
-      <a href="index.html#enrol">ನಮ್ಮೊಂದಿಗೆ ಸೇರಿ</a>
+      <a href="index.html#gallery">ಗ್ಯಾಲರಿ</a>
+      <h4>ಇನ್ನಷ್ಟು</h4>
+      <a href="index.html#membership">ಸದಸ್ಯತ್ವ</a>
+      <a href="index.html#contact">ಸಂಪರ್ಕಿಸಿ</a>
+      <a href="index.html#donate">ದೇಣಿಗೆ</a>
     </nav>
   </div>
 </header>
@@ -243,33 +268,47 @@
 </main>
 
 <!-- ================= FOOTER ================= -->
-<footer class="site-footer">
+<footer class="site-footer" id="contact">
   <div class="wrap">
     <div class="footer-grid">
       <div class="footer-brand">
         <img class="footer-logo" src="assets/logo.png" width="245" height="220"
              alt="ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ" />
-        <p>ಕನ್ನಡ ಭಾಷೆ, ಸಂಸ್ಕೃತಿ, ನೆಲ ಮತ್ತು ಕನ್ನಡಿಗರ ಹಿತಾಸಕ್ತಿಗಳ ರಕ್ಷಣೆಗೆ ಸಮರ್ಪಿತ.</p>
+        <p>ನಾಡು, ನುಡಿ, ನೆಲ ಮತ್ತು ಕನ್ನಡಿಗರ ಹಕ್ಕುಗಳ ರಕ್ಷಣೆಗಾಗಿ.</p>
       </div>
 
       <div>
-        <h3>ವಿಷಯಗಳು</h3>
+        <h3>ಸಂಘಟನೆ</h3>
         <ul>
-          <li><a href="index.html#themes">ಛಾಯಾಗ್ರಹಣ</a></li>
-          <li><a href="index.html#themes">ಬಣ್ಣ</a></li>
-          <li><a href="index.html#themes">ಸಂಕಲನ</a></li>
-          <li><a href="index.html#themes">ಧ್ವನಿ</a></li>
+          <li><a href="index.html#about">ನಮ್ಮ ಸಂಘಟನೆಯ ಬಗ್ಗೆ</a></li>
+          <li><a href="index.html#talk">ನಮ್ಮ ನಾಯಕರು</a></li>
+          <li><a href="index.html#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a></li>
+          <li><a href="index.html#districts">ಜಿಲ್ಲೆಗಳು</a></li>
+          <li><a href="index.html#members">ಸದಸ್ಯರು</a></li>
         </ul>
       </div>
 
       <div>
-        <h3>ಸಂಸ್ಥೆ</h3>
+        <h3>ಕಾರ್ಯಕ್ರಮ</h3>
         <ul>
-          <li><a href="index.html#talk">ಅಧ್ಯಕ್ಷರ ಮಾತು</a></li>
-          <li><a href="index.html#about">ಪರಿಚಯ</a></li>
-          <li><a href="index.html#videos">ವೀಡಿಯೊ ಸಂಗ್ರಹ</a></li>
-          <li><a href="index.html#gallery">ಚಿತ್ರ ಸಂಗ್ರಹ</a></li>
-          <li><a href="index.html#news">ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು</a></li>
+          <li><a href="index.html#programmes">ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು</a></li>
+          <li><a href="index.html#social">ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು</a></li>
+          <li><a href="index.html#news">ಹೋರಾಟಗಳು</a></li>
+          <li><a href="index.html#press">ಮಾಧ್ಯಮ ವರದಿ</a></li>
+          <li><a href="index.html#gallery">ಗ್ಯಾಲರಿ</a></li>
+        </ul>
+      </div>
+
+      <!-- TODO: the address, phone and email below are PLACEHOLDERS. Nothing
+           here reaches anyone. Replace before this page is published. -->
+      <div>
+        <h3>ಸಂಪರ್ಕಿಸಿ</h3>
+        <ul class="footer-contact">
+          <li>ಕಚೇರಿಯ ವಿಳಾಸ ಇಲ್ಲಿ,<br />ಬೆಂಗಳೂರು – 560 001</li>
+          <li><a href="tel:+910000000000">+91 00000 00000</a></li>
+          <li><a href="mailto:name@example.org">name@example.org</a></li>
+          <li><a href="index.html#membership">ಸದಸ್ಯತ್ವ</a></li>
+          <li><a href="index.html#donate">ದೇಣಿಗೆ</a></li>
         </ul>
       </div>
     </div>
