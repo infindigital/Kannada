@@ -16,8 +16,18 @@ track the current page.
 - `assets/site.css` — every style, shared by both pages. `url()` inside it
   resolves against the stylesheet, not the page, so asset paths in here carry
   no `assets/` prefix.
-- `assets/nav.js` — the header behaviour, needed by every page. The sliders,
-  lightbox and player stay inline on the page that uses them.
+- `assets/nav.js` — the header behaviour, needed by every page: the mobile
+  sheet and the grouped menus. The sliders, lightbox and player stay inline on
+  the page that uses them.
+
+Every section is reachable from the header. Eight Kannada section names will
+not sit on one line — laid out flat they run about 1350px against a 1120px
+container — so they are grouped into three disclosures (ಸಂಸ್ಥೆ, ಹೋರಾಟ, ಸಂಗ್ರಹ)
+plus ವಿಷಯಗಳು and the call to action, which fits from 900px up with room to
+spare. The menus open on click rather than hover, since a hover menu cannot be
+reached by touch; one opens at a time, Escape closes and returns focus to its
+trigger, and a click or focus outside closes them. Below 900px the whole set
+lists flat in the mobile sheet under its group headings.
 - `assets/karnataka-flag.mp4` — looping Karnataka flag video, page 1 of the hero.
   Muted, autoplaying, `playsinline`, with a matching SVG poster so the hero is
   never blank while it loads.

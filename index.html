@@ -32,11 +32,38 @@
       </a>
 
       <nav class="nav-desktop" aria-label="ಮುಖ್ಯ ಮೆನು">
+        <div class="nav-group">
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-org">
+            ಸಂಸ್ಥೆ
+            <svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav-panel" id="menu-org" hidden>
+            <a href="#about">ಪರಿಚಯ</a>
+            <a href="#talk">ಅಧ್ಯಕ್ಷರ ಮಾತು</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-fight">
+            ಹೋರಾಟ
+            <svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav-panel" id="menu-fight" hidden>
+            <a href="#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a>
+            <a href="#news">ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು</a>
+          </div>
+        </div>
+        <div class="nav-group">
+          <button class="nav-trigger" type="button" aria-expanded="false" aria-controls="menu-media">
+            ಸಂಗ್ರಹ
+            <svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/></svg>
+          </button>
+          <div class="nav-panel" id="menu-media" hidden>
+            <a href="#videos">ವೀಡಿಯೊ ಸಂಗ್ರಹ</a>
+            <a href="#gallery">ಚಿತ್ರ ಸಂಗ್ರಹ</a>
+          </div>
+        </div>
         <a class="nav-link" href="#themes">ವಿಷಯಗಳು</a>
-        <a class="nav-link" href="#about">ಪರಿಚಯ</a>
-        <a class="nav-link" href="#hejje">ಹೆಜ್ಜೆಗಳು</a>
-        <a class="nav-link" href="#enrol">ಶುಲ್ಕ</a>
-        <a class="btn btn--primary nav-cta" href="#enrol">ಪ್ರವೇಶ ಪಡೆಯಿರಿ</a>
+        <a class="btn btn--primary nav-cta" href="#enrol">ನಮ್ಮೊಂದಿಗೆ ಸೇರಿ</a>
       </nav>
 
       <button class="nav-toggle" type="button" id="navToggle"
@@ -51,10 +78,18 @@
     </div>
 
     <nav class="nav-mobile" id="navMobile" aria-label="ಮೊಬೈಲ್ ಮೆನು">
-      <a href="#themes">ವಿಷಯಗಳು</a>
+      <h4>ಸಂಸ್ಥೆ</h4>
       <a href="#about">ಪರಿಚಯ</a>
-      <a href="#hejje">ಹೆಜ್ಜೆಗಳು</a>
-      <a href="#enrol">ಶುಲ್ಕ</a>
+      <a href="#talk">ಅಧ್ಯಕ್ಷರ ಮಾತು</a>
+      <h4>ಹೋರಾಟ</h4>
+      <a href="#hejje">ನಮ್ಮ ಹೆಜ್ಜೆಗಳು</a>
+      <a href="#news">ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು</a>
+      <h4>ಸಂಗ್ರಹ</h4>
+      <a href="#videos">ವೀಡಿಯೊ ಸಂಗ್ರಹ</a>
+      <a href="#gallery">ಚಿತ್ರ ಸಂಗ್ರಹ</a>
+      <h4>ಇತರೆ</h4>
+      <a href="#themes">ವಿಷಯಗಳು</a>
+      <a href="#enrol">ನಮ್ಮೊಂದಿಗೆ ಸೇರಿ</a>
     </nav>
   </div>
 </header>
