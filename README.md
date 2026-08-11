@@ -222,6 +222,18 @@ playing rather than restarting it.
 > thumbnails are page artwork, and the titles and durations are
 > **placeholders**.
 
+**ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು** carries the tile grid and then a run of report cards —
+the same `.card` component ಹೋರಾಟಗಳು uses, since the two say the same kind of
+thing and one component means one place to fix how a report card behaves. That
+puts two card runs on the home page, so this one takes the cream ground via
+`.news.is-alt`; `.districts` moved to white in the same pass, which is the
+ground that works both after the white ಸಾಮಾಜಿಕ band on the home page and after
+the cream page head on its own.
+
+> The category, date and headline on each of those cards are **placeholders**,
+> the images are page artwork, and every card opens the one `campaign.html`
+> report until each has its own.
+
 **ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು** reuses the `.card` component rather than introducing a
 second card style — image, place tag, date, headline, and a "know more" that
 looks like a button but is a `<span>`. The whole card is already one stretched

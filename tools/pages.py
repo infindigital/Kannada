@@ -56,9 +56,10 @@ PAGES = {
     # the home page carries every section, in the order the site reads; each
     # also has its own page, which is what the menu points at
     'index.html': ('ಮುಖಪುಟ', None,
-                   ['hero', 'home-intro', 'members', 'talk', 'programmes', 'hejje',
-                    'social', 'districts', 'videos', 'gallery', 'news', 'press',
-                    'home-areas', 'donate', 'membership'],
+                   ['hero', 'home-intro', 'members', 'talk', 'programmes',
+                    'programme-posts', 'social', 'hejje', 'districts', 'videos',
+                    'gallery', 'news', 'press', 'home-areas', 'donate',
+                    'membership'],
                    ['hero.js', 'hejje.js', 'vlib.js', 'gallery.js', 'form.js']),
     'about.html': ('ನಮ್ಮ ಸಂಘಟನೆಯ ಬಗ್ಗೆ', 'ಕನ್ನಡ ಭಾಷೆ, ಸಂಸ್ಕೃತಿ, ನೆಲ ಮತ್ತು ಕನ್ನಡಿಗರ ಹಿತಾಸಕ್ತಿಗಳ ರಕ್ಷಣೆಗಾಗಿ.',
                    ['about'], []),   # about.html carries ನಮ್ಮ ನಡೆ, the creed and ದೃಷ್ಟಿಕೋನ/ಧ್ಯೇಯ
@@ -70,7 +71,7 @@ PAGES = {
                        ['districts'], []),
     'members.html': ('ಸದಸ್ಯರು', 'ಸಂಘಟನೆಯ ಸಂಖ್ಯಾಬಲ.', ['members'], []),
     'programmes.html': ('ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು', 'ವರ್ಷವಿಡೀ ನಡೆಯುವ ಕೆಲಸ.',
-                        ['programmes'], []),
+                        ['programmes', 'programme-posts'], []),
     'social.html': ('ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು', 'ಹೋರಾಟದ ಆಚೆಗಿನ ಸೇವೆ.',
                     ['social'], []),
     'campaigns.html': ('ಹೋರಾಟಗಳು', 'ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆಯ ಹೋರಾಟದ ಹಾದಿ ಮತ್ತು ಸಂಘಟನೆಯ ಶಕ್ತಿ.',

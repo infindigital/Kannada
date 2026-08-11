@@ -1246,6 +1246,8 @@ section[id] { scroll-margin-top: 7rem; }
    ಇತ್ತೀಚಿನ ಹೋರಾಟಗಳು — recent campaigns
    ============================================================ */
 .news { padding-block: var(--section-y); background: var(--surface); }
+/* a second run of report cards on the same page needs the other ground */
+.news.is-alt { background: var(--surface-sunken); }
 
 /* heading left, "see all" right once there is room for both on one line */
 .news-head {
@@ -1363,7 +1365,6 @@ section[id] { scroll-margin-top: 7rem; }
 .page-head + .about,
 .page-head + .talk,
 .page-head + .hejje,
-.page-head + .districts,
 .page-head + .gal,
 .page-head + .press,
 .page-head + .contact { background-color: var(--surface); }
@@ -1390,7 +1391,7 @@ section[id] { scroll-margin-top: 7rem; }
 /* ============================================================
    ಜಿಲ್ಲೆಗಳು — the district units
    ============================================================ */
-.districts { padding-block: var(--section-y); background: var(--surface-sunken); }
+.districts { padding-block: var(--section-y); background: var(--surface); }
 
 /* names, not controls: a plain wrapping list of chips. `text-wrap: balance`
    is deliberately not used — these are separate items, not one sentence. */
