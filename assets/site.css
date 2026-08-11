@@ -1950,3 +1950,72 @@ section[id] { scroll-margin-top: 7rem; }
 /* on the home page this grid follows the white stats strip, so it takes the
    cream ground instead — no two bands in the run share a surface */
 .themes.is-alt { background: var(--surface-sunken); }
+
+/* ============================================================
+   ನಮ್ಮ ನಡೆ — the long-form about narrative
+   ============================================================ */
+/* six paragraphs run well past the portrait, so the column tops align and the
+   picture rides down with the reader instead of sitting centred against a wall
+   of text it no longer relates to */
+#about .about-grid { align-items: start; }
+@media (min-width: 900px) {
+  #about .about-figure { position: sticky; top: calc(var(--header-h, 5rem) + 1.5rem); }
+}
+
+/* ============================================================
+   ಕನ್ನಡವೇ ನಮ್ಮ ಉಸಿರು — the four-line creed
+   ============================================================ */
+.creed {
+  padding-block: clamp(3rem, 6vw, 5rem);
+  background:
+    radial-gradient(58% 60% at 14% 10%, rgba(212,42,40,.30) 0%, transparent 62%),
+    radial-gradient(50% 54% at 88% 92%, rgba(255,204,0,.16) 0%, transparent 60%),
+    var(--surface-inverse);
+  text-align: center;
+}
+.creed-lines {
+  max-width: 40rem;
+  margin-inline: auto;
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: clamp(1.35rem, 3.2vw, 2.1rem);
+  line-height: 1.5;
+  color: rgba(255,255,255,.82);
+}
+/* the subject of each line, which is the part that changes */
+.creed-lines span { color: var(--yellow); }
+.creed-lines p + p { margin-top: .35rem; }
+
+/* ============================================================
+   ದೃಷ್ಟಿಕೋನ ಮತ್ತು ಧ್ಯೇಯ
+   ============================================================ */
+.vision { padding-block: var(--section-y); background: var(--surface-sunken); }
+.vision-grid {
+  display: grid;
+  gap: clamp(2.5rem, 5vw, 4rem);
+  align-items: start;
+}
+@media (min-width: 900px) { .vision-grid { grid-template-columns: 1fr 1fr; } }
+.vision h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  margin-block: .75rem 1.25rem;
+}
+.vision p { color: var(--ink-muted); }
+.vision p + p { margin-top: 1rem; }
+
+.aims { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
+.aims li {
+  position: relative;
+  padding-left: 1.75rem;
+  color: var(--ink-muted);
+  font-size: .95rem;
+}
+/* a flag-halved dot rather than a bullet glyph, which Anek sets too faintly */
+.aims li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .5em;
+  width: .6rem; height: .6rem;
+  border-radius: 50%;
+  background: linear-gradient(to bottom, var(--yellow) 50%, var(--red) 50%);
+}

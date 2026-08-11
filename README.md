@@ -154,9 +154,22 @@ nothing.
 > are **placeholders**. Nothing in the ದೇಣಿಗೆ block can receive money and
 > nothing in the footer reaches anyone.
 
-The **about** band carries the supplied portrait (`assets/narayana-guru.png`,
+**about.html** runs three bands: ನಮ್ಮ ನಡೆ, the four-line creed, and
+ದೃಷ್ಟಿಕೋನ beside ಧ್ಯೇಯ. The narrative is six paragraphs, well past the height
+of the portrait beside it, so that column tops-aligns and the picture is sticky
+— it rides down with the reader instead of sitting centred against text it no
+longer relates to. The creed is a `blockquote`, not a list: the four lines are
+one sentence said four ways, and only the subject changes, which is the part
+set in yellow. ಧ್ಯೇಯ is an unordered list, since an ordered one would claim a
+ranking these aims do not have; the markers are flag-halved dots drawn in CSS,
+because Anek sets a bullet glyph too faintly at this size.
+
+The about band carries the supplied portrait (`assets/narayana-guru.png`,
 1.9 MB, served as a 98 KB JPEG) closed by the ನಾಡು · ನುಡಿ · ನೆಲ · ಸಂಸ್ಕೃತಿ
 strip, which was a separate tile when that column was a three-part collage.
+
+> The ನಮ್ಮ ನಡೆ, ದೃಷ್ಟಿಕೋನ and ಧ್ಯೇಯ text is the organisation's own copy, not
+> placeholder.
 
 **ಚಿತ್ರ ಸಂಗ್ರಹ** is a mosaic, not an even grid — two tiles carry weight via
 `is-wide` / `is-tall` spans and `grid-auto-flow: dense` packs the rest around
