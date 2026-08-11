@@ -186,7 +186,7 @@ one sentence said four ways, and only the subject changes, which is the part
 set in yellow. ಧ್ಯೇಯ is an unordered list, since an ordered one would claim a
 ranking these aims do not have; the markers are flag-halved dots drawn in CSS,
 because Anek sets a bullet glyph too faintly at this size, and hairlines
-separate the seven so a long one does not run into the next. Each half is a
+separate them so a long one does not run into the next. Each half is a
 card with a flag edge along its top: the two say different kinds of thing — one
 a statement, one a list — and on a shared ground they read as one column broken
 in two. They size to their own content rather than stretching, since matching
