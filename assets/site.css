@@ -1308,20 +1308,41 @@ section[id] { scroll-margin-top: 7rem; }
    PAGE HEAD — the opening band on every page but the home page
    ============================================================ */
 .page-head {
-  padding-block: clamp(2.25rem, 5vw, 3.75rem);
+  position: relative;
+  overflow: hidden;
+  padding-block: clamp(2.5rem, 5.5vw, 4.25rem);
   background:
     radial-gradient(52% 60% at 88% 0%, rgba(255,204,0,.18) 0%, transparent 62%),
     var(--surface-sunken);
   border-bottom: 1px solid var(--border-soft);
 }
+.page-head > .wrap { position: relative; z-index: 1; }
 .page-head h1 {
   font-size: clamp(2rem, 5vw, 3.1rem);
-  margin-bottom: .5rem;
+  letter-spacing: -.01em;
+  margin-bottom: .6rem;
 }
 .page-head > .wrap > p {
   color: var(--ink-muted);
   max-width: 52ch;
 }
+/* the right of a page head is otherwise dead space, so the flag runs through
+   it as a set of raking stripes — drawn in CSS rather than shipped as art */
+.page-head-mark {
+  position: absolute;
+  inset: -30% -8% -30% auto;
+  width: min(30rem, 42%);
+  background: repeating-linear-gradient(
+    114deg,
+    rgba(212,42,40,.14) 0 14px,
+    transparent 14px 30px,
+    rgba(255,204,0,.20) 30px 44px,
+    transparent 44px 62px);
+  -webkit-mask-image: linear-gradient(to left, #000 10%, transparent 92%);
+          mask-image: linear-gradient(to left, #000 10%, transparent 92%);
+  pointer-events: none;
+}
+@media (max-width: 720px) { .page-head-mark { display: none; } }
 
 .page-crumb {
   display: flex;
@@ -1959,19 +1980,72 @@ section[id] { scroll-margin-top: 7rem; }
    of text it no longer relates to */
 #about .about-grid { align-items: start; }
 @media (min-width: 900px) {
+  #about .about-grid { grid-template-columns: 1.15fr 1fr; }
   #about .about-figure { position: sticky; top: calc(var(--header-h, 5rem) + 1.5rem); }
+}
+
+/* the opening sentence states what the organisation is; the five that follow
+   qualify it, so it is set larger and darker and they step back */
+#about .about-grid > div > p { max-width: 58ch; }
+#about .about-lede {
+  font-size: clamp(1.05rem, 1.6vw, 1.2rem);
+  line-height: 1.65;
+  color: var(--ink);
+  font-weight: 500;
+  max-width: 46ch;
+}
+#about .about-grid > div > p + p { margin-top: 1.15rem; color: var(--ink-muted); }
+
+/* a flag rule down the left of the narrative, so the column reads as one
+   passage rather than six loose paragraphs */
+#about .about-grid > div {
+  position: relative;
+  padding-left: clamp(1rem, 2.5vw, 1.75rem);
+}
+#about .about-grid > div::before {
+  content: "";
+  position: absolute;
+  left: 0; top: .4rem; bottom: .4rem;
+  width: 3px;
+  border-radius: 3px;
+  background: linear-gradient(to bottom, var(--yellow), var(--red) 45%, transparent);
+}
+
+/* An offset flag panel behind the portrait. Drawn as two hard-edged box
+   shadows rather than a ::before, because .about-figure clips to its own
+   radius and would cut the panel off. */
+.about-figure.is-framed {
+  box-shadow:
+    var(--shadow-3),
+    14px 14px 0 0 rgba(255,204,0,.45),
+    26px 26px 0 0 rgba(212,42,40,.16);
+}
+@media (max-width: 600px) {
+  /* the offset would push past the viewport edge on a phone */
+  .about-figure.is-framed { box-shadow: var(--shadow-3); }
 }
 
 /* ============================================================
    ಕನ್ನಡವೇ ನಮ್ಮ ಉಸಿರು — the four-line creed
    ============================================================ */
 .creed {
-  padding-block: clamp(3rem, 6vw, 5rem);
+  position: relative;
+  padding-block: clamp(3.25rem, 6.5vw, 5.5rem);
   background:
     radial-gradient(58% 60% at 14% 10%, rgba(212,42,40,.30) 0%, transparent 62%),
     radial-gradient(50% 54% at 88% 92%, rgba(255,204,0,.16) 0%, transparent 60%),
     var(--surface-inverse);
   text-align: center;
+}
+/* a flag lozenge opens the block, standing in for the quote mark a creed in
+   Kannada should not be given */
+.creed-mark {
+  display: block;
+  width: 2.75rem;
+  height: .35rem;
+  margin: 0 auto clamp(1.5rem, 3vw, 2.25rem);
+  border-radius: 999px;
+  background: linear-gradient(to right, var(--yellow) 50%, var(--red) 50%);
 }
 .creed-lines {
   max-width: 40rem;
@@ -1981,10 +2055,11 @@ section[id] { scroll-margin-top: 7rem; }
   font-size: clamp(1.35rem, 3.2vw, 2.1rem);
   line-height: 1.5;
   color: rgba(255,255,255,.82);
+  text-wrap: balance;
 }
 /* the subject of each line, which is the part that changes */
 .creed-lines span { color: var(--yellow); }
-.creed-lines p + p { margin-top: .35rem; }
+.creed-lines p + p { margin-top: .45rem; }
 
 /* ============================================================
    ದೃಷ್ಟಿಕೋನ ಮತ್ತು ಧ್ಯೇಯ
@@ -1992,29 +2067,54 @@ section[id] { scroll-margin-top: 7rem; }
 .vision { padding-block: var(--section-y); background: var(--surface-sunken); }
 .vision-grid {
   display: grid;
-  gap: clamp(2.5rem, 5vw, 4rem);
+  gap: clamp(1.5rem, 3vw, 2.25rem);
   align-items: start;
 }
 @media (min-width: 900px) { .vision-grid { grid-template-columns: 1fr 1fr; } }
+
+/* each half is a card: the two halves say different kinds of thing — one a
+   statement, one a list — and a shared ground made them read as one column
+   broken in two */
+.vision-col {
+  position: relative;
+  padding: clamp(1.75rem, 3.5vw, 2.75rem);
+  background: var(--surface);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-1);
+  overflow: hidden;
+}
+.vision-col::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 4px;
+  background: linear-gradient(to right, var(--red) 50%, var(--yellow) 50%);
+}
 .vision h2 {
-  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-size: clamp(1.4rem, 2.6vw, 1.85rem);
   margin-block: .75rem 1.25rem;
 }
 .vision p { color: var(--ink-muted); }
 .vision p + p { margin-top: 1rem; }
 
-.aims { list-style: none; margin: 0; padding: 0; display: grid; gap: .9rem; }
+.aims { list-style: none; margin: 0; padding: 0; display: grid; }
 .aims li {
   position: relative;
-  padding-left: 1.75rem;
+  padding: .85rem 0 .85rem 1.75rem;
+  border-top: 1px solid var(--border-soft);
   color: var(--ink-muted);
   font-size: .95rem;
 }
+/* hairlines separate the seven aims; the first needs no rule above it */
+.aims li:first-child { border-top: 0; padding-top: 0; }
+.aims li:first-child::before { top: .45em; }
+.aims li:last-child { padding-bottom: 0; }
 /* a flag-halved dot rather than a bullet glyph, which Anek sets too faintly */
 .aims li::before {
   content: "";
   position: absolute;
-  left: 0; top: .5em;
+  left: 0; top: 1.25em;
   width: .6rem; height: .6rem;
   border-radius: 50%;
   background: linear-gradient(to bottom, var(--yellow) 50%, var(--red) 50%);

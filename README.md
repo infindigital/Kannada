@@ -127,8 +127,12 @@ in one place.
 report a card on ಹೋರಾಟಗಳು opens.
 
 Every page but the home page opens on a **page head**: breadcrumb, `h1` and one
-line of context. It is cream, and the bands that are also cream take the white
-ground when they follow it — otherwise the two would meet with no seam. The
+line of context. Its right side is otherwise dead space, so the flag runs
+through it as raking stripes — repeating-linear-gradient under a mask that
+fades them out toward the text, drawn in CSS rather than shipped as art, and
+dropped entirely under 720px where there is no spare width. The band is cream,
+and the bands that are also cream take the white ground when they follow it —
+otherwise the two would meet with no seam. The
 first fragment on such a page loses its own `.section-head`, since the page head
 already carries that heading; the `h1` count is checked per page, and every page
 has exactly one.
@@ -158,11 +162,22 @@ nothing.
 ದೃಷ್ಟಿಕೋನ beside ಧ್ಯೇಯ. The narrative is six paragraphs, well past the height
 of the portrait beside it, so that column tops-aligns and the picture is sticky
 — it rides down with the reader instead of sitting centred against text it no
-longer relates to. The creed is a `blockquote`, not a list: the four lines are
+longer relates to. The opening sentence states what the organisation is and the
+five that follow qualify it, so it is set larger and darker and they step back;
+a flag rule down the left edge holds the six together as one passage. The
+portrait's offset flag panel is two hard-edged box shadows rather than a
+`::before`, because `.about-figure` clips to its own radius and would cut a
+pseudo-element off — and the offset is dropped under 600px, where it would push
+past the viewport edge. The creed is a `blockquote`, not a list: the four lines are
 one sentence said four ways, and only the subject changes, which is the part
 set in yellow. ಧ್ಯೇಯ is an unordered list, since an ordered one would claim a
 ranking these aims do not have; the markers are flag-halved dots drawn in CSS,
-because Anek sets a bullet glyph too faintly at this size.
+because Anek sets a bullet glyph too faintly at this size, and hairlines
+separate the seven so a long one does not run into the next. Each half is a
+card with a flag edge along its top: the two say different kinds of thing — one
+a statement, one a list — and on a shared ground they read as one column broken
+in two. They size to their own content rather than stretching, since matching
+their heights would leave ದೃಷ್ಟಿಕೋನ mostly empty.
 
 The about band carries the supplied portrait (`assets/narayana-guru.png`,
 1.9 MB, served as a 98 KB JPEG) closed by the ನಾಡು · ನುಡಿ · ನೆಲ · ಸಂಸ್ಕೃತಿ

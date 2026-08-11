@@ -221,6 +221,7 @@ def footer():
 def page_head(title, blurb):
     return """  <!-- ================= PAGE HEAD ================= -->
   <section class="page-head">
+    <span class="page-head-mark" aria-hidden="true"></span>
     <div class="wrap">
       <nav class="page-crumb" aria-label="ದಾರಿ">
         <a href="index.html">ಮುಖಪುಟ</a>
