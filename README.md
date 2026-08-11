@@ -137,9 +137,22 @@ first fragment on such a page loses its own `.section-head`, since the page head
 already carries that heading; the `h1` count is checked per page, and every page
 has exactly one.
 
-The **home page** is hero → a short ನಮ್ಮ ಬಗ್ಗೆ that hands off to `about.html` →
-the ಸದಸ್ಯರು strip → a grid of all twelve category pages, so a visitor who
-scrolls rather than opens a menu reaches the same set.
+The **home page carries every section**, in the order the site reads: hero, a
+short ನಮ್ಮ ಬಗ್ಗೆ that hands off to `about.html`, ಸದಸ್ಯರು, ನಮ್ಮ ನಾಯಕರು,
+ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು, ನಮ್ಮ ಹೆಜ್ಜೆಗಳು, ಸಾಮಾಜಿಕ ಕಾರ್ಯಕ್ರಮಗಳು, ಜಿಲ್ಲೆಗಳು,
+ವೀಡಿಯೊ ಸಂಗ್ರಹ, ಗ್ಯಾಲರಿ, ಹೋರಾಟಗಳು, ಮಾಧ್ಯಮ ವರದಿ, the grid of category pages,
+ದೇಣಿಗೆ and ಸದಸ್ಯತ್ವ — fifteen bands. Each also has its own page, which is what
+the menu points at; the home page is the whole thing in one scroll.
+
+That means the coverflow, the video library, the gallery and the sign-up form
+each exist **twice** in the site. They used to be wired by `getElementById`,
+which cannot survive that: the second copy would have found the first one's
+controls. Each is now wired **per section** — find every root, then look its
+parts up inside that root — so any number of copies work independently. The
+folded single-file preview is the hard case, since there all sixteen pages sit
+in one document at once: advancing the home page's coverflow leaves
+`journey.html`'s where it was, and opening the home gallery opens one dialog,
+not two.
 
 Splitting the site this way retired the last of the film-course content it
 started from: the stats strip is now the organisation's reach, the ಪಠ್ಯಕ್ರಮ

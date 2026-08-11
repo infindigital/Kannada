@@ -53,8 +53,13 @@ CTA = ('ದೇಣಿಗೆ', 'donate.html')
 # A blurb of None means the page draws its own opening instead of a page head:
 # only the home page does, because it opens on the video hero.
 PAGES = {
-    'index.html': ('ಮುಖಪುಟ', None, ['hero', 'home-intro', 'members', 'home-areas'],
-                   ['hero.js']),
+    # the home page carries every section, in the order the site reads; each
+    # also has its own page, which is what the menu points at
+    'index.html': ('ಮುಖಪುಟ', None,
+                   ['hero', 'home-intro', 'members', 'talk', 'programmes', 'hejje',
+                    'social', 'districts', 'videos', 'gallery', 'news', 'press',
+                    'home-areas', 'donate', 'membership'],
+                   ['hero.js', 'hejje.js', 'vlib.js', 'gallery.js', 'form.js']),
     'about.html': ('ನಮ್ಮ ಸಂಘಟನೆಯ ಬಗ್ಗೆ', 'ಕನ್ನಡ ಭಾಷೆ, ಸಂಸ್ಕೃತಿ, ನೆಲ ಮತ್ತು ಕನ್ನಡಿಗರ ಹಿತಾಸಕ್ತಿಗಳ ರಕ್ಷಣೆಗಾಗಿ.',
                    ['about'], []),   # about.html carries ನಮ್ಮ ನಡೆ, the creed and ದೃಷ್ಟಿಕೋನ/ಧ್ಯೇಯ
     'leaders.html': ('ನಮ್ಮ ನಾಯಕರು', 'ಸಂಘಟನೆಯನ್ನು ಮುನ್ನಡೆಸುತ್ತಿರುವವರು.',
