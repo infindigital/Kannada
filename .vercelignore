@@ -1,0 +1,7 @@
+# Sources, not output. tools/pages.py writes the root *.html files from
+# content/*.html; the generated pages are committed, so Vercel needs neither.
+# (Honoured by `vercel deploy` from the CLI. Git-based deploys upload the whole
+# repo, which is why vercel.json also redirects /content and /tools away.)
+content/
+tools/
+DESIGN-RECOMMENDATIONS.md

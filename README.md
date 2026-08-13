@@ -87,6 +87,30 @@ what a screen reader announces.
 Checked by resolving every `href` on every page against the files that actually
 exist, not by reading the markup.
 
+## Deploying
+
+The site is static with no build step, so any static host serves it. `vercel.json`
+is set up for Vercel:
+
+- **no build command and no output directory** — the generated `*.html` at the
+  repo root *is* the site, so Vercel serves the repo as-is.
+- `/content` and `/tools` redirect to `/`. Git-based deploys upload the whole
+  repo, so without this the section fragments would be reachable on their own
+  and indexable as broken half-pages. `.vercelignore` covers the same ground
+  for `vercel deploy` from the CLI.
+- **Caching is deliberately short.** Asset filenames are not content-hashed, so
+  `immutable` would serve a stale `site.css` to returning visitors after every
+  deploy. Media gets a day with `stale-while-revalidate`; everything else
+  revalidates on each request, which the edge cache still makes fast.
+- `cleanUrls` is **off** on purpose. Turning it on would 308 every
+  `about.html` link to `/about`, and the extensionless URLs would stop the site
+  opening from `file://` or a plain static server — which is how it is
+  previewed and tested.
+
+To deploy: import the repo at **vercel.com/new**, leave the framework preset on
+*Other*, and deploy — there is nothing to configure. Or from a checkout with
+the CLI: `npx vercel --prod`.
+
 ## Design system
 
 | | |
