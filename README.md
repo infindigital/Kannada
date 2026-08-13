@@ -111,6 +111,25 @@ To deploy: import the repo at **vercel.com/new**, leave the framework preset on
 *Other*, and deploy — there is nothing to configure. Or from a checkout with
 the CLI: `npx vercel --prod`.
 
+### One thing to set once the domain is known
+
+`SITE_URL` at the top of `tools/pages.py` is empty. Set it to the live origin
+(no trailing slash) and re-run the generator. That switches `og:image` from a
+relative path to an absolute one — Slack, Discord, LinkedIn and X resolve a
+relative one against the page, Facebook and WhatsApp do not — and turns on
+`<link rel="canonical">`, `og:url` and `sitemap.xml`. The sitemap is written
+only when there is an origin to put in it, because a sitemap of relative URLs
+is not a sitemap. `robots.txt` is written either way and gains its `Sitemap:`
+line at the same point.
+
+`assets/og.png` is the 1200×630 link card. It is drawn by
+`tools/og-image.mjs` through headless Chromium rather than an image library,
+because the card is set in Kannada and needs real shaping — a library that
+cannot form conjuncts would render ರಕ್ಷಣಾ as loose parts. Going through the
+browser also means the card inherits the site's own colours and type, so it and
+the page it opens look like the same thing. The PNG is committed, so the script
+only runs when the card changes.
+
 ## Design system
 
 | | |

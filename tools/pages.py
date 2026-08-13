@@ -88,6 +88,16 @@ PAGES = {
 DESCRIPTION = 'ನಾಡು, ನುಡಿ, ನೆಲ, ಸಂಸ್ಕೃತಿ ಮತ್ತು ಕನ್ನಡಿಗರ ಹಕ್ಕುಗಳ ರಕ್ಷಣೆಗಾಗಿ ಒಗ್ಗಟ್ಟಿನ ಹೋರಾಟ.'
 SITE = 'ಕರ್ನಾಟಕ ರಕ್ಷಣಾ ವೇದಿಕೆ'
 
+# The live origin, no trailing slash — e.g. 'https://krv.example.org'.
+#
+# Set this once the domain is known and re-run. Until then the page still
+# carries og:image, but as a relative path: Slack, Discord, LinkedIn and X
+# resolve that against the page URL, while Facebook and WhatsApp want an
+# absolute one. Setting it also turns on <link rel="canonical">, og:url, and
+# sitemap.xml — a sitemap of relative URLs is not a sitemap, so it is written
+# only when there is an origin to put in it.
+SITE_URL = ''
+
 CARET = ('<svg class="caret" width="11" height="11" viewBox="0 0 24 24" fill="none" '
          'aria-hidden="true"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2.4" '
          'stroke-linecap="round" stroke-linejoin="round"/></svg>')
@@ -240,6 +250,13 @@ def page_head(title, blurb):
   </section>""" % (title, title, blurb)
 
 
+def url_for(name):
+    """Absolute URL for a page, or None while SITE_URL is unset."""
+    if not SITE_URL:
+        return None
+    return SITE_URL.rstrip('/') + '/' + ('' if name == 'index.html' else name)
+
+
 def render(name):
     title, blurb, fragments, scripts = PAGES[name]
     body = []
@@ -256,6 +273,19 @@ def render(name):
 
     tags = '\n'.join('<script src="assets/%s"></script>' % s for s in scripts)
     full = title if name == 'index.html' else '%s — %s' % (title, SITE)
+
+    here = url_for(name)
+    social = ['<meta property="og:image" content="%sassets/og.png" />'
+              % (SITE_URL.rstrip('/') + '/' if SITE_URL else ''),
+              '<meta property="og:image:width" content="1200" />',
+              '<meta property="og:image:height" content="630" />',
+              '<meta property="og:site_name" content="%s" />' % SITE,
+              '<meta property="og:locale" content="kn_IN" />',
+              '<meta name="twitter:card" content="summary_large_image" />']
+    if here:
+        social.insert(0, '<link rel="canonical" href="%s" />' % here)
+        social.insert(1, '<meta property="og:url" content="%s" />' % here)
+    social = '\n'.join(social)
     return """<!DOCTYPE html>
 <html lang="kn">
 <head>
@@ -268,6 +298,8 @@ def render(name):
 <meta property="og:description" content="%s" />
 <meta property="og:type" content="website" />
 <link rel="icon" type="image/png" href="assets/logo-mark.png" />
+<link rel="apple-touch-icon" href="assets/logo-mark.png" />
+%s
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -293,8 +325,36 @@ def render(name):
 <script src="assets/nav.js"></script>
 </body>
 </html>
-""" % (full, DESCRIPTION, full, blurb or DESCRIPTION,
+""" % (full, DESCRIPTION, full, blurb or DESCRIPTION, social,
        header(name), '\n\n'.join(body), footer(), tags)
+
+
+def write_sitemap():
+    """sitemap.xml and robots.txt.
+
+    robots.txt is written either way; it only names the sitemap once there is
+    an origin, since a Sitemap: line has to be an absolute URL.
+    """
+    lines = ['User-agent: *', 'Allow: /', '',
+             '# fragments and the generator are not pages',
+             'Disallow: /content/', 'Disallow: /tools/']
+    if SITE_URL:
+        lines += ['', 'Sitemap: %s/sitemap.xml' % SITE_URL.rstrip('/')]
+    (ROOT / 'robots.txt').write_text('\n'.join(lines) + '\n', encoding='utf-8')
+    print('wrote %-18s' % 'robots.txt')
+
+    if not SITE_URL:
+        (ROOT / 'sitemap.xml').unlink(missing_ok=True)
+        print('skipped sitemap.xml  (set SITE_URL in tools/pages.py)')
+        return
+
+    urls = ''.join('  <url><loc>%s</loc></url>\n' % url_for(n)
+                   for n in ['index.html'] + sorted(n for n in PAGES if n != 'index.html'))
+    (ROOT / 'sitemap.xml').write_text(
+        '<?xml version="1.0" encoding="UTF-8"?>\n'
+        '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n'
+        '%s</urlset>\n' % urls, encoding='utf-8')
+    print('wrote %-18s (%d urls)' % ('sitemap.xml', len(PAGES)))
 
 
 def main():
@@ -313,6 +373,8 @@ def main():
                 sys.exit('campaign.html: expected 1 match for %r, got %d' % (pat[:24], n))
         path.write_text(text, encoding='utf-8')
         print('wrote %-18s (chrome only)' % 'campaign.html')
+
+    write_sitemap()
 
 
 if __name__ == '__main__':

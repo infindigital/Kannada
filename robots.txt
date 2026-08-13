@@ -1,0 +1,6 @@
+User-agent: *
+Allow: /
+
+# fragments and the generator are not pages
+Disallow: /content/
+Disallow: /tools/
