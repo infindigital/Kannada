@@ -38,7 +38,7 @@ import urllib.request
 # The WordPress origin, no trailing slash — e.g. 'https://cms.example.org'.
 # The REST API must be reachable at <WP_URL>/wp-json/wp/v2/ (it is, on a
 # default install; some security plugins disable it).
-WP_URL = ''
+WP_URL = 'https://whitesmoke-mink-476969.hostingersite.com'
 
 # category slug -> (fragment written, eyebrow, heading, lede)
 FEEDS = {
@@ -90,12 +90,23 @@ def category_id(slug):
 
 
 def posts_in(slug):
+    """Published posts in a category, or None to mean "leave this section be".
+
+    A category that does not exist yet and one that exists but is still empty
+    are the same thing here. Writing an empty section for either would replace
+    a working part of the site with a blank grid the first time the workflow
+    runs — the categories get created before anyone has written a post.
+    """
     cid = category_id(slug)
     if cid is None:
         print('  category %-16s not on the site — leaving its fragment alone' % slug)
         return None
-    return api('posts', categories=cid, per_page=PER_PAGE, _embed='wp:featuredmedia',
-               orderby='date', order='desc', status='publish')
+    found = api('posts', categories=cid, per_page=PER_PAGE, _embed='wp:featuredmedia',
+                orderby='date', order='desc', status='publish')
+    if not found:
+        print('  category %-16s has no published posts — leaving its fragment alone' % slug)
+        return None
+    return found
 
 
 # ----------------------------------------------------------------- helpers
@@ -361,7 +372,7 @@ def main():
         print('  wrote content/%-22s %d posts' % (name + '.html', len(posts)))
 
     gal = posts_in(GALLERY_SLUG)
-    if gal:
+    if gal is not None:
         items = [(img[0], img[1], text(p['title']))
                  for p in gal for img in [featured(p)] if img]
         if items:
@@ -369,7 +380,7 @@ def main():
             print('  wrote content/%-22s %d pictures' % ('gallery.html', len(items)))
 
     vids = posts_in(VIDEO_SLUG)
-    if vids:
+    if vids is not None:
         items = []
         for p in vids:
             img = featured(p)

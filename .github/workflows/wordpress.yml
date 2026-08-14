@@ -1,0 +1,56 @@
+# Pull content from WordPress and commit the rebuilt pages.
+#
+# Publishing a post in WordPress does not reach the site on its own: the
+# generated HTML is committed, which is what lets Vercel serve the repo with no
+# build step. This runs the fetch on GitHub's runners instead, hourly and on
+# demand, and pushes the result — which redeploys.
+#
+# Hourly rather than on every publish because WordPress has no webhook out of
+# the box. If you want a post live immediately, run this workflow by hand from
+# the Actions tab; it takes under a minute.
+name: Pull from WordPress
+
+on:
+  schedule:
+    - cron: '17 * * * *'      # hourly, off the hour so it is not queued with everyone else's
+  workflow_dispatch:           # the "Run workflow" button, for publishing right now
+
+permissions:
+  contents: write              # it commits the regenerated pages
+
+concurrency:
+  group: wordpress-sync        # never let two fetches race to commit
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Fetch from WordPress and rebuild
+        run: |
+          python3 tools/wp.py
+          python3 tools/pages.py
+
+      - name: Commit if anything changed
+        run: |
+          git config user.name  'wordpress-sync'
+          git config user.email 'actions@github.com'
+          # Stage first, then diff the index. Plain `git diff` only sees
+          # tracked files, so a fetch that just ADDS posts and images — which
+          # is exactly what the first run does — would look like no change.
+          git add -A
+          # --quiet exits non-zero when there IS a change, so this reads
+          # "nothing staged -> nothing to do", and an unchanged run passes
+          # rather than failing the build
+          if git diff --cached --quiet; then
+            echo 'no change since the last fetch'
+            exit 0
+          fi
+          git commit -m 'Content update from WordPress'
+          git push

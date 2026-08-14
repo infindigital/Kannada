@@ -113,8 +113,11 @@ excerpts. No plugin, no custom post type, nothing to install:
 | `gallery` | ಗ್ಯಾಲರಿ | featured image; the title is the caption |
 | `videos` | ವೀಡಿಯೊ ಸಂಗ್ರಹ | featured image is the poster, **excerpt is the video URL** |
 
-A category the site has not created yet is not an error — that section keeps
-whatever fragment is already in `content/`.
+A category that does not exist yet, and one that exists but has no published
+posts, are treated the same: that section keeps whatever fragment is already in
+`content/`. Both matter, because the categories get created before anyone has
+written a post — without this the first run would replace four working sections
+with blank grids.
 
 Each post in the two report categories also gets **its own detail page**,
 `post-<id>-<slug>.html`, in the same report layout `campaign.html` uses. A
@@ -139,10 +142,19 @@ URL.
 
 ### Publishing from WordPress
 
-The generated files are committed, so a publish in WordPress does not reach
-the site on its own — the fetch has to run and the result has to be pushed.
-Either run the two commands and push, or wire a Vercel Deploy Hook to a WP
-webhook so publishing triggers a rebuild.
+The generated files are committed, which is what lets Vercel serve the repo
+with no build step — so a publish in WordPress does not reach the site on its
+own. The fetch has to run and the result has to be pushed.
+
+`.github/workflows/wordpress.yml` does that on GitHub's runners: hourly, and on
+demand from the Actions tab when a post should go live immediately. It stages
+before diffing, because plain `git diff` only sees tracked files and the first
+run — which only *adds* posts and images — would otherwise look like no change
+at all. A run with nothing new passes rather than failing the build.
+
+Hourly rather than per-publish because WordPress has no outgoing webhook out of
+the box. Adding one (a plugin, or a `publish_post` hook posting to a
+`repository_dispatch`) would make it immediate.
 
 ## Deploying
 
