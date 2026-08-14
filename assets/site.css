@@ -2120,3 +2120,15 @@ section[id] { scroll-margin-top: 7rem; }
   border-radius: 50%;
   background: linear-gradient(to bottom, var(--yellow) 50%, var(--red) 50%);
 }
+
+/* the embed player sits exactly where the <video> does; only one is ever
+   shown, chosen by whether an entry is a media file or a YouTube/Vimeo page */
+.vlib-embed {
+  display: block;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  border: 0;
+  border-radius: var(--r-md);
+  background: #000;
+}
+.vlib-embed[hidden], .vlib-stage video[hidden] { display: none; }

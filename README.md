@@ -87,6 +87,63 @@ what a screen reader announces.
 Checked by resolving every `href` on every page against the files that actually
 exist, not by reading the markup.
 
+## WordPress as the CMS
+
+`tools/wp.py` pulls content from WordPress and writes it into `content/`;
+`tools/pages.py` then builds the pages as it always has:
+
+```
+python3 tools/wp.py && python3 tools/pages.py
+```
+
+WordPress is the editor. The deployed site stays static HTML and has **no
+runtime dependency on WordPress at all** — featured images are downloaded into
+`assets/wp/`, so if the WP site is slow, moved or down, the published pages are
+unaffected. Set `WP_URL` at the top of `tools/wp.py` to switch it on; while it
+is empty the script does nothing and the hand-written fragments in `content/`
+are left exactly as they are, so the site builds either way.
+
+It uses **core WordPress only** — posts, categories, featured images,
+excerpts. No plugin, no custom post type, nothing to install:
+
+| Category slug | Section | What a post supplies |
+|---|---|---|
+| `horaatagalu` | ಹೋರಾಟಗಳು | featured image, title, date, body |
+| `karyakramagalu` | ನಮ್ಮ ಕಾರ್ಯಕ್ರಮಗಳು | featured image, title, date, body |
+| `gallery` | ಗ್ಯಾಲರಿ | featured image; the title is the caption |
+| `videos` | ವೀಡಿಯೊ ಸಂಗ್ರಹ | featured image is the poster, **excerpt is the video URL** |
+
+A category the site has not created yet is not an error — that section keeps
+whatever fragment is already in `content/`.
+
+Each post in the two report categories also gets **its own detail page**,
+`post-<id>-<slug>.html`, in the same report layout `campaign.html` uses. A
+Kannada title gives WordPress a percent-encoded slug, which makes an
+unreadable filename and a fragile URL, so anything that does not survive as
+plain ASCII falls back to the post id alone. A page whose post has since been
+deleted or unpublished is removed on the next build rather than left behind as
+a stale URL.
+
+**The video URL goes in the Excerpt field** because it is a core field,
+editable in the block editor sidebar, and exposed by the REST API — custom
+meta is not, without registering it in a plugin. A YouTube or Vimeo link is a
+web page, not a media file, and cannot play in a `<video>` element, so the
+fragment carries both a `<video>` and an `<iframe>` and shows whichever an
+entry needs; `assets/vlib.js` swaps them, pausing the file player first so a
+hidden `<video>` cannot keep playing audio under the embed.
+
+The whole pipeline is tested against a mock WP REST API rather than a live
+site, including the cases that break naive fetchers: a percent-encoded Kannada
+slug, a post with no featured image, and a video entry whose excerpt is not a
+URL.
+
+### Publishing from WordPress
+
+The generated files are committed, so a publish in WordPress does not reach
+the site on its own — the fetch has to run and the result has to be pushed.
+Either run the two commands and push, or wire a Vercel Deploy Hook to a WP
+webhook so publishing triggers a rebuild.
+
 ## Deploying
 
 The site is static with no build step, so any static host serves it. `vercel.json`

@@ -13,6 +13,8 @@ to change its chrome. Per-page content lives in content/*.html and is copied in
 verbatim; this file never edits it.
 """
 
+import html
+import json
 import pathlib
 import re
 import sys
@@ -234,6 +236,68 @@ def footer():
 </footer>""" % (SITE, footer_col('ಸಂಘಟನೆ', MENU[1][2]), footer_col('ಕಾರ್ಯಕ್ರಮ', MENU[2][2] + [MENU[3][2][0]]), SITE)
 
 
+def post_pages():
+    """One page per WordPress post, from the manifest tools/wp.py writes.
+
+    Returns {} when there is no manifest, so the site builds the same whether
+    or not WordPress has been wired up.
+    """
+    path = CONTENT / 'posts.json'
+    if not path.exists():
+        return {}
+    return {p['file']: p for p in json.loads(path.read_text(encoding='utf-8'))}
+
+
+def post_body(post):
+    """A post rendered into the report layout campaign.html already uses."""
+    # a direct child of .report-card, which is what the stylesheet targets —
+    # a wrapper div would silently drop the height:auto that keeps the
+    # width/height attributes from fighting aspect-ratio
+    figure = ('            <img src="%s" alt="%s" width="1200" height="750" />\n'
+              % (post['image'], html.escape(post['alt'], quote=True))
+              ) if post.get('image') else ''
+    return """  <section class="report">
+    <div class="wrap">
+
+      <a class="crumb" href="%s">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+          <path d="M15 5l-7 7 7 7" stroke="currentColor" stroke-width="2.2"
+                stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        %s
+      </a>
+
+      <div class="report-grid">
+
+        <article>
+          <div class="report-card">
+%s            <div class="report-body">
+              <div class="report-meta">
+                <span class="tag">%s</span>
+              </div>
+              <h1 class="report-title">%s</h1>
+              <div class="report-by">
+                <div>
+                  <p class="report-byline">ವರದಿ · %s</p>
+                  <p class="report-date"><time datetime="%s">%s</time></p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- the post body exactly as WordPress rendered it -->
+          <div class="report-prose">
+%s
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+""" % (post['back'], post['category'], figure, post['category'],
+       html.escape(post['title']), SITE, post['date'], post['date_kn'], post['body'])
+
+
 def page_head(title, blurb):
     return """  <!-- ================= PAGE HEAD ================= -->
   <section class="page-head">
@@ -257,9 +321,12 @@ def url_for(name):
     return SITE_URL.rstrip('/') + '/' + ('' if name == 'index.html' else name)
 
 
-def render(name):
-    title, blurb, fragments, scripts = PAGES[name]
-    body = []
+def render(name, post=None):
+    if post:
+        title, blurb, fragments, scripts = post['title'], None, [], []
+    else:
+        title, blurb, fragments, scripts = PAGES[name]
+    body = [post_body(post)] if post else []
     if blurb is not None:
         body.append(page_head(title, blurb))
     for n, frag in enumerate(fragments):
@@ -361,6 +428,18 @@ def main():
     for name in PAGES:
         (ROOT / name).write_text(render(name), encoding='utf-8')
         print('wrote %-18s' % name)
+
+    # one page per WordPress post, and any page from a previous fetch whose
+    # post has since gone is removed rather than left behind as a stale URL
+    posts = post_pages()
+    for name, post in posts.items():
+        (ROOT / name).write_text(render(name, post), encoding='utf-8')
+    if posts:
+        print('wrote %-18s (%d post pages)' % ('post-*.html', len(posts)))
+    for stale in ROOT.glob('post-*.html'):
+        if stale.name not in posts:
+            stale.unlink()
+            print('removed %-17s (no longer in WordPress)' % stale.name)
 
     # campaign.html keeps its own hand-written body but shares the chrome
     path = ROOT / 'campaign.html'
