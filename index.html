@@ -1,187 +1,331 @@
 <!DOCTYPE html>
-<html class="h-full" lang="kn">
+<html lang="en">
 <head>
 <meta charset="utf-8" />
 <meta content="width=device-width, initial-scale=1.0" name="viewport" />
-<title>Craft — ಸಿನಿಮ್ಯಾಟಿಕ್ ಕೋರ್ಸ್</title>
-<!-- Tailwind CSS CDN -->
-<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
-<!-- Google Fonts for Typography (incl. Kannada) -->
+<title>ŌURA — Our Ring 4</title>
+<meta name="description" content="Our Ring 4 — the most personal smart ring ever. Continuous 24/7 health, sleep, and activity tracking." />
+<!-- Google Fonts: Instrument Serif (display) + Inter (UI) -->
 <link href="https://fonts.googleapis.com" rel="preconnect" />
 <link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect" />
-<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;700&family=Noto+Sans+Kannada:wght@300;400;700&family=Noto+Serif+Kannada:wght@400;500;600&display=swap" rel="stylesheet" />
-<script>
-    tailwind.config = {
-      theme: {
-        extend: {
-          fontFamily: {
-            serif: ['"Noto Serif Kannada"', '"Instrument Serif"', 'serif'],
-            sans: ['"Noto Sans Kannada"', 'Inter', 'sans-serif'],
-          },
-          colors: {
-            brand: {
-              orange: '#FF7A00',
-              dark: '#0A0A0A',
-            }
-          }
-        }
-      }
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root {
+    --ink: #12314a;
+    --sky-top: #34689b;
+    --sky-mid: #6f9cc0;
+    --sky-horizon: #bcd0d6;
+    --field: #b8a898;
+    --glass-bg: rgba(255, 255, 255, 0.15);
+    --glass-border: rgba(255, 255, 255, 0.30);
+    --content-max: 1280px;
+  }
+
+  * { box-sizing: border-box; }
+
+  html, body { height: 100%; }
+
+  body {
+    margin: 0;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    color: #fff;
+    background: var(--ink);
+    overflow: hidden;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  /* ------------------------------------------------------------------ *
+   * Full-viewport hero scene
+   * ------------------------------------------------------------------ */
+  .hero {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    height: 100svh;
+    min-height: 640px;
+    overflow: hidden;
+  }
+
+  /* Sky + flower-field gradient. Stands in until assets/oura-hero.jpg is
+     dropped in; the photo layers on top and reveals this if it is missing,
+     so the page never looks broken. */
+  .hero__scene {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background:
+      radial-gradient(140% 90% at 50% -15%,
+        var(--sky-top) 0%,
+        #4d83b2 28%,
+        var(--sky-mid) 52%,
+        var(--sky-horizon) 76%,
+        var(--field) 100%);
+  }
+
+  .hero__photo {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 1;
+  }
+
+  /* Soft shading top + bottom to keep nav and bottom bar legible over the photo */
+  .hero__veil {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    pointer-events: none;
+    background:
+      linear-gradient(180deg, rgba(18, 49, 74, 0.30) 0%, rgba(18, 49, 74, 0) 20%),
+      linear-gradient(0deg, rgba(40, 44, 48, 0.42) 0%, rgba(40, 44, 48, 0) 28%);
+  }
+
+  /* ------------------------------------------------------------------ *
+   * Header / navigation
+   * ------------------------------------------------------------------ */
+  .site-header {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 20;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    padding: 26px clamp(20px, 4vw, 52px);
+  }
+
+  .wordmark {
+    font-size: clamp(22px, 2vw, 26px);
+    font-weight: 500;
+    letter-spacing: 0.28em;
+    color: #fff;
+    text-decoration: none;
+    user-select: none;
+    white-space: nowrap;
+  }
+
+  .nav {
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    padding: 6px;
+    border-radius: 999px;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid var(--glass-border);
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+  }
+
+  .nav__link {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255, 255, 255, 0.86);
+    text-decoration: none;
+    padding: 9px 20px;
+    border-radius: 999px;
+    white-space: nowrap;
+    transition: color 0.25s ease, background 0.25s ease;
+  }
+  .nav__link:hover { color: #fff; }
+  .nav__link.is-active {
+    background: #fff;
+    color: var(--ink);
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.12);
+  }
+
+  /* Pill buttons */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    padding: 8px 8px 8px 24px;
+    font-size: 14px;
+    font-weight: 500;
+    line-height: 1;
+    white-space: nowrap;
+    transition: transform 0.25s ease, background 0.25s ease;
+  }
+  .btn--solid { background: rgba(255, 255, 255, 0.94); color: var(--ink); }
+  .btn--solid:hover { background: #fff; transform: translateY(-1px); }
+  .btn--glass {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    -webkit-backdrop-filter: blur(14px);
+    backdrop-filter: blur(14px);
+    padding-left: 26px;
+  }
+  .btn--glass:hover { background: rgba(255, 255, 255, 0.24); transform: translateY(-1px); }
+
+  .btn__dot {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 34px;
+    height: 34px;
+    border-radius: 999px;
+    background: var(--ink);
+    color: #fff;
+    flex: none;
+  }
+  .btn--glass .btn__dot { width: 38px; height: 38px; }
+  .btn__dot svg { width: 16px; height: 16px; }
+
+  /* ------------------------------------------------------------------ *
+   * Centered headline
+   * ------------------------------------------------------------------ */
+  .headline {
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 15%;
+    z-index: 20;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0 20px;
+  }
+
+  .badge {
+    display: inline-block;
+    margin-bottom: 22px;
+    padding: 7px 18px;
+    border-radius: 999px;
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    background: rgba(255, 255, 255, 0.16);
+    border: 1px solid rgba(255, 255, 255, 0.38);
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+  }
+
+  .headline h1 {
+    margin: 0;
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+    font-size: clamp(46px, 8.2vw, 108px);
+    line-height: 0.96;
+    letter-spacing: 0.005em;
+    color: #fff;
+    text-shadow: 0 2px 30px rgba(18, 49, 74, 0.18);
+  }
+  .headline h1 span { display: block; }
+  .headline h1 em { font-style: italic; }
+
+  /* ------------------------------------------------------------------ *
+   * Bottom bar
+   * ------------------------------------------------------------------ */
+  .bottom-bar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 20;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: end;
+    gap: 24px;
+    padding: 0 clamp(20px, 4vw, 52px) clamp(28px, 3vw, 44px);
+  }
+
+  .price {
+    font-family: 'Instrument Serif', Georgia, serif;
+    font-weight: 400;
+  }
+  .price__name { margin: 0; font-size: clamp(20px, 2vw, 26px); line-height: 1.15; }
+  .price__amount { margin: 4px 0 0; font-size: clamp(20px, 2vw, 26px); line-height: 1.15; padding-left: 18px; }
+
+  .bottom-bar__cta { display: flex; justify-content: center; }
+
+  .lede {
+    margin: 0;
+    justify-self: end;
+    max-width: 20rem;
+    font-size: 14px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.92);
+  }
+
+  /* ------------------------------------------------------------------ *
+   * Responsive
+   * ------------------------------------------------------------------ */
+  @media (max-width: 860px) {
+    .nav { display: none; }
+    .bottom-bar {
+      grid-template-columns: 1fr;
+      justify-items: center;
+      gap: 20px;
+      text-align: center;
     }
-  </script>
-<style data-purpose="custom-typography">
-    /* Custom outline text for the second word */
-    .text-outline {
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.8);
-      font-weight: 400;
-    }
-    /* Large numbers styling */
-    .big-number-accent {
-      color: transparent;
-      -webkit-text-stroke: 1px #FF7A00;
-    }
-    .big-number-muted {
-      color: transparent;
-      -webkit-text-stroke: 1px rgba(255, 255, 255, 0.2);
-    }
-    .letter-spacing-widest {
-      letter-spacing: 0.2em;
-    }
-  </style>
-<style data-purpose="layout-and-effects">
-    /* Full-bleed background video of the Karnataka flag */
-    .hero-video {
-      position: absolute;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      z-index: 0;
-    }
-    /* Cinematic darkening overlay so the text stays legible over the video */
-    .hero-overlay {
-      position: absolute;
-      inset: 0;
-      z-index: 1;
-      background:
-        linear-gradient(90deg, rgba(10, 10, 10, 0.88) 0%, rgba(10, 10, 10, 0.55) 45%, rgba(10, 10, 10, 0.25) 100%),
-        linear-gradient(0deg, rgba(10, 10, 10, 0.75) 0%, rgba(10, 10, 10, 0.15) 40%, rgba(10, 10, 10, 0.35) 100%);
-    }
-    .glass-button {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      backdrop-filter: blur(10px);
-      transition: all 0.3s ease;
-    }
-    .glass-button:hover {
-      background: rgba(255, 255, 255, 0.1);
-      border-color: rgba(255, 255, 255, 0.3);
-    }
-    .glow-orange {
-      box-shadow: 0 0 20px rgba(255, 122, 0, 0.4);
-    }
-    /* Vertical line accent for the course label */
-    .accent-line::before {
-      content: "";
-      display: inline-block;
-      width: 30px;
-      height: 1px;
-      background-color: #FF7A00;
-      vertical-align: middle;
-      margin-right: 12px;
-    }
-  </style>
+    .price { text-align: center; }
+    .price__amount { padding-left: 0; }
+    .bottom-bar__cta { order: -1; }
+    .lede { justify-self: center; text-align: center; }
+    .headline { top: 12%; }
+  }
+</style>
 </head>
-<body class="h-full m-0 p-0 bg-brand-dark text-white font-sans overflow-hidden">
-<!-- BEGIN: MainContainer -->
-<main class="relative h-full w-full flex flex-col justify-between p-8 md:p-12">
-<!-- BEGIN: Background Video (Karnataka flag flying) -->
-<video class="hero-video" autoplay muted loop playsinline data-purpose="hero-background-video">
-<source src="assets/karnataka-flag.mp4" type="video/mp4" />
-</video>
-<div class="hero-overlay" aria-hidden="true"></div>
-<!-- END: Background Video -->
-<!-- BEGIN: Header -->
-<header class="flex items-center justify-between z-10">
-<!-- Hamburger Menu -->
-<div class="cursor-pointer" data-purpose="navigation-menu">
-<svg fill="none" height="14" viewbox="0 0 24 14" width="24" xmlns="http://www.w3.org/2000/svg">
-<path d="M0 1H24" stroke="white" stroke-width="1.5"></path>
-<path d="M0 7H16" stroke="white" stroke-width="1.5"></path>
-<path d="M0 13H24" stroke="white" stroke-width="1.5"></path>
-</svg>
-</div>
-<!-- Logo -->
-<div class="flex items-center gap-3" data-purpose="brand-logo">
-<div class="w-8 h-8 border-2 border-brand-orange flex items-center justify-center">
-<div class="w-3 h-3 bg-brand-orange"></div>
-</div>
-<span class="text-xl font-bold tracking-[0.3em] uppercase">Craft</span>
-</div>
-<!-- Auth Actions -->
-<div class="flex items-center gap-8" data-purpose="auth-links">
-<a class="text-xs font-semibold tracking-widest hover:text-brand-orange transition-colors" href="#">ಲಾಗಿನ್</a>
-<a class="glass-button px-6 py-2 rounded-full text-xs font-semibold tracking-widest border border-white/20" href="#">ಪ್ರವೇಶ ಪಡೆಯಿರಿ</a>
-</div>
+<body>
+<main class="hero">
+<!-- Background: gradient fallback + product photo + shading veil -->
+<div class="hero__scene" aria-hidden="true"></div>
+<img class="hero__photo"
+       src="assets/oura-hero.jpg"
+       alt="Oura Ring 4 resting on a mossy rock in a field of pink wildflowers under a blue sky"
+       onerror="this.style.display='none'" />
+<div class="hero__veil" aria-hidden="true"></div>
+
+<!-- Header -->
+<header class="site-header">
+<a href="#" class="wordmark" aria-label="Oura home">ŌURA</a>
+<nav class="nav" aria-label="Primary">
+<a href="#" class="nav__link is-active" aria-current="page">Product</a>
+<a href="#" class="nav__link">Health Features</a>
+<a href="#" class="nav__link">Experience</a>
+<a href="#" class="nav__link">Support</a>
+</nav>
+<a href="#" class="btn btn--solid">
+<span>Order Now</span>
+<span class="btn__dot" aria-hidden="true">
+<svg viewbox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H8M17 7V16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</span>
+</a>
 </header>
-<!-- END: Header -->
-<!-- BEGIN: HeroContent -->
-<section class="flex-grow flex items-center relative z-10">
-<!-- Left Content -->
-<div class="max-w-xl z-10">
-<div class="accent-line text-[10px] uppercase tracking-[0.2em] text-brand-orange mb-8 font-semibold">
-          ಕೋರ್ಸ್ 03 · ಚಲನಚಿತ್ರ &amp; ನಿರ್ದೇಶನ
-        </div>
-<h1 class="font-serif leading-none mb-10">
-<span class="block text-[88px] md:text-[150px]">ಸಿನಿಮ್ಯಾ-</span>
-<span class="block text-[88px] md:text-[150px] text-outline italic ml-4">ಟಿಕ್</span>
+
+<!-- Headline -->
+<section class="headline">
+<span class="badge">Our Ring 4</span>
+<h1>
+<span>Our Most <em>personal</em></span>
+<span>smart Ring ever</span>
 </h1>
-<p class="text-sm md:text-base text-gray-300 leading-relaxed max-w-md mb-12 opacity-90">
-          ಉದ್ದೇಶದಿಂದ ನಿರ್ದೇಶಿಸಿ. ನಿಖರತೆಯಿಂದ ಬಣ್ಣ ಸಂಯೋಜಿಸಿ. ಸಿನಿಮಾದ ಭಾಷೆಯನ್ನು ಕಲಿಯಿರಿ — ಪೂರ್ವ-ನಿರ್ಮಾಣದಿಂದ ಪ್ರೇಕ್ಷಕರ ಹೃದಯವನ್ನು ಕಲಕುವ ಅಂತಿಮ ಕಟ್‌ವರೆಗೆ.
-        </p>
-<!-- CTA Button -->
-<button class="glass-button pl-8 pr-3 py-3 rounded-full flex items-center gap-6 group hover:scale-105 transform transition-all">
-<span class="text-xs font-bold tracking-[0.2em] uppercase">ಇಂದೇ ಸೇರಿ</span>
-<div class="w-10 h-10 bg-brand-orange rounded-full flex items-center justify-center glow-orange">
-<svg class="w-4 h-4 text-white" fill="none" stroke="currentColor" viewbox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M14 5l7 7m0 0l-7 7m7-7H3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5"></path></svg>
-</div>
-</button>
-</div>
-<!-- Right Overlay Elements -->
-<div class="absolute right-0 top-1/2 -translate-y-1/2 text-right hidden lg:block">
-<!-- Pagination Numbering -->
-<div class="flex items-baseline justify-end font-serif mb-12">
-<span class="text-[120px] big-number-accent leading-none">03</span>
-<span class="text-[60px] text-gray-600 mx-4 font-sans font-light">/</span>
-<span class="text-[120px] big-number-muted leading-none">03</span>
-</div>
-<!-- Sidebar Slogan -->
-<div class="space-y-4 pr-4">
-<p class="font-serif italic text-xl text-gray-300">ಒಂದು ಫ್ರೇಮ್,<br/>ಒಂದು ಕಥೆ,<br/>ಅನಂತ ಪ್ರಭಾವ</p>
-<a class="inline-block text-[10px] tracking-[0.2em] uppercase text-brand-orange font-bold pt-4 hover:underline" href="#">
-            ಇದನ್ನು ಸಿನಿಮ್ಯಾಟಿಕ್ ಮಾಡಿ
-          </a>
-</div>
-</div>
 </section>
-<!-- END: HeroContent -->
-<!-- BEGIN: FooterUI -->
-<footer class="flex items-end justify-between z-10">
-<!-- Timestamp -->
-<div class="text-2xl font-light" data-purpose="video-timestamp">
-        00:01
-      </div>
-<!-- Progress Indicators -->
-<div class="flex gap-3 pb-2" data-purpose="slider-controls">
-<div class="w-8 h-[2px] bg-white/20"></div>
-<div class="w-8 h-[2px] bg-white/20"></div>
-<div class="w-16 h-[2px] bg-brand-orange"></div>
+
+<!-- Bottom bar -->
+<footer class="bottom-bar">
+<div class="price">
+<p class="price__name">quora ring 4</p>
+<p class="price__amount">$499.00</p>
 </div>
-<!-- Empty spacer for symmetry with timestamp -->
-<div class="w-24"></div>
+<div class="bottom-bar__cta">
+<a href="#" class="btn btn--glass">
+<span>Order Now</span>
+<span class="btn__dot" aria-hidden="true">
+<svg viewbox="0 0 24 24" fill="none" stroke="currentColor" xmlns="http://www.w3.org/2000/svg"><path d="M7 17L17 7M17 7H8M17 7V16" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"></path></svg>
+</span>
+</a>
+</div>
+<p class="lede">The Oura Ring 4 is an advanced smart ring designed for continuous 24/7 health, sleep, and activity tracking.</p>
 </footer>
-<!-- END: FooterUI -->
 </main>
-<!-- END: MainContainer -->
 </body>
 </html>

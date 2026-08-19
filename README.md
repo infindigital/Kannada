@@ -1,17 +1,28 @@
-# Craft — ಸಿನಿಮ್ಯಾಟಿಕ್ ಕೋರ್ಸ್ (Cinematic Course)
+# ŌURA — Our Ring 4 (Home Page)
 
-A single-page cinematic course hero, localized into **Kannada (ಕನ್ನಡ)**, with a
-looping **Karnataka flag** video as the background.
+A single-page product hero for the **Oura Ring 4**, rebuilt from the Figma
+design. Self-contained HTML + CSS (no build step, no CSS framework at runtime).
 
 ## Files
-- `index.html` — the hero page. Tailwind (CDN) + Google Fonts (Noto Serif/Sans
-  Kannada for the Kannada type). The hero copy, nav, CTA and slogan are all in Kannada.
-- `assets/karnataka-flag.mp4` — AI-generated background video of the Karnataka
-  flag (yellow/red bicolour) waving in the wind. Muted, autoplaying, looping.
-  It is lightly blurred and sits under a dark gradient overlay so the foreground
-  text stays legible.
+- `index.html` — the home page. Hand-written CSS with Google Fonts
+  (**Instrument Serif** for the display headline, **Inter** for UI/body).
+  Sections: header (ŌURA wordmark, glass pill nav, "Order Now"), centered
+  serif headline with the italic *personal*, the "OUR RING 4" badge, and a
+  bottom bar (product name + price, centered "Order Now", description).
+- `assets/` — media. Drop the hero product photo in as `assets/oura-hero.jpg`
+  (see below).
+
+## Hero image
+The design's centerpiece is a photo of the ring resting in a field of pink
+wildflowers under a blue sky. Until that image is added, the page shows a
+matching **sky-to-field gradient** as a stand-in.
+
+To use the real photo, save it as `assets/oura-hero.jpg` — `index.html`
+already references it and layers it over the gradient. If the file is absent
+the page falls back to the gradient automatically (via the image `onerror`
+handler), so it never looks broken.
 
 ## Notes
-- The video is a full-bleed `<video autoplay muted loop playsinline>` behind a
-  `.hero-overlay` darkening gradient.
+- Fully responsive: below ~860px the pill nav collapses and the bottom bar
+  stacks (CTA, price, description) in a centered column.
 - To view: open `index.html` in any modern browser.
