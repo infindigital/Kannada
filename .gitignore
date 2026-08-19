@@ -1,0 +1,6 @@
+# Python leaves these next to tools/*.py. They are build artefacts of whichever
+# interpreter last ran, so they differ between this sandbox and the GitHub
+# runner — committing them makes the WordPress sync show a spurious change on
+# every run.
+__pycache__/
+*.pyc
