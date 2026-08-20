@@ -30,6 +30,7 @@ import json
 import pathlib
 import re
 import shutil
+import socket
 import sys
 import urllib.error
 import urllib.parse
@@ -65,6 +66,57 @@ ARROW = ('<svg width="13" height="13" viewBox="0 0 24 24" fill="none" aria-hidde
 
 
 # ----------------------------------------------------------------- fetching
+def prefer_ipv4():
+    """Sort IPv4 ahead of IPv6 for every lookup this process makes.
+
+    The host publishes AAAA records, but a GitHub Actions runner has no IPv6
+    route. glibc's RFC 3484 rules hand back the IPv6 address first, so every
+    connection begins by failing with ENETUNREACH. Python does go on to try the
+    remaining addresses, but socket.create_connection re-raises the *first*
+    exception it collected, so a later IPv4 failure gets reported as
+    "Network is unreachable" — which points at the wrong problem entirely.
+    Ordering IPv4 first keeps the error honest and skips two dead connects.
+    """
+    real = socket.getaddrinfo
+
+    def ordered(*a, **kw):
+        return sorted(real(*a, **kw), key=lambda r: r[0] != socket.AF_INET)
+
+    socket.getaddrinfo = ordered
+
+
+def reachability_report(url):
+    """Try every address behind a URL and say what each one did.
+
+    Printed only when a fetch has already failed. Without it the single
+    reported errno is whichever address happened to be tried first, which
+    hides both how many addresses exist and which families actually work.
+    """
+    host = urllib.parse.urlparse(url).hostname
+    port = urllib.parse.urlparse(url).port or 443
+    print('  reachability of %s:%d from this machine' % (host, port))
+    try:
+        addrs = socket.getaddrinfo(host, port, 0, socket.SOCK_STREAM)
+    except OSError as e:
+        print('    DNS lookup failed — %s' % e)
+        return
+    for family, _, _, _, sockaddr in addrs:
+        label = 'IPv4' if family == socket.AF_INET else 'IPv6'
+        s = None
+        try:
+            # socket() itself raises EAFNOSUPPORT on a host with no IPv6 stack
+            # at all, so it has to be inside the guard, not before it.
+            s = socket.socket(family, socket.SOCK_STREAM)
+            s.settimeout(10)
+            s.connect(sockaddr)
+            print('    %-4s %-42s connected' % (label, sockaddr[0]))
+        except OSError as e:
+            print('    %-4s %-42s %s' % (label, sockaddr[0], e))
+        finally:
+            if s is not None:
+                s.close()
+
+
 def api(path, **params):
     url = '%s/wp-json/wp/v2/%s' % (WP_URL.rstrip('/'), path)
     if params:
@@ -76,7 +128,9 @@ def api(path, **params):
     except urllib.error.HTTPError as e:
         sys.exit('WordPress returned %s for %s\n%s' % (e.code, url, e.read()[:300].decode('utf-8', 'replace')))
     except urllib.error.URLError as e:
-        sys.exit('could not reach %s — %s' % (url, e.reason))
+        print('could not reach %s — %s' % (url, e.reason))
+        reachability_report(url)
+        sys.exit(1)
 
 
 def category_id(slug):
@@ -343,7 +397,8 @@ def main():
         print('WP_URL is empty in tools/wp.py — nothing fetched, content/ left as is.')
         return
 
-    print('fetching from %s' % WP_URL)
+    prefer_ipv4()
+    print('fetching from %s' % WP_URL, flush=True)
     manifest = []
 
     for slug, (name, eyebrow, heading, lede) in FEEDS.items():
