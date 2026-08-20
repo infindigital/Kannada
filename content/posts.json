@@ -1,1 +1,14 @@
-[]
+[
+  {
+    "file": "post-31-program-name.html",
+    "title": "Program name",
+    "date": "2026-08-16",
+    "date_kn": "16 ಆಗಸ್ಟ್ 2026",
+    "category": "ಕಾರ್ಯಕ್ರಮಗಳ ವರದಿ",
+    "back": "programmes.html",
+    "image": "assets/wp/31-basm.jpg",
+    "alt": "Program name",
+    "body": "\n<p class=\"wp-block-paragraph\">program descriptions</p>\n",
+    "excerpt": "program descriptions"
+  }
+]
