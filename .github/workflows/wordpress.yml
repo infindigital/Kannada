@@ -14,6 +14,16 @@ on:
   schedule:
     - cron: '17 * * * *'      # hourly, off the hour so it is not queued with everyone else's
   workflow_dispatch:           # the "Run workflow" button, for publishing right now
+  push:
+    branches: [main]
+    # schedule and workflow_dispatch only fire for workflows on the repository's
+    # DEFAULT branch. While main is not the default, those two do nothing at all
+    # — no cron, no button in the Actions tab. push has no such restriction, so
+    # this is what actually makes the sync runnable today.
+    #
+    # It cannot loop: GitHub deliberately does not raise workflow events for
+    # commits pushed with the built-in GITHUB_TOKEN, so this job's own commit
+    # does not start another run.
 
 permissions:
   contents: write              # it commits the regenerated pages
