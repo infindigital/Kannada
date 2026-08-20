@@ -587,6 +587,12 @@ section[id] { scroll-margin-top: 7rem; }
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr));
   gap: clamp(1.25rem, 2.5vw, 1.75rem);
 }
+/* These grids are filled from WordPress, so the count is whatever has been
+   published — often one. auto-fit collapses the empty tracks and hands that
+   lone card the whole row, blowing its photo up to full width. A ceiling keeps
+   it card-sized. Three or more cards already compute narrower than this, so
+   the populated sections are untouched. */
+.card-grid > .card { max-width: 26rem; }
 
 /* ============================================================
    THEMES / CATEGORIES
@@ -1637,6 +1643,15 @@ section[id] { scroll-margin-top: 7rem; }
   .report-grid { grid-template-columns: minmax(0, 1fr) 21rem; }
   /* the sidebar tracks the article instead of running off the top of a long read */
   .report-aside { position: sticky; top: 7rem; }
+}
+
+/* A post page carries no sidebar, so it keeps one column. Left on the two-column
+   rule it reserved 21rem of empty space to the right of every article. Centred
+   and held to a reading measure, because a single column spanning the full wrap
+   would run the body text far too wide to follow. */
+.report-grid.is-solo { grid-template-columns: minmax(0, 1fr); }
+@media (min-width: 980px) {
+  .report-grid.is-solo > article { max-width: 46rem; margin-inline: auto; }
 }
 
 .report-card {

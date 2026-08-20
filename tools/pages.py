@@ -267,7 +267,10 @@ def post_body(post):
         %s
       </a>
 
-      <div class="report-grid">
+      <!-- is-solo: this page has no .report-aside, so the grid must not hold a
+           column open for one. Set here rather than with :has() in the CSS so
+           the layout does not depend on selector support. -->
+      <div class="report-grid is-solo">
 
         <article>
           <div class="report-card">
